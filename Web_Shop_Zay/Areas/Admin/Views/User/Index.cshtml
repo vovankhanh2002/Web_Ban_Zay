@@ -1,0 +1,60 @@
+﻿
+@using PagedList.Mvc;
+@using PagedList;
+@model IPagedList<Web_Shop_Zay.Models.User>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/LayoutAmin.cshtml";
+}
+
+<p>
+    @Html.ActionLink("Add User", "AddUser")
+</p>
+<table class="table" style="width:700px;hight:300px">
+    <tr>
+        <th style="width:100px">
+            Mã User
+        </th>
+        <th style="width:100px">
+            Tên User
+        </th>
+        <th style="width:100px">
+            Mật khẩu User
+        </th>
+        <th style="width:100px">
+            Mật khẩu nhập lại User
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.IDUser)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TenUser)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MatKhauUser)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MatKhauNhapLai)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                <a href="~/Admin/User/EditUser?id=@item.IDUser">Edit</a> |
+                <a href="~/Admin/User/DeletePhanLoaiSP?id=@item.IDUser" onclick="showSuccessToast()">Delete</a> |
+            </td>
+        </tr>
+    }
+    <!-- Kết thúc -->
+</table>
+
+<br />
+<div style="margin-right:50px">
+    @Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page }))
+</div>
+
+

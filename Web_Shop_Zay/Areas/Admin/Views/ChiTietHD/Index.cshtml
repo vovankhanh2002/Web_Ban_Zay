@@ -1,0 +1,60 @@
+﻿
+@using PagedList.Mvc;
+@using PagedList;
+@model IPagedList<Web_Shop_Zay.Models.Chi_Tiet_HD>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/LayoutAmin.cshtml";
+}
+<table class="table" style="width:700px;hight:32px">
+    <tr>
+        <th style="width:100px;hight:100px">
+            Mã chi tiết hóa đơn
+        </th>
+        <th style="width:100px;hight:100px">
+            Mã hóa đơn
+        </th>
+        <th style="width:100px;hight:100px">
+            Mã sản phẩm
+        </th>
+        <th style="width:100px;hight:100px">
+            Số lượng
+        </th>
+        <th style="width:100px;hight:100px">
+            Tổng tiền
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaCT)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaHD)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaSP)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SoLuong)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TongTien)
+            </td>
+
+            <td>
+                <a href="~/Admin/ChiTietHD/EditChiTietHD?id=@item.MaCT">Edit</a> |
+                <a href="~/Admin/ChiTietHD/DeleteChiTietHD?id=@item.MaCT" onclick="showSuccessToast()">Delete</a> |
+            </td>
+        </tr>
+    }
+
+</table>
+
+<br />
+<div style="margin-right:50px">
+    @Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page }))
+</div>

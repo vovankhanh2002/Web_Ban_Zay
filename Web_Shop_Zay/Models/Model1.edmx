@@ -1,0 +1,452 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Web_Ban_ZayModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Chi_Tiet_HD">
+          <Key>
+            <PropertyRef Name="MaCT" />
+          </Key>
+          <Property Name="MaHD" Type="int" />
+          <Property Name="MaSP" Type="int" />
+          <Property Name="SoLuong" Type="int" />
+          <Property Name="TongTien" Type="int" Nullable="false" />
+          <Property Name="MaCT" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Hoa_Don">
+          <Key>
+            <PropertyRef Name="MaHD" />
+          </Key>
+          <Property Name="MaHD" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IDKhachHang" Type="int" />
+          <Property Name="NgayMua" Type="date" />
+          <Property Name="TenNN" Type="nvarchar" MaxLength="50" />
+          <Property Name="DiaChiNN" Type="nvarchar" MaxLength="50" />
+          <Property Name="DienThoaiNN" Type="nvarchar" MaxLength="50" />
+          <Property Name="EmailNN" Type="nvarchar" MaxLength="50" />
+          <Property Name="GioiTinhNN" Type="nvarchar" MaxLength="50" />
+          <Property Name="GhiChuNN" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="Khach_Hang">
+          <Key>
+            <PropertyRef Name="IDKhachHang" />
+          </Key>
+          <Property Name="IDKhachHang" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="HoTenKH" Type="nvarchar" MaxLength="50" />
+          <Property Name="DiaChi" Type="nvarchar" MaxLength="500" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="DienThoai" Type="nvarchar" MaxLength="50" />
+          <Property Name="GioiTinh" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Loai_San_Pham">
+          <Key>
+            <PropertyRef Name="MaLoai" />
+          </Key>
+          <Property Name="MaLoai" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TenLoai" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Phan_Loai_SP">
+          <Key>
+            <PropertyRef Name="MaPL" />
+          </Key>
+          <Property Name="MaPL" Type="int" Nullable="false" />
+          <Property Name="MaLoai" Type="int" />
+          <Property Name="TenPL" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="San_Pham">
+          <Key>
+            <PropertyRef Name="MaSP" />
+          </Key>
+          <Property Name="MaSP" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MaPL" Type="int" />
+          <Property Name="TenSP" Type="nvarchar" MaxLength="50" />
+          <Property Name="MoTa" Type="nvarchar" MaxLength="500" />
+          <Property Name="SoLuong" Type="int" />
+          <Property Name="Gia" Type="int" />
+          <Property Name="Hinh" Type="nvarchar" MaxLength="500" />
+          <Property Name="TrangThai" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="IDUser" />
+          </Key>
+          <Property Name="IDUser" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TenUser" Type="nvarchar" MaxLength="50" />
+          <Property Name="MatKhauUser" Type="nvarchar" MaxLength="50" />
+          <Property Name="MatKhauNhapLai" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_Chi_Tiet_HD_Hoa_Don">
+          <End Role="Hoa_Don" Type="Self.Hoa_Don" Multiplicity="0..1" />
+          <End Role="Chi_Tiet_HD" Type="Self.Chi_Tiet_HD" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hoa_Don">
+              <PropertyRef Name="MaHD" />
+            </Principal>
+            <Dependent Role="Chi_Tiet_HD">
+              <PropertyRef Name="MaHD" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Chi_Tiet_HD_San_Pham">
+          <End Role="San_Pham" Type="Self.San_Pham" Multiplicity="0..1" />
+          <End Role="Chi_Tiet_HD" Type="Self.Chi_Tiet_HD" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="San_Pham">
+              <PropertyRef Name="MaSP" />
+            </Principal>
+            <Dependent Role="Chi_Tiet_HD">
+              <PropertyRef Name="MaSP" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Hoa_Don_Khach_Hang">
+          <End Role="Khach_Hang" Type="Self.Khach_Hang" Multiplicity="0..1" />
+          <End Role="Hoa_Don" Type="Self.Hoa_Don" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Khach_Hang">
+              <PropertyRef Name="IDKhachHang" />
+            </Principal>
+            <Dependent Role="Hoa_Don">
+              <PropertyRef Name="IDKhachHang" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Phan_Loai_SP_Loai_San_Pham">
+          <End Role="Loai_San_Pham" Type="Self.Loai_San_Pham" Multiplicity="0..1" />
+          <End Role="Phan_Loai_SP" Type="Self.Phan_Loai_SP" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Loai_San_Pham">
+              <PropertyRef Name="MaLoai" />
+            </Principal>
+            <Dependent Role="Phan_Loai_SP">
+              <PropertyRef Name="MaLoai" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_San_Pham_Phan_Loai_SP">
+          <End Role="Phan_Loai_SP" Type="Self.Phan_Loai_SP" Multiplicity="0..1" />
+          <End Role="San_Pham" Type="Self.San_Pham" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Phan_Loai_SP">
+              <PropertyRef Name="MaPL" />
+            </Principal>
+            <Dependent Role="San_Pham">
+              <PropertyRef Name="MaPL" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Web_Ban_ZayModelStoreContainer">
+          <EntitySet Name="Chi_Tiet_HD" EntityType="Self.Chi_Tiet_HD" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Hoa_Don" EntityType="Self.Hoa_Don" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Khach_Hang" EntityType="Self.Khach_Hang" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Loai_San_Pham" EntityType="Self.Loai_San_Pham" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Phan_Loai_SP" EntityType="Self.Phan_Loai_SP" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="San_Pham" EntityType="Self.San_Pham" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Chi_Tiet_HD_Hoa_Don" Association="Self.FK_Chi_Tiet_HD_Hoa_Don">
+            <End Role="Hoa_Don" EntitySet="Hoa_Don" />
+            <End Role="Chi_Tiet_HD" EntitySet="Chi_Tiet_HD" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Chi_Tiet_HD_San_Pham" Association="Self.FK_Chi_Tiet_HD_San_Pham">
+            <End Role="San_Pham" EntitySet="San_Pham" />
+            <End Role="Chi_Tiet_HD" EntitySet="Chi_Tiet_HD" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Hoa_Don_Khach_Hang" Association="Self.FK_Hoa_Don_Khach_Hang">
+            <End Role="Khach_Hang" EntitySet="Khach_Hang" />
+            <End Role="Hoa_Don" EntitySet="Hoa_Don" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Phan_Loai_SP_Loai_San_Pham" Association="Self.FK_Phan_Loai_SP_Loai_San_Pham">
+            <End Role="Loai_San_Pham" EntitySet="Loai_San_Pham" />
+            <End Role="Phan_Loai_SP" EntitySet="Phan_Loai_SP" />
+          </AssociationSet>
+          <AssociationSet Name="FK_San_Pham_Phan_Loai_SP" Association="Self.FK_San_Pham_Phan_Loai_SP">
+            <End Role="Phan_Loai_SP" EntitySet="Phan_Loai_SP" />
+            <End Role="San_Pham" EntitySet="San_Pham" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Web_Ban_ZayModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="Web_Ban_ZayEntities3" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Chi_Tiet_HD" EntityType="Web_Ban_ZayModel.Chi_Tiet_HD" />
+          <EntitySet Name="Hoa_Don" EntityType="Web_Ban_ZayModel.Hoa_Don" />
+          <EntitySet Name="Khach_Hang" EntityType="Web_Ban_ZayModel.Khach_Hang" />
+          <EntitySet Name="Loai_San_Pham" EntityType="Web_Ban_ZayModel.Loai_San_Pham" />
+          <EntitySet Name="Phan_Loai_SP" EntityType="Web_Ban_ZayModel.Phan_Loai_SP" />
+          <EntitySet Name="San_Pham" EntityType="Web_Ban_ZayModel.San_Pham" />
+          <EntitySet Name="Users" EntityType="Web_Ban_ZayModel.User" />
+          <AssociationSet Name="FK_Chi_Tiet_HD_Hoa_Don" Association="Web_Ban_ZayModel.FK_Chi_Tiet_HD_Hoa_Don">
+            <End Role="Hoa_Don" EntitySet="Hoa_Don" />
+            <End Role="Chi_Tiet_HD" EntitySet="Chi_Tiet_HD" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Chi_Tiet_HD_San_Pham" Association="Web_Ban_ZayModel.FK_Chi_Tiet_HD_San_Pham">
+            <End Role="San_Pham" EntitySet="San_Pham" />
+            <End Role="Chi_Tiet_HD" EntitySet="Chi_Tiet_HD" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Hoa_Don_Khach_Hang" Association="Web_Ban_ZayModel.FK_Hoa_Don_Khach_Hang">
+            <End Role="Khach_Hang" EntitySet="Khach_Hang" />
+            <End Role="Hoa_Don" EntitySet="Hoa_Don" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Phan_Loai_SP_Loai_San_Pham" Association="Web_Ban_ZayModel.FK_Phan_Loai_SP_Loai_San_Pham">
+            <End Role="Loai_San_Pham" EntitySet="Loai_San_Pham" />
+            <End Role="Phan_Loai_SP" EntitySet="Phan_Loai_SP" />
+          </AssociationSet>
+          <AssociationSet Name="FK_San_Pham_Phan_Loai_SP" Association="Web_Ban_ZayModel.FK_San_Pham_Phan_Loai_SP">
+            <End Role="Phan_Loai_SP" EntitySet="Phan_Loai_SP" />
+            <End Role="San_Pham" EntitySet="San_Pham" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Chi_Tiet_HD">
+          <Key>
+            <PropertyRef Name="MaCT" />
+          </Key>
+          <Property Name="MaHD" Type="Int32" />
+          <Property Name="MaSP" Type="Int32" />
+          <Property Name="SoLuong" Type="Int32" />
+          <Property Name="TongTien" Type="Int32" Nullable="false" />
+          <Property Name="MaCT" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Hoa_Don" Relationship="Web_Ban_ZayModel.FK_Chi_Tiet_HD_Hoa_Don" FromRole="Chi_Tiet_HD" ToRole="Hoa_Don" />
+          <NavigationProperty Name="San_Pham" Relationship="Web_Ban_ZayModel.FK_Chi_Tiet_HD_San_Pham" FromRole="Chi_Tiet_HD" ToRole="San_Pham" />
+        </EntityType>
+        <EntityType Name="Hoa_Don">
+          <Key>
+            <PropertyRef Name="MaHD" />
+          </Key>
+          <Property Name="MaHD" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IDKhachHang" Type="Int32" />
+          <Property Name="NgayMua" Type="DateTime" Precision="0" />
+          <Property Name="TenNN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DiaChiNN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DienThoaiNN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EmailNN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="GioiTinhNN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="GhiChuNN" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Chi_Tiet_HD" Relationship="Web_Ban_ZayModel.FK_Chi_Tiet_HD_Hoa_Don" FromRole="Hoa_Don" ToRole="Chi_Tiet_HD" />
+          <NavigationProperty Name="Khach_Hang" Relationship="Web_Ban_ZayModel.FK_Hoa_Don_Khach_Hang" FromRole="Hoa_Don" ToRole="Khach_Hang" />
+        </EntityType>
+        <EntityType Name="Khach_Hang">
+          <Key>
+            <PropertyRef Name="IDKhachHang" />
+          </Key>
+          <Property Name="IDKhachHang" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="HoTenKH" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DiaChi" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DienThoai" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="GioiTinh" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Hoa_Don" Relationship="Web_Ban_ZayModel.FK_Hoa_Don_Khach_Hang" FromRole="Khach_Hang" ToRole="Hoa_Don" />
+        </EntityType>
+        <EntityType Name="Loai_San_Pham">
+          <Key>
+            <PropertyRef Name="MaLoai" />
+          </Key>
+          <Property Name="MaLoai" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TenLoai" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Phan_Loai_SP" Relationship="Web_Ban_ZayModel.FK_Phan_Loai_SP_Loai_San_Pham" FromRole="Loai_San_Pham" ToRole="Phan_Loai_SP" />
+        </EntityType>
+        <EntityType Name="Phan_Loai_SP">
+          <Key>
+            <PropertyRef Name="MaPL" />
+          </Key>
+          <Property Name="MaPL" Type="Int32" Nullable="false" />
+          <Property Name="MaLoai" Type="Int32" />
+          <Property Name="TenPL" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Loai_San_Pham" Relationship="Web_Ban_ZayModel.FK_Phan_Loai_SP_Loai_San_Pham" FromRole="Phan_Loai_SP" ToRole="Loai_San_Pham" />
+          <NavigationProperty Name="San_Pham" Relationship="Web_Ban_ZayModel.FK_San_Pham_Phan_Loai_SP" FromRole="Phan_Loai_SP" ToRole="San_Pham" />
+        </EntityType>
+        <EntityType Name="San_Pham">
+          <Key>
+            <PropertyRef Name="MaSP" />
+          </Key>
+          <Property Name="MaSP" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MaPL" Type="Int32" />
+          <Property Name="TenSP" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MoTa" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="SoLuong" Type="Int32" />
+          <Property Name="Gia" Type="Int32" />
+          <Property Name="Hinh" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="TrangThai" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Chi_Tiet_HD" Relationship="Web_Ban_ZayModel.FK_Chi_Tiet_HD_San_Pham" FromRole="San_Pham" ToRole="Chi_Tiet_HD" />
+          <NavigationProperty Name="Phan_Loai_SP" Relationship="Web_Ban_ZayModel.FK_San_Pham_Phan_Loai_SP" FromRole="San_Pham" ToRole="Phan_Loai_SP" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="IDUser" />
+          </Key>
+          <Property Name="IDUser" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TenUser" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MatKhauUser" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MatKhauNhapLai" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_Chi_Tiet_HD_Hoa_Don">
+          <End Type="Web_Ban_ZayModel.Hoa_Don" Role="Hoa_Don" Multiplicity="0..1" />
+          <End Type="Web_Ban_ZayModel.Chi_Tiet_HD" Role="Chi_Tiet_HD" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hoa_Don">
+              <PropertyRef Name="MaHD" />
+            </Principal>
+            <Dependent Role="Chi_Tiet_HD">
+              <PropertyRef Name="MaHD" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Chi_Tiet_HD_San_Pham">
+          <End Type="Web_Ban_ZayModel.San_Pham" Role="San_Pham" Multiplicity="0..1" />
+          <End Type="Web_Ban_ZayModel.Chi_Tiet_HD" Role="Chi_Tiet_HD" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="San_Pham">
+              <PropertyRef Name="MaSP" />
+            </Principal>
+            <Dependent Role="Chi_Tiet_HD">
+              <PropertyRef Name="MaSP" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Hoa_Don_Khach_Hang">
+          <End Type="Web_Ban_ZayModel.Khach_Hang" Role="Khach_Hang" Multiplicity="0..1" />
+          <End Type="Web_Ban_ZayModel.Hoa_Don" Role="Hoa_Don" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Khach_Hang">
+              <PropertyRef Name="IDKhachHang" />
+            </Principal>
+            <Dependent Role="Hoa_Don">
+              <PropertyRef Name="IDKhachHang" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Phan_Loai_SP_Loai_San_Pham">
+          <End Type="Web_Ban_ZayModel.Loai_San_Pham" Role="Loai_San_Pham" Multiplicity="0..1" />
+          <End Type="Web_Ban_ZayModel.Phan_Loai_SP" Role="Phan_Loai_SP" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Loai_San_Pham">
+              <PropertyRef Name="MaLoai" />
+            </Principal>
+            <Dependent Role="Phan_Loai_SP">
+              <PropertyRef Name="MaLoai" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_San_Pham_Phan_Loai_SP">
+          <End Type="Web_Ban_ZayModel.Phan_Loai_SP" Role="Phan_Loai_SP" Multiplicity="0..1" />
+          <End Type="Web_Ban_ZayModel.San_Pham" Role="San_Pham" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Phan_Loai_SP">
+              <PropertyRef Name="MaPL" />
+            </Principal>
+            <Dependent Role="San_Pham">
+              <PropertyRef Name="MaPL" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Web_Ban_ZayModelStoreContainer" CdmEntityContainer="Web_Ban_ZayEntities3">
+          <EntitySetMapping Name="Chi_Tiet_HD">
+            <EntityTypeMapping TypeName="Web_Ban_ZayModel.Chi_Tiet_HD">
+              <MappingFragment StoreEntitySet="Chi_Tiet_HD">
+                <ScalarProperty Name="MaCT" ColumnName="MaCT" />
+                <ScalarProperty Name="TongTien" ColumnName="TongTien" />
+                <ScalarProperty Name="SoLuong" ColumnName="SoLuong" />
+                <ScalarProperty Name="MaSP" ColumnName="MaSP" />
+                <ScalarProperty Name="MaHD" ColumnName="MaHD" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Hoa_Don">
+            <EntityTypeMapping TypeName="Web_Ban_ZayModel.Hoa_Don">
+              <MappingFragment StoreEntitySet="Hoa_Don">
+                <ScalarProperty Name="GhiChuNN" ColumnName="GhiChuNN" />
+                <ScalarProperty Name="GioiTinhNN" ColumnName="GioiTinhNN" />
+                <ScalarProperty Name="EmailNN" ColumnName="EmailNN" />
+                <ScalarProperty Name="DienThoaiNN" ColumnName="DienThoaiNN" />
+                <ScalarProperty Name="DiaChiNN" ColumnName="DiaChiNN" />
+                <ScalarProperty Name="TenNN" ColumnName="TenNN" />
+                <ScalarProperty Name="NgayMua" ColumnName="NgayMua" />
+                <ScalarProperty Name="IDKhachHang" ColumnName="IDKhachHang" />
+                <ScalarProperty Name="MaHD" ColumnName="MaHD" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Khach_Hang">
+            <EntityTypeMapping TypeName="Web_Ban_ZayModel.Khach_Hang">
+              <MappingFragment StoreEntitySet="Khach_Hang">
+                <ScalarProperty Name="GioiTinh" ColumnName="GioiTinh" />
+                <ScalarProperty Name="DienThoai" ColumnName="DienThoai" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="DiaChi" ColumnName="DiaChi" />
+                <ScalarProperty Name="HoTenKH" ColumnName="HoTenKH" />
+                <ScalarProperty Name="IDKhachHang" ColumnName="IDKhachHang" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Loai_San_Pham">
+            <EntityTypeMapping TypeName="Web_Ban_ZayModel.Loai_San_Pham">
+              <MappingFragment StoreEntitySet="Loai_San_Pham">
+                <ScalarProperty Name="TenLoai" ColumnName="TenLoai" />
+                <ScalarProperty Name="MaLoai" ColumnName="MaLoai" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Phan_Loai_SP">
+            <EntityTypeMapping TypeName="Web_Ban_ZayModel.Phan_Loai_SP">
+              <MappingFragment StoreEntitySet="Phan_Loai_SP">
+                <ScalarProperty Name="TenPL" ColumnName="TenPL" />
+                <ScalarProperty Name="MaLoai" ColumnName="MaLoai" />
+                <ScalarProperty Name="MaPL" ColumnName="MaPL" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="San_Pham">
+            <EntityTypeMapping TypeName="Web_Ban_ZayModel.San_Pham">
+              <MappingFragment StoreEntitySet="San_Pham">
+                <ScalarProperty Name="TrangThai" ColumnName="TrangThai" />
+                <ScalarProperty Name="Hinh" ColumnName="Hinh" />
+                <ScalarProperty Name="Gia" ColumnName="Gia" />
+                <ScalarProperty Name="SoLuong" ColumnName="SoLuong" />
+                <ScalarProperty Name="MoTa" ColumnName="MoTa" />
+                <ScalarProperty Name="TenSP" ColumnName="TenSP" />
+                <ScalarProperty Name="MaPL" ColumnName="MaPL" />
+                <ScalarProperty Name="MaSP" ColumnName="MaSP" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="Web_Ban_ZayModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="MatKhauNhapLai" ColumnName="MatKhauNhapLai" />
+                <ScalarProperty Name="MatKhauUser" ColumnName="MatKhauUser" />
+                <ScalarProperty Name="TenUser" ColumnName="TenUser" />
+                <ScalarProperty Name="IDUser" ColumnName="IDUser" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

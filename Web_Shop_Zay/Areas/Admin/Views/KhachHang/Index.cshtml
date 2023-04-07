@@ -1,0 +1,72 @@
+﻿
+@using PagedList.Mvc;
+@using PagedList;
+@model IPagedList<Web_Shop_Zay.Models.Khach_Hang>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/LayoutAmin.cshtml";
+}
+
+<p>
+    @Html.ActionLink("Add khách hàng", "AddKhachhang")
+</p>
+<table class="table" style="width:700px;hight:32px">
+    <tr>
+        <th style="width:100px;hight:100px">
+            Mã khách hàng
+        </th>
+        <th style="width: 100px; hight: 100px">
+            Họ tên khách hàng
+        </th>
+        <th style="width: 100px; hight: 100px">
+            Địa chỉ
+        </th>
+        <th style="width: 100px; hight: 100px">
+            Email
+        </th>
+        <th style="width: 100px; hight: 100px">
+            Điện thoại
+        </th>
+        <th style="width: 100px; hight: 100px">
+            Giới tính
+        </th>
+      
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.IDKhachHang)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HoTenKH)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DiaChi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DienThoai)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GioiTinh)
+            </td>
+           
+            <td>
+                <a href="~/Admin/KhachHang/EditKhachHang?id=@item.IDKhachHang">Edit</a> |
+                <a href="~/Admin/KhachHang/DeleteKhachHang?id=@item.IDKhachHang" onclick="showSuccessToast()">Delete</a> |
+            </td>
+        </tr>
+    }
+    <!-- Kết thúc -->
+</table>
+
+<br />
+<div style="margin-right:50px">
+    @Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page }))
+</div>
+

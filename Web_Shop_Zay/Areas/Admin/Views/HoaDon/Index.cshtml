@@ -1,0 +1,59 @@
+﻿
+@using PagedList.Mvc;
+@using PagedList;
+@model IPagedList<Web_Shop_Zay.Models.Hoa_Don>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/LayoutAmin.cshtml";
+}
+
+<table class="table" style="width:700px;hight:32px">
+    <tr>
+        <th style="width:100px;hight:100px">
+            Mã hóa đơn
+        </th>
+        <th style="width: 100px; hight: 100px">
+            Mã khách hàng
+        </th>
+        <th style="width: 100px; hight: 100px">
+            Ngày mua
+        </th>
+        <th style="width: 100px; hight: 100px">
+            Ghi chú
+        </th>
+      
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaHD)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IDKhachHang)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NgayMua)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GhiChuNN)
+            </td>
+         
+            <td>
+                <a href="~/Admin/HoaDon/DeleteHoaDon?id=@item.MaHD" onclick="showSuccessToast()">Delete</a> |
+            </td>
+        </tr>
+    }
+    <!-- Kết thúc -->
+</table>
+
+<br />
+<div style="margin-right:50px">
+    @Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page }))
+</div>
+
+
+
+
