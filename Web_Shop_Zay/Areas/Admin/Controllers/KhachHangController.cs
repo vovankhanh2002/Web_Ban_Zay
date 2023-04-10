@@ -26,7 +26,7 @@ namespace Web_Shop_Zay.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult AddKhachhang(Khach_Hang khach_Hang)
         {
-            if (khach_Hang.HoTenKH != null || khach_Hang.DiaChi != null || khach_Hang.DienThoai != null)
+            if (khach_Hang.HoTenKH != null && khach_Hang.DiaChi != null && khach_Hang.DienThoai != null && khach_Hang.MatKhau == khach_Hang.ReMatKhau)
             {
                 db.Khach_Hang.Add(khach_Hang);
                 db.SaveChanges();
@@ -35,7 +35,7 @@ namespace Web_Shop_Zay.Areas.Admin.Controllers
             }
             else
             {
-                Session["Null"] = "Mời bạn nhập đầy đủ thông tin!";
+                Session["Null"] = "Mời bạn nhập đầy đủ thông tin hoặc mật khẩu không trùng khớp!";
             }
             return RedirectToAction("AddKhachhang");
         }
@@ -49,20 +49,22 @@ namespace Web_Shop_Zay.Areas.Admin.Controllers
         public ActionResult EditKhachHang(Khach_Hang khach_Hang)
         {
             var ds = db.Khach_Hang.SingleOrDefault(m => m.IDKhachHang == khach_Hang.IDKhachHang);
-            if (khach_Hang.HoTenKH != null || khach_Hang.DiaChi != null || khach_Hang.DienThoai != null)
+            if (khach_Hang.HoTenKH != null && khach_Hang.DiaChi != null && khach_Hang.DienThoai != null && khach_Hang.MatKhau == khach_Hang.ReMatKhau)
             {
                 ds.HoTenKH = khach_Hang.HoTenKH;
                 ds.DiaChi = khach_Hang.DiaChi;
                 ds.Email = khach_Hang.Email;
                 ds.DienThoai = khach_Hang.DienThoai;
                 ds.GioiTinh = khach_Hang.GioiTinh;
+                ds.MatKhau = khach_Hang.MatKhau;
+                ds.ReMatKhau = khach_Hang.ReMatKhau;
                 db.SaveChanges();
                 TempData["ThongBao"] = "Đã sửa thành công!";
                 return RedirectToAction("Index");
             }
             else
             {
-                Session["Null"] = "Mời bạn nhập đầy đủ thông tin!";
+                Session["Null"] = "Mời bạn nhập đầy đủ thông tin hoặc mật khẩu không trùng khớp!";
                 return RedirectToAction("EditKhachHang");
             }
 

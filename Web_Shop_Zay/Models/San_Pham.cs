@@ -18,6 +18,7 @@ namespace Web_Shop_Zay.Models
         public San_Pham()
         {
             this.Chi_Tiet_HD = new HashSet<Chi_Tiet_HD>();
+            this.ChiTietSps = new HashSet<ChiTietSp>();
         }
     
         public int MaSP { get; set; }
@@ -31,6 +32,8 @@ namespace Web_Shop_Zay.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Chi_Tiet_HD> Chi_Tiet_HD { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ChiTietSp> ChiTietSps { get; set; }
         public virtual Phan_Loai_SP Phan_Loai_SP { get; set; }
     }
 }

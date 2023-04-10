@@ -239,6 +239,12 @@
                         </a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="~/Admin/ChiTietSP/Index">
+                            <span class="menu-title">Chi tiết sản phẩm</span>
+                            <i class="mdi mdi-table-large menu-icon"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" data-bs-toggle="collapse" href="#general-pages" aria-expanded="false" aria-controls="general-pages">
                             <span class="menu-title">Sample Pages</span>
                             <i class="menu-arrow"></i>
@@ -257,6 +263,16 @@
 
                 </ul>
             </nav>
+            @if (TempData["ThongBao"] != null)
+            {
+
+                <div class="container mt-5">
+                    <div class="alert alert-success p-4">
+                        <strong>Success</strong>
+                        <p class="mb-0">I'm an old success alert</p>
+                    </div>
+                </div>
+            }
             <!-- partial -->
             @RenderBody()
             <!-- main-panel ends -->

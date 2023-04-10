@@ -10,6 +10,17 @@
     <Property Name="TongTien" Type="int" Nullable="false" />
     <Property Name="MaCT" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
   </EntityType>
+  <EntityType Name="ChiTietSp">
+    <Key>
+      <PropertyRef Name="MaChiTietSP" />
+    </Key>
+    <Property Name="MaSP" Type="int" Nullable="false" />
+    <Property Name="Hinh1" Type="nvarchar" MaxLength="500" />
+    <Property Name="Hinh2" Type="nvarchar" MaxLength="500" />
+    <Property Name="Hinh3" Type="nvarchar" MaxLength="500" />
+    <Property Name="Hinh4" Type="nvarchar" MaxLength="500" />
+    <Property Name="MaChiTietSP" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
   <EntityType Name="Hoa_Don">
     <Key>
       <PropertyRef Name="MaHD" />
@@ -33,6 +44,8 @@
     <Property Name="DiaChi" Type="nvarchar" MaxLength="500" />
     <Property Name="Email" Type="nvarchar" MaxLength="50" />
     <Property Name="DienThoai" Type="nvarchar" MaxLength="50" />
+    <Property Name="MatKhau" Type="nvarchar" MaxLength="50" />
+    <Property Name="ReMatKhau" Type="nvarchar" MaxLength="50" />
     <Property Name="GioiTinh" Type="nvarchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="Loai_San_Pham">
@@ -96,6 +109,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_ChiTietSp_San_Pham">
+    <End Role="San_Pham" Type="Self.San_Pham" Multiplicity="1" />
+    <End Role="ChiTietSp" Type="Self.ChiTietSp" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="San_Pham">
+        <PropertyRef Name="MaSP" />
+      </Principal>
+      <Dependent Role="ChiTietSp">
+        <PropertyRef Name="MaSP" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Hoa_Don_Khach_Hang">
     <End Role="Khach_Hang" Type="Self.Khach_Hang" Multiplicity="0..1" />
     <End Role="Hoa_Don" Type="Self.Hoa_Don" Multiplicity="*" />
@@ -134,6 +159,7 @@
   </Association>
   <EntityContainer Name="Web_Ban_ZayModelStoreContainer">
     <EntitySet Name="Chi_Tiet_HD" EntityType="Self.Chi_Tiet_HD" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ChiTietSp" EntityType="Self.ChiTietSp" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Hoa_Don" EntityType="Self.Hoa_Don" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Khach_Hang" EntityType="Self.Khach_Hang" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Loai_San_Pham" EntityType="Self.Loai_San_Pham" Schema="dbo" store:Type="Tables" />
@@ -147,6 +173,10 @@
     <AssociationSet Name="FK_Chi_Tiet_HD_San_Pham" Association="Self.FK_Chi_Tiet_HD_San_Pham">
       <End Role="San_Pham" EntitySet="San_Pham" />
       <End Role="Chi_Tiet_HD" EntitySet="Chi_Tiet_HD" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ChiTietSp_San_Pham" Association="Self.FK_ChiTietSp_San_Pham">
+      <End Role="San_Pham" EntitySet="San_Pham" />
+      <End Role="ChiTietSp" EntitySet="ChiTietSp" />
     </AssociationSet>
     <AssociationSet Name="FK_Hoa_Don_Khach_Hang" Association="Self.FK_Hoa_Don_Khach_Hang">
       <End Role="Khach_Hang" EntitySet="Khach_Hang" />

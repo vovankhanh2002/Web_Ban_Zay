@@ -15,6 +15,17 @@
           <Property Name="TongTien" Type="int" Nullable="false" />
           <Property Name="MaCT" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
         </EntityType>
+        <EntityType Name="ChiTietSp">
+          <Key>
+            <PropertyRef Name="MaChiTietSP" />
+          </Key>
+          <Property Name="MaSP" Type="int" Nullable="false" />
+          <Property Name="Hinh1" Type="nvarchar" MaxLength="500" />
+          <Property Name="Hinh2" Type="nvarchar" MaxLength="500" />
+          <Property Name="Hinh3" Type="nvarchar" MaxLength="500" />
+          <Property Name="Hinh4" Type="nvarchar" MaxLength="500" />
+          <Property Name="MaChiTietSP" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
         <EntityType Name="Hoa_Don">
           <Key>
             <PropertyRef Name="MaHD" />
@@ -38,6 +49,8 @@
           <Property Name="DiaChi" Type="nvarchar" MaxLength="500" />
           <Property Name="Email" Type="nvarchar" MaxLength="50" />
           <Property Name="DienThoai" Type="nvarchar" MaxLength="50" />
+          <Property Name="MatKhau" Type="nvarchar" MaxLength="50" />
+          <Property Name="ReMatKhau" Type="nvarchar" MaxLength="50" />
           <Property Name="GioiTinh" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Loai_San_Pham">
@@ -101,6 +114,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_ChiTietSp_San_Pham">
+          <End Role="San_Pham" Type="Self.San_Pham" Multiplicity="1" />
+          <End Role="ChiTietSp" Type="Self.ChiTietSp" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="San_Pham">
+              <PropertyRef Name="MaSP" />
+            </Principal>
+            <Dependent Role="ChiTietSp">
+              <PropertyRef Name="MaSP" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Hoa_Don_Khach_Hang">
           <End Role="Khach_Hang" Type="Self.Khach_Hang" Multiplicity="0..1" />
           <End Role="Hoa_Don" Type="Self.Hoa_Don" Multiplicity="*" />
@@ -139,6 +164,7 @@
         </Association>
         <EntityContainer Name="Web_Ban_ZayModelStoreContainer">
           <EntitySet Name="Chi_Tiet_HD" EntityType="Self.Chi_Tiet_HD" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ChiTietSp" EntityType="Self.ChiTietSp" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Hoa_Don" EntityType="Self.Hoa_Don" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Khach_Hang" EntityType="Self.Khach_Hang" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Loai_San_Pham" EntityType="Self.Loai_San_Pham" Schema="dbo" store:Type="Tables" />
@@ -152,6 +178,10 @@
           <AssociationSet Name="FK_Chi_Tiet_HD_San_Pham" Association="Self.FK_Chi_Tiet_HD_San_Pham">
             <End Role="San_Pham" EntitySet="San_Pham" />
             <End Role="Chi_Tiet_HD" EntitySet="Chi_Tiet_HD" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ChiTietSp_San_Pham" Association="Self.FK_ChiTietSp_San_Pham">
+            <End Role="San_Pham" EntitySet="San_Pham" />
+            <End Role="ChiTietSp" EntitySet="ChiTietSp" />
           </AssociationSet>
           <AssociationSet Name="FK_Hoa_Don_Khach_Hang" Association="Self.FK_Hoa_Don_Khach_Hang">
             <End Role="Khach_Hang" EntitySet="Khach_Hang" />
@@ -172,12 +202,12 @@
       <Schema Namespace="Web_Ban_ZayModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="Web_Ban_ZayEntities3" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Chi_Tiet_HD" EntityType="Web_Ban_ZayModel.Chi_Tiet_HD" />
+          <EntitySet Name="ChiTietSps" EntityType="Web_Ban_ZayModel.ChiTietSp" />
           <EntitySet Name="Hoa_Don" EntityType="Web_Ban_ZayModel.Hoa_Don" />
           <EntitySet Name="Khach_Hang" EntityType="Web_Ban_ZayModel.Khach_Hang" />
           <EntitySet Name="Loai_San_Pham" EntityType="Web_Ban_ZayModel.Loai_San_Pham" />
           <EntitySet Name="Phan_Loai_SP" EntityType="Web_Ban_ZayModel.Phan_Loai_SP" />
           <EntitySet Name="San_Pham" EntityType="Web_Ban_ZayModel.San_Pham" />
-          <EntitySet Name="Users" EntityType="Web_Ban_ZayModel.User" />
           <AssociationSet Name="FK_Chi_Tiet_HD_Hoa_Don" Association="Web_Ban_ZayModel.FK_Chi_Tiet_HD_Hoa_Don">
             <End Role="Hoa_Don" EntitySet="Hoa_Don" />
             <End Role="Chi_Tiet_HD" EntitySet="Chi_Tiet_HD" />
@@ -185,6 +215,10 @@
           <AssociationSet Name="FK_Chi_Tiet_HD_San_Pham" Association="Web_Ban_ZayModel.FK_Chi_Tiet_HD_San_Pham">
             <End Role="San_Pham" EntitySet="San_Pham" />
             <End Role="Chi_Tiet_HD" EntitySet="Chi_Tiet_HD" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ChiTietSp_San_Pham" Association="Web_Ban_ZayModel.FK_ChiTietSp_San_Pham">
+            <End Role="San_Pham" EntitySet="San_Pham" />
+            <End Role="ChiTietSp" EntitySet="ChiTietSps" />
           </AssociationSet>
           <AssociationSet Name="FK_Hoa_Don_Khach_Hang" Association="Web_Ban_ZayModel.FK_Hoa_Don_Khach_Hang">
             <End Role="Khach_Hang" EntitySet="Khach_Hang" />
@@ -198,6 +232,7 @@
             <End Role="Phan_Loai_SP" EntitySet="Phan_Loai_SP" />
             <End Role="San_Pham" EntitySet="San_Pham" />
           </AssociationSet>
+          <EntitySet Name="Users" EntityType="Web_Ban_ZayModel.User" />
         </EntityContainer>
         <EntityType Name="Chi_Tiet_HD">
           <Key>
@@ -210,6 +245,18 @@
           <Property Name="MaCT" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <NavigationProperty Name="Hoa_Don" Relationship="Web_Ban_ZayModel.FK_Chi_Tiet_HD_Hoa_Don" FromRole="Chi_Tiet_HD" ToRole="Hoa_Don" />
           <NavigationProperty Name="San_Pham" Relationship="Web_Ban_ZayModel.FK_Chi_Tiet_HD_San_Pham" FromRole="Chi_Tiet_HD" ToRole="San_Pham" />
+        </EntityType>
+        <EntityType Name="ChiTietSp">
+          <Key>
+            <PropertyRef Name="MaChiTietSP" />
+          </Key>
+          <Property Name="MaSP" Type="Int32" Nullable="false" />
+          <Property Name="Hinh1" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Hinh2" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Hinh3" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Hinh4" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="MaChiTietSP" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="San_Pham" Relationship="Web_Ban_ZayModel.FK_ChiTietSp_San_Pham" FromRole="ChiTietSp" ToRole="San_Pham" />
         </EntityType>
         <EntityType Name="Hoa_Don">
           <Key>
@@ -238,6 +285,8 @@
           <Property Name="DienThoai" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="GioiTinh" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Hoa_Don" Relationship="Web_Ban_ZayModel.FK_Hoa_Don_Khach_Hang" FromRole="Khach_Hang" ToRole="Hoa_Don" />
+          <Property Name="MatKhau" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ReMatKhau" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Loai_San_Pham">
           <Key>
@@ -270,16 +319,8 @@
           <Property Name="Hinh" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="TrangThai" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Chi_Tiet_HD" Relationship="Web_Ban_ZayModel.FK_Chi_Tiet_HD_San_Pham" FromRole="San_Pham" ToRole="Chi_Tiet_HD" />
+          <NavigationProperty Name="ChiTietSps" Relationship="Web_Ban_ZayModel.FK_ChiTietSp_San_Pham" FromRole="San_Pham" ToRole="ChiTietSp" />
           <NavigationProperty Name="Phan_Loai_SP" Relationship="Web_Ban_ZayModel.FK_San_Pham_Phan_Loai_SP" FromRole="San_Pham" ToRole="Phan_Loai_SP" />
-        </EntityType>
-        <EntityType Name="User">
-          <Key>
-            <PropertyRef Name="IDUser" />
-          </Key>
-          <Property Name="IDUser" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="TenUser" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="MatKhauUser" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="MatKhauNhapLai" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK_Chi_Tiet_HD_Hoa_Don">
           <End Type="Web_Ban_ZayModel.Hoa_Don" Role="Hoa_Don" Multiplicity="0..1" />
@@ -301,6 +342,18 @@
               <PropertyRef Name="MaSP" />
             </Principal>
             <Dependent Role="Chi_Tiet_HD">
+              <PropertyRef Name="MaSP" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ChiTietSp_San_Pham">
+          <End Type="Web_Ban_ZayModel.San_Pham" Role="San_Pham" Multiplicity="1" />
+          <End Type="Web_Ban_ZayModel.ChiTietSp" Role="ChiTietSp" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="San_Pham">
+              <PropertyRef Name="MaSP" />
+            </Principal>
+            <Dependent Role="ChiTietSp">
               <PropertyRef Name="MaSP" />
             </Dependent>
           </ReferentialConstraint>
@@ -341,6 +394,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="IDUser" />
+          </Key>
+          <Property Name="IDUser" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TenUser" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MatKhauUser" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MatKhauNhapLai" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -355,6 +417,18 @@
                 <ScalarProperty Name="SoLuong" ColumnName="SoLuong" />
                 <ScalarProperty Name="MaSP" ColumnName="MaSP" />
                 <ScalarProperty Name="MaHD" ColumnName="MaHD" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ChiTietSps">
+            <EntityTypeMapping TypeName="Web_Ban_ZayModel.ChiTietSp">
+              <MappingFragment StoreEntitySet="ChiTietSp">
+                <ScalarProperty Name="MaChiTietSP" ColumnName="MaChiTietSP" />
+                <ScalarProperty Name="Hinh4" ColumnName="Hinh4" />
+                <ScalarProperty Name="Hinh3" ColumnName="Hinh3" />
+                <ScalarProperty Name="Hinh2" ColumnName="Hinh2" />
+                <ScalarProperty Name="Hinh1" ColumnName="Hinh1" />
+                <ScalarProperty Name="MaSP" ColumnName="MaSP" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -376,6 +450,8 @@
           <EntitySetMapping Name="Khach_Hang">
             <EntityTypeMapping TypeName="Web_Ban_ZayModel.Khach_Hang">
               <MappingFragment StoreEntitySet="Khach_Hang">
+                <ScalarProperty Name="ReMatKhau" ColumnName="ReMatKhau" />
+                <ScalarProperty Name="MatKhau" ColumnName="MatKhau" />
                 <ScalarProperty Name="GioiTinh" ColumnName="GioiTinh" />
                 <ScalarProperty Name="DienThoai" ColumnName="DienThoai" />
                 <ScalarProperty Name="Email" ColumnName="Email" />

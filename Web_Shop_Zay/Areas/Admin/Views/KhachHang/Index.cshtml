@@ -30,7 +30,13 @@
         <th style="width: 100px; hight: 100px">
             Giới tính
         </th>
-      
+        <th style="width: 100px; hight: 100px">
+            Mật khẩu
+        </th>
+        <th style="width: 100px; hight: 100px">
+            Mật khẩu nhập lại
+        </th>
+
     </tr>
 
     @foreach (var item in Model)
@@ -54,7 +60,12 @@
             <td>
                 @Html.DisplayFor(modelItem => item.GioiTinh)
             </td>
-           
+            <td>
+                @Html.DisplayFor(modelItem => item.MatKhau)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReMatKhau)
+            </td>
             <td>
                 <a href="~/Admin/KhachHang/EditKhachHang?id=@item.IDKhachHang">Edit</a> |
                 <a href="~/Admin/KhachHang/DeleteKhachHang?id=@item.IDKhachHang" onclick="showSuccessToast()">Delete</a> |

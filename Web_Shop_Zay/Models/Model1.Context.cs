@@ -26,6 +26,7 @@ namespace Web_Shop_Zay.Models
         }
     
         public virtual DbSet<Chi_Tiet_HD> Chi_Tiet_HD { get; set; }
+        public virtual DbSet<ChiTietSp> ChiTietSps { get; set; }
         public virtual DbSet<Hoa_Don> Hoa_Don { get; set; }
         public virtual DbSet<Khach_Hang> Khach_Hang { get; set; }
         public virtual DbSet<Loai_San_Pham> Loai_San_Pham { get; set; }
