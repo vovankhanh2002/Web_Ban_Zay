@@ -1,0 +1,52 @@
+﻿@model Web_Shop_Zay.Models.Khach_Hang
+@{
+    ViewBag.Title = "EditThongTin";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+@if (Session["edit"] != null)
+{
+<div class="container">
+<form class="pt-3" action="EditThongTin" method="post">
+    <div class="form-group">
+        <h5>Mời bạn nhập họ tên.</h5>
+        <div class="col-md-10">
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.HoTenKH, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.HoTenKH, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <h5>Mời bạn địa chỉ.</h5>
+        <div class="col-md-10">
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.DiaChi, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.DiaChi, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <h5>Mời bạn số điện thoại.</h5>
+        <div class="col-md-10">
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.DienThoai, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.DienThoai, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <h5>Mời bạn giới tính.</h5>
+        <div class="col-md-10">
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.GioiTinh, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.GioiTinh, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+    <div class="mt-3">
+        <button type="submit" class="btn btn-lg btn-success btn-block">Cập nhật thông tin</button>
+    </div>
+
+</form>
+</div>
+}

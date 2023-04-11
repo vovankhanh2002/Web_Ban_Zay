@@ -20,8 +20,9 @@ namespace Web_Shop_Zay.Areas.Admin.Controllers
             int pageNumber = page ?? 1;
             return View(ChiTietSP.ToPagedList(pageNumber, pageSize));
         }
-        public ActionResult AddChiTietSP()
+        public ActionResult AddChiTietSP(int masp)
         {
+            ViewBag.masp = masp;
             return View();
         }
         [HttpPost]

@@ -145,6 +145,7 @@
     <Compile Include="Controllers\ChiTietController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ShopController.cs" />
+    <Compile Include="Controllers\ThongTinController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -459,6 +460,9 @@
     <Content Include="Views\Shop\Index.cshtml" />
     <Content Include="Views\Shop\SanPhamID.cshtml" />
     <Content Include="Views\ChiTiet\Index.cshtml" />
+    <Content Include="Views\ThongTin\DangKy.cshtml" />
+    <Content Include="Views\ThongTin\DangNhap.cshtml" />
+    <Content Include="Views\ThongTin\EditThongTin.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

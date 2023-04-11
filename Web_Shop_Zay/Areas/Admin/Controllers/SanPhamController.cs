@@ -21,6 +21,7 @@ namespace Web_Shop_Zay.Areas.Admin.Controllers
         }
         public ActionResult AddSanPham()
         {
+            
             return View();
         }
         [HttpPost]

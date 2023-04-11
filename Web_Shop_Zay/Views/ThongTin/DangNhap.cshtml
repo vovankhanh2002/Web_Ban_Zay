@@ -1,0 +1,98 @@
+﻿@model Web_Shop_Zay.Models.Khach_Hang
+@{
+    ViewBag.Title = "AddKhachHang";
+
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Purple Admin</title>
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="~/Design/vendors/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="~/Design/vendors/css/vendor.bundle.base.css">
+    <!-- endinject -->
+    <!-- Plugin css for this page -->
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <!-- endinject -->
+    <!-- Layout styles -->
+    <link rel="stylesheet" href="~/Design/css/style.css">
+    <!-- End layout styles -->
+    <link rel="shortcut icon" href="~/Design/images/favicon.ico" />
+</head>
+<body>
+
+    <div class="container-scroller">
+        <div class="container-fluid page-body-wrapper full-page-wrapper">
+            <div class="content-wrapper d-flex align-items-center auth">
+                <div class="row flex-grow">
+                    <h2 style="text-align:center; margin-top:50px">Đăng nhập</h2>
+                    <div class="col-lg-4 mx-auto">
+                        <div class="auth-form-light text-left p-5">
+                            <div class="brand-logo">
+                                <img src="~/Asset/img/apple-icon.png" />
+                            </div>
+                            <h4>Hello! let's get started</h4>
+                            <h6 class="font-weight-light">Sign in to continue.</h6>
+                            <form class="pt-3" action="DangNhap" method="post">
+                                @Html.HiddenFor(m => m.IDKhachHang)
+                                <div class="form-group">
+                                    <h5>Mời bạn nhập email.</h5>
+                                    <div class="col-md-10">
+                                        <div class="col-md-10">
+                                            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <h5 style="color:red">@Session["Erorr"]</h5>
+                                    <h5>Mời bạn nhập mật khẩu.</h5>
+                                    <div class="col-md-10">
+                                        <div class="col-md-10">
+                                            @Html.PasswordFor(model => model.MatKhau, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.MatKhau, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mt-3">
+                                    <button type="submit" class="btn btn-lg btn-success btn-block">Đăng nhập</button>
+                                    <a href="~/ThongTin/DangKy">
+                                        Đăng ký
+                                    </a>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- content-wrapper ends -->
+        </div>
+        <!-- page-body-wrapper ends -->
+    </div>
+    <!-- container-scroller -->
+    <!-- plugins:js -->
+    <script src="~/Design/vendors/js/vendor.bundle.base.js"></script>
+    <!-- endinject -->
+    <!-- Plugin js for this page -->
+    <!-- End plugin js for this page -->
+    <!-- inject:js -->
+    <script src="~/Design/js/off-canvas.js"></script>
+    <script src="~/Design/js/hoverable-collapse.js"></script>
+    <script src="~/Design/js/misc.js"></script>
+    <!-- endinject -->
+</body>
+</html>
+
+
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
