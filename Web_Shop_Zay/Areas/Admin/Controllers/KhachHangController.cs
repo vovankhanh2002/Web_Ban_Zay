@@ -13,11 +13,15 @@ namespace Web_Shop_Zay.Areas.Admin.Controllers
         // GET: Admin/SanPham
         public ActionResult Index(int? page)
         {
-            if (page == null) page = 1;
-            var khachhang = (from u in db.Khach_Hang select u).OrderBy(u => u.IDKhachHang);
-            int pageSize = 10;
-            int pageNumber = page ?? 1;
-            return View(khachhang.ToPagedList(pageNumber, pageSize));
+            if (Session["data"] != null)
+            {
+                if (page == null) page = 1;
+                var khachhang = (from u in db.Khach_Hang select u).OrderBy(u => u.IDKhachHang);
+                int pageSize = 10;
+                int pageNumber = page ?? 1;
+                return View(khachhang.ToPagedList(pageNumber, pageSize));
+            }
+            return Redirect("~/Admin/TaiKhoang/Login");
         }
         public ActionResult AddKhachhang()
         {

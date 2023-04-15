@@ -18,11 +18,6 @@ namespace Web_Shop_Zay.Models
             var ds = db.San_Pham.Where(m => m.MaPL == id).ToList();
             return ds;
         }
-        public San_Pham SanPhamMa(int id)
-        {
-            var ds1 = db.San_Pham.SingleOrDefault(m => m.MaSP == id);
-            var ds = db.San_Pham.Where(m => m.Hinh == ds1.Hinh).ToList();
-            return ds;
-        }
+        
     }
 }

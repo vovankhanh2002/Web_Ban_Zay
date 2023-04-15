@@ -1,7 +1,6 @@
-﻿@model Web_Shop_Zay.Models.Khach_Hang
+﻿@model Web_Shop_Zay.Models.User
 @{
-    ViewBag.Title = "AddKhachHang";
-
+    Layout = null;
 }
 
 <!DOCTYPE html>
@@ -38,14 +37,13 @@
                             </div>
                             <h4>Hello! let's get started</h4>
                             <h6 class="font-weight-light">Sign in to continue.</h6>
-                            <form class="pt-3" action="DangNhap" method="post">
-                                @Html.HiddenFor(m => m.IDKhachHang)
+                            <form class="pt-3" action="Login" method="post">
                                 <div class="form-group">
-                                    <h5>Mời bạn nhập email.</h5>
+                                    <h5>Mời bạn nhập tai khoan.</h5>
                                     <div class="col-md-10">
                                         <div class="col-md-10">
-                                            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
-                                            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                                            @Html.EditorFor(model => model.TenUser, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.TenUser, "", new { @class = "text-danger" })
                                         </div>
                                     </div>
                                 </div>
@@ -55,16 +53,13 @@
                                     <h5>Mời bạn nhập mật khẩu.</h5>
                                     <div class="col-md-10">
                                         <div class="col-md-10">
-                                            @Html.PasswordFor(model => model.MatKhau, new { htmlAttributes = new { @class = "form-control" } })
-                                            @Html.ValidationMessageFor(model => model.MatKhau, "", new { @class = "text-danger" })
+                                            @Html.PasswordFor(model => model.MatKhauUser, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.MatKhauUser, "", new { @class = "text-danger" })
                                         </div>
                                     </div>
                                 </div>
                                 <div class="mt-3">
                                     <button type="submit" class="btn btn-lg btn-success btn-block">Đăng nhập</button>
-                                    <a href="~/ThongTin/DangKy">
-                                        Đăng ký
-                                    </a>
                                 </div>
 
                             </form>
@@ -89,8 +84,5 @@
     <!-- endinject -->
 </body>
 </html>
-
-
-
 
 

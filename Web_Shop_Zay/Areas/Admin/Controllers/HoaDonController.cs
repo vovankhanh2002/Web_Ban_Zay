@@ -13,11 +13,15 @@ namespace Web_Shop_Zay.Areas.Admin.Controllers
         // GET: Admin/SanPham
         public ActionResult Index(int? page)
         {
-            if (page == null) page = 1;
-            var HoaDon = (from u in db.Hoa_Don select u).OrderBy(u => u.MaHD);
-            int pageSize = 10;
-            int pageNumber = page ?? 1;
-            return View(HoaDon.ToPagedList(pageNumber, pageSize));
+            if (Session["data"] != null)
+            {
+                if (page == null) page = 1;
+                var HoaDon = (from u in db.Hoa_Don select u).OrderBy(u => u.MaHD);
+                int pageSize = 10;
+                int pageNumber = page ?? 1;
+                return View(HoaDon.ToPagedList(pageNumber, pageSize));
+            }
+            return Redirect("~/Admin/TaiKhoang/Login");
         }
        
         public ActionResult DeleteHoaDon(int id)

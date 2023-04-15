@@ -137,11 +137,13 @@
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\ChiTietHDController.cs" />
     <Compile Include="Areas\Admin\Controllers\ChiTietSPController.cs" />
+    <Compile Include="Areas\Admin\Controllers\TaiKhoangController.cs" />
     <Compile Include="Areas\Admin\Controllers\HoaDonController.cs" />
     <Compile Include="Areas\Admin\Controllers\KhachHangController.cs" />
     <Compile Include="Areas\Admin\Controllers\PhanLoaiSPController.cs" />
     <Compile Include="Areas\Admin\Controllers\SanPhamController.cs" />
     <Compile Include="Areas\Admin\Controllers\UserController.cs" />
+    <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\ChiTietController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ShopController.cs" />
@@ -149,6 +151,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Cart.cs" />
     <Compile Include="Models\ChiTietSp.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -436,6 +439,7 @@
     <Content Include="Areas\Admin\Views\ChiTietSP\EditChiTietSP.cshtml" />
     <Content Include="Areas\Admin\Views\KhachHang\AddKhachhang.cshtml" />
     <Content Include="Areas\Admin\Views\KhachHang\EditKhachHang.cshtml" />
+    <Content Include="Areas\Admin\Views\TaiKhoang\Login.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -463,6 +467,7 @@
     <Content Include="Views\ThongTin\DangKy.cshtml" />
     <Content Include="Views\ThongTin\DangNhap.cshtml" />
     <Content Include="Views\ThongTin\EditThongTin.cshtml" />
+    <Content Include="Views\Cart\Show.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

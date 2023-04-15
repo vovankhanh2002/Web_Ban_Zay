@@ -14,12 +14,16 @@ namespace Web_Shop_Zay.Areas.Admin.Controllers
         // GET: Admin/User
         public ActionResult Index(int? page)
         {
-            if (page == null) page = 1;
-            var User = (from u in db.Users select u).OrderBy(u => u.TenUser);
-            int pageSize = 10;
-            int pageNumber = page ?? 1;
-            return View(User.ToPagedList(pageNumber,pageSize));
-        }
+            if (Session["data"] != null)
+            {
+                if (page == null) page = 1;
+                var User = (from u in db.Users select u).OrderBy(u => u.TenUser);
+                int pageSize = 10;
+                int pageNumber = page ?? 1;
+                return View(User.ToPagedList(pageNumber, pageSize));
+            }
+            return Redirect("~/Admin/TaiKhoang/Login");
+    }
 
         public ActionResult AddUser()
         {

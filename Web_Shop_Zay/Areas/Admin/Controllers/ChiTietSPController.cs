@@ -14,11 +14,15 @@ namespace Web_Shop_Zay.Areas.Admin.Controllers
         // GET: Admin/SanPham
         public ActionResult Index(int? page)
         {
-            if (page == null) page = 1;
-            var ChiTietSP = (from u in db.ChiTietSps select u).OrderBy(u => u.MaChiTietSP);
-            int pageSize = 10;
-            int pageNumber = page ?? 1;
-            return View(ChiTietSP.ToPagedList(pageNumber, pageSize));
+            if (Session["data"] != null)
+            {
+                if (page == null) page = 1;
+                var ChiTietSP = (from u in db.ChiTietSps select u).OrderBy(u => u.MaChiTietSP);
+                int pageSize = 10;
+                int pageNumber = page ?? 1;
+                return View(ChiTietSP.ToPagedList(pageNumber, pageSize));
+            }
+            return Redirect("~/Admin/TaiKhoang/Login");
         }
         public ActionResult AddChiTietSP(int masp)
         {
