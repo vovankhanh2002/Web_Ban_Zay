@@ -145,6 +145,7 @@
     <Compile Include="Areas\Admin\Controllers\UserController.cs" />
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\ChiTietController.cs" />
+    <Compile Include="Controllers\DonHangController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ShopController.cs" />
     <Compile Include="Controllers\ThongTinController.cs" />
@@ -468,6 +469,9 @@
     <Content Include="Views\ThongTin\DangNhap.cshtml" />
     <Content Include="Views\ThongTin\EditThongTin.cshtml" />
     <Content Include="Views\Cart\Show.cshtml" />
+    <Content Include="Views\DonHang\Index.cshtml" />
+    <Content Include="Views\DonHang\HoaDon.cshtml" />
+    <Content Include="Views\DonHang\ChiTietHD.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

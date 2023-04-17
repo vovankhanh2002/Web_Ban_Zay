@@ -20,17 +20,18 @@
                 @foreach (var item in Model.Items)
                 {
                     var sum = item.So_Luong * item.san_pham.Gia.Value;
+
                     <tr>
-                        
+
                         <td>
                             <a href="~/ChiTiet/Index?id=@item.san_pham.MaSP">
                                 @Html.DisplayFor(Model => item.san_pham.TenSP)
-                                </a>
+                            </a>
                         </td>
                         <td>
                             <img src="~/Asset/img/SanPham/@item.san_pham.Hinh" style="width:100px;hight:100px">
                         </td>
-                        
+
                         <td>
                             $@Html.DisplayFor(Model => item.san_pham.Gia)
                         </td>
@@ -39,7 +40,7 @@
                             {
                                 <input type="hidden" value="@item.san_pham.MaSP" name="id">
                                 <input type="number" value="@item.So_Luong" name="slo" min="1">
-                                <button type="submit" class="btn btn-lg btn-success btn-block" value="Update">Update</button>
+                                <button type="submit" class="btn btn-lg btn-success btn-block" value="Update">Cap nhat</button>
                             }
                         </td>
                         <td>
@@ -49,12 +50,22 @@
                             @using (Html.BeginForm("Delete", "Cart"))
                             {
                                 <input type="hidden" value="@item.san_pham.MaSP" name="id">
-                                <button type="submit" class="btn btn-lg btn-success btn-block" value="Delete">Delete</button>
+                                <button type="submit" class="btn btn-lg btn-success btn-block" value="Delete">Xoa</button>
+                            }
+
+                        </td>
+                        <td>
+                            @using (Html.BeginForm("Post", "Cart"))
+                            {
+                                <input type="hidden" value="@item.So_Luong" name="slo" >
+                                <input type="hidden" value="@item.san_pham.MaSP" name="id">
+                                <input type="hidden" value="@sum" name="sum">
+                                <button type="submit" class="btn btn-lg btn-success btn-block" value="Post">Đặt hàng</button>
                             }
 
                         </td>
                     </tr>
-
+                    
                 }
             </tbody>
         </table>

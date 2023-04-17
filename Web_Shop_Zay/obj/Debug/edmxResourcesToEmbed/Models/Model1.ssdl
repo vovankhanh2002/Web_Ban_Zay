@@ -4,7 +4,7 @@
     <Key>
       <PropertyRef Name="MaCT" />
     </Key>
-    <Property Name="MaHD" Type="int" />
+    <Property Name="MaHD" Type="int" Nullable="false" />
     <Property Name="MaSP" Type="int" />
     <Property Name="SoLuong" Type="int" />
     <Property Name="TongTien" Type="int" Nullable="false" />
@@ -28,11 +28,6 @@
     <Property Name="MaHD" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="IDKhachHang" Type="int" />
     <Property Name="NgayMua" Type="date" />
-    <Property Name="TenNN" Type="nvarchar" MaxLength="50" />
-    <Property Name="DiaChiNN" Type="nvarchar" MaxLength="50" />
-    <Property Name="DienThoaiNN" Type="nvarchar" MaxLength="50" />
-    <Property Name="EmailNN" Type="nvarchar" MaxLength="50" />
-    <Property Name="GioiTinhNN" Type="nvarchar" MaxLength="50" />
     <Property Name="GhiChuNN" Type="nvarchar" MaxLength="500" />
   </EntityType>
   <EntityType Name="Khach_Hang">
@@ -86,7 +81,7 @@
     <Property Name="MatKhauNhapLai" Type="nvarchar" MaxLength="50" />
   </EntityType>
   <Association Name="FK_Chi_Tiet_HD_Hoa_Don">
-    <End Role="Hoa_Don" Type="Self.Hoa_Don" Multiplicity="0..1" />
+    <End Role="Hoa_Don" Type="Self.Hoa_Don" Multiplicity="1" />
     <End Role="Chi_Tiet_HD" Type="Self.Chi_Tiet_HD" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Hoa_Don">
@@ -121,7 +116,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Hoa_Don_Khach_Hang">
+  <Association Name="FK_Hoa_Don_Khach_Hang1">
     <End Role="Khach_Hang" Type="Self.Khach_Hang" Multiplicity="0..1" />
     <End Role="Hoa_Don" Type="Self.Hoa_Don" Multiplicity="*" />
     <ReferentialConstraint>
@@ -178,7 +173,7 @@
       <End Role="San_Pham" EntitySet="San_Pham" />
       <End Role="ChiTietSp" EntitySet="ChiTietSp" />
     </AssociationSet>
-    <AssociationSet Name="FK_Hoa_Don_Khach_Hang" Association="Self.FK_Hoa_Don_Khach_Hang">
+    <AssociationSet Name="FK_Hoa_Don_Khach_Hang1" Association="Self.FK_Hoa_Don_Khach_Hang1">
       <End Role="Khach_Hang" EntitySet="Khach_Hang" />
       <End Role="Hoa_Don" EntitySet="Hoa_Don" />
     </AssociationSet>

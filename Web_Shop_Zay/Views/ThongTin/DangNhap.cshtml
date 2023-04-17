@@ -1,95 +1,68 @@
 ﻿@model Web_Shop_Zay.Models.Khach_Hang
 @{
     ViewBag.Title = "AddKhachHang";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
 
 }
+<div class="container" style="margin-top:20px">
+    <div class="bodylogin">
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Purple Admin</title>
-    <!-- plugins:css -->
-    <link rel="stylesheet" href="~/Design/vendors/mdi/css/materialdesignicons.min.css">
-    <link rel="stylesheet" href="~/Design/vendors/css/vendor.bundle.base.css">
-    <!-- endinject -->
-    <!-- Plugin css for this page -->
-    <!-- End plugin css for this page -->
-    <!-- inject:css -->
-    <!-- endinject -->
-    <!-- Layout styles -->
-    <link rel="stylesheet" href="~/Design/css/style.css">
-    <!-- End layout styles -->
-    <link rel="shortcut icon" href="~/Design/images/favicon.ico" />
-</head>
-<body>
+        <div class="login shadow-lg p-3 mb-5  rounded-4 ">
 
-    <div class="container-scroller">
-        <div class="container-fluid page-body-wrapper full-page-wrapper">
-            <div class="content-wrapper d-flex align-items-center auth">
-                <div class="row flex-grow">
-                    <h2 style="text-align:center; margin-top:50px">Đăng nhập</h2>
-                    <div class="col-lg-4 mx-auto">
-                        <div class="auth-form-light text-left p-5">
-                            <div class="brand-logo">
-                                <img src="~/Asset/img/apple-icon.png" />
-                            </div>
-                            <h4>Hello! let's get started</h4>
-                            <h6 class="font-weight-light">Sign in to continue.</h6>
-                            <form class="pt-3" action="DangNhap" method="post">
-                                @Html.HiddenFor(m => m.IDKhachHang)
-                                <div class="form-group">
-                                    <h5>Mời bạn nhập email.</h5>
-                                    <div class="col-md-10">
-                                        <div class="col-md-10">
-                                            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
-                                            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
-                                        </div>
-                                    </div>
-                                </div>
+            <h1 class="text-center">Xin chào</h1>
+            <p class="text-center">Đăng nhập vào tài khoản của bạn</p>
 
-                                <div class="form-group">
-                                    <h5 style="color:red">@Session["Erorr"]</h5>
-                                    <h5>Mời bạn nhập mật khẩu.</h5>
-                                    <div class="col-md-10">
-                                        <div class="col-md-10">
-                                            @Html.PasswordFor(model => model.MatKhau, new { htmlAttributes = new { @class = "form-control" } })
-                                            @Html.ValidationMessageFor(model => model.MatKhau, "", new { @class = "text-danger" })
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="mt-3">
-                                    <button type="submit" class="btn btn-lg btn-success btn-block">Đăng nhập</button>
-                                    <a href="~/ThongTin/DangKy">
-                                        Đăng ký
-                                    </a>
-                                </div>
-
-                            </form>
-                        </div>
+            <form class="need-validation" action="DangNhap" method="post">
+                <!-- can xac thuc -->
+                <!-- tao email & password -->
+                <div class="form-group was-validated ">
+                    <!--da xac thuc -->
+                    <label class="form-label fw-bold" for="email">Email</label>
+                    <input class="form-control" type="email" id="email" placeholder="" name="Email" required>
+                    <div class="invalid-feedback fs-6">
+                        Vui lòng nhập địa chỉ Email!
                     </div>
                 </div>
-            </div>
-            <!-- content-wrapper ends -->
-        </div>
-        <!-- page-body-wrapper ends -->
-    </div>
-    <!-- container-scroller -->
-    <!-- plugins:js -->
-    <script src="~/Design/vendors/js/vendor.bundle.base.js"></script>
-    <!-- endinject -->
-    <!-- Plugin js for this page -->
-    <!-- End plugin js for this page -->
-    <!-- inject:js -->
-    <script src="~/Design/js/off-canvas.js"></script>
-    <script src="~/Design/js/hoverable-collapse.js"></script>
-    <script src="~/Design/js/misc.js"></script>
-    <!-- endinject -->
-</body>
-</html>
 
+                <div class="form-group was-validated mt-3">
+                    <!--da xac thuc -->
+                    <label class="form-label fw-bold" for="password">Mật khẩu</label>
+                    <input class="form-control" type="password" id="password" placeholder="" name="MatKhau" required>
+                    <div class="invalid-feedback fs-6">
+                        Vui lòng nhập mật khẩu!
+                    </div>
+                </div>
+
+
+                <!-- tao nut dang nhap -->
+                <div class="input-group mb-5 mt-3 d-flex justify-content-between">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="check">
+                        <label class="form-check-label" for="check">Ghi nhớ đăng nhập</label>
+                    </div>
+                    <div class="forgot">
+                        <small><a href="#" style="text-decoration: none;">Quên mật khẩu?</a></small>
+                    </div>
+                </div>
+
+                <div class="input-group mb-3">
+                    <button class="btn btn-lg btn-success w-100 fs-6">Đăng nhập</button>
+                    <!-- <input class="btn btn-success w-100" type="submit" value="Đăng Nhập"> -->
+                </div>
+                <div class="Google input-group mb-3">
+                    <button class="btn btn-lg w-100 fs-6"> <img src="assets/img/google.png" style="width: 20px;" class="me-2" alt="#"><small>Đăng nhập bằng Google</small></button>
+                </div>
+
+                <!-- chi den phan dang ky -->
+                <div class="new">
+                    <small style="font-size: 15px;">Bạn không có tài khoản?<a href="~/ThongTin/DangKy" style="text-decoration: none;"> Tạo tài khoản</a></small>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+</div>
 
 
 

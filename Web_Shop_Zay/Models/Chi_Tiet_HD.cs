@@ -14,7 +14,7 @@ namespace Web_Shop_Zay.Models
     
     public partial class Chi_Tiet_HD
     {
-        public Nullable<int> MaHD { get; set; }
+        public int MaHD { get; set; }
         public Nullable<int> MaSP { get; set; }
         public Nullable<int> SoLuong { get; set; }
         public int TongTien { get; set; }

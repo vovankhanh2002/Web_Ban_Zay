@@ -28,11 +28,6 @@
       <EntityTypeMapping TypeName="Web_Ban_ZayModel.Hoa_Don">
         <MappingFragment StoreEntitySet="Hoa_Don">
           <ScalarProperty Name="GhiChuNN" ColumnName="GhiChuNN" />
-          <ScalarProperty Name="GioiTinhNN" ColumnName="GioiTinhNN" />
-          <ScalarProperty Name="EmailNN" ColumnName="EmailNN" />
-          <ScalarProperty Name="DienThoaiNN" ColumnName="DienThoaiNN" />
-          <ScalarProperty Name="DiaChiNN" ColumnName="DiaChiNN" />
-          <ScalarProperty Name="TenNN" ColumnName="TenNN" />
           <ScalarProperty Name="NgayMua" ColumnName="NgayMua" />
           <ScalarProperty Name="IDKhachHang" ColumnName="IDKhachHang" />
           <ScalarProperty Name="MaHD" ColumnName="MaHD" />
@@ -42,9 +37,9 @@
     <EntitySetMapping Name="Khach_Hang">
       <EntityTypeMapping TypeName="Web_Ban_ZayModel.Khach_Hang">
         <MappingFragment StoreEntitySet="Khach_Hang">
+          <ScalarProperty Name="GioiTinh" ColumnName="GioiTinh" />
           <ScalarProperty Name="ReMatKhau" ColumnName="ReMatKhau" />
           <ScalarProperty Name="MatKhau" ColumnName="MatKhau" />
-          <ScalarProperty Name="GioiTinh" ColumnName="GioiTinh" />
           <ScalarProperty Name="DienThoai" ColumnName="DienThoai" />
           <ScalarProperty Name="Email" ColumnName="Email" />
           <ScalarProperty Name="DiaChi" ColumnName="DiaChi" />

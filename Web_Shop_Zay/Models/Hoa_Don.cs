@@ -23,11 +23,6 @@ namespace Web_Shop_Zay.Models
         public int MaHD { get; set; }
         public Nullable<int> IDKhachHang { get; set; }
         public Nullable<System.DateTime> NgayMua { get; set; }
-        public string TenNN { get; set; }
-        public string DiaChiNN { get; set; }
-        public string DienThoaiNN { get; set; }
-        public string EmailNN { get; set; }
-        public string GioiTinhNN { get; set; }
         public string GhiChuNN { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

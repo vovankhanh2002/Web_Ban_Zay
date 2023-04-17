@@ -96,9 +96,9 @@
                         <span class="position-absolute top-0 left-100 translate-middle badge rounded-pill" id="user_span_nav">@if (Session["Ten"] != null)
                         {@Session["Ten"]}</span>
                     </a>
-                    @if (Session["edit"] != null)
+                    @if (Session["idkhachhang"] != null)
                     {
-                        <a href="~/ThongTin/EditThongTin?email=@Session["edit"]">Cập nhật thông tin</a>
+                        <a href="~/ThongTin/EditThongTin?id=@Session["idkhachhang"]">Cập nhật thông tin</a>
                         <a href="~/ThongTin/DangXuat">Đăng xuất</a>
                     }
                 </div>

@@ -23,14 +23,18 @@ namespace Web_Shop_Zay.Controllers
         }
         public ActionResult AddSp(int id)
         {
-            var ds = db.San_Pham.SingleOrDefault(m => m.MaSP == id);
-            if(ds != null)
+            if (Session["DangNhap"] != null)
             {
-                GetCart().AddItem(ds);
-                Carts carts = Session["Carts"] as Carts;
-                Session["soluong"] = carts.Items.Count();
+                var ds = db.San_Pham.SingleOrDefault(m => m.MaSP == id);
+                if (ds != null)
+                {
+                    GetCart().AddItem(ds);
+                    Carts carts = Session["Carts"] as Carts;
+                    Session["soluong"] = carts.Items.Count();
+                }
+                return Redirect("~/Shop/Index");
             }
-            return Redirect("~/Shop/Index");
+            return Redirect("~/ThongTin/DangNhap");
         }
         public ActionResult Show()
         {
@@ -52,6 +56,16 @@ namespace Web_Shop_Zay.Controllers
             int id = int.Parse(form["id"]);
             carts.Delete(id);
             return RedirectToAction("Show");
+        }
+        public ActionResult Post(FormCollection form)
+        {
+            int id = int.Parse(form["id"]);
+            int sum = int.Parse(form["sum"]);
+            int sl = int.Parse(form["slo"]);
+            Session["idsanpham"] = id;
+            Session["sum"] = sum;
+            Session["slo"] = sl;
+            return Redirect("~/DonHang/Index");
         }
     }
 }

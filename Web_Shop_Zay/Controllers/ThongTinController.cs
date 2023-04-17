@@ -26,9 +26,8 @@ namespace Web_Shop_Zay.Controllers
         public ActionResult DangKy(Khach_Hang khach_Hang)
         {
             var ds = db.Khach_Hang.Where(m => m.Email == khach_Hang.Email);
-            if(khach_Hang.HoTenKH == null || khach_Hang.Email == null || khach_Hang.DienThoai == null || ds != null || khach_Hang.MatKhau != khach_Hang.ReMatKhau)
+            if(khach_Hang.HoTenKH == null || khach_Hang.Email == null || khach_Hang.DienThoai == null || ds == null || khach_Hang.MatKhau != khach_Hang.ReMatKhau)
             {
-                TempData["ThongBao"] = "Chưa điền đầy đủ thông tin hoặc email đã tồn tại hoặc mật khẩu không trùng khớp";
                 return RedirectToAction("DangKy");
             }
             db.Khach_Hang.Add(khach_Hang);
@@ -49,8 +48,8 @@ namespace Web_Shop_Zay.Controllers
             var ds = db.Khach_Hang.Where(m => m.Email == email && m.MatKhau == matkhau).ToList();
             if(ds.Count > 0)
             {
+                Session["idkhachhang"] = ds1.IDKhachHang;
                 Session["Ten"] = ds1.HoTenKH;
-                Session["edit"] = email;
                 Session["DangNhap"] = ds;
                 return RedirectToAction("Index");
             }
@@ -61,15 +60,15 @@ namespace Web_Shop_Zay.Controllers
             }
 
         }
-        public ActionResult EditThongTin(string email)
+        public ActionResult EditThongTin(int id)
         {
-            var ds = db.Khach_Hang.SingleOrDefault(m => m.Email == email);
+            var ds = db.Khach_Hang.SingleOrDefault(m => m.IDKhachHang == id);
             return View(ds);
         }
         [HttpPost]
         public ActionResult EditThongTin(Khach_Hang khach_Hang)
         {
-            if(Session["edit"] != null)
+            if(Session["idkhachhang"] != null)
             {
                 var ds = db.Khach_Hang.SingleOrDefault(m => m.IDKhachHang == khach_Hang.IDKhachHang);
                 ds.HoTenKH = khach_Hang.HoTenKH;
