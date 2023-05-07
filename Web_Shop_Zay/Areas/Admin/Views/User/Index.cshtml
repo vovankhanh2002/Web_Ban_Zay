@@ -5,56 +5,32 @@
 @{
     ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/Shared/LayoutAmin.cshtml";
-}
-
-<p>
-    @Html.ActionLink("Add User", "AddUser")
-</p>
-<table class="table" style="width:700px;hight:300px">
-    <tr>
-        <th style="width:100px">
-            Mã User
-        </th>
-        <th style="width:100px">
-            Tên User
-        </th>
-        <th style="width:100px">
-            Mật khẩu User
-        </th>
-        <th style="width:100px">
-            Mật khẩu nhập lại User
-        </th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
+}  <!-- Kết thúc -->
+<table class="table table-striped" style="width:700px">
+    <thead>
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.IDUser)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TenUser)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MatKhauUser)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MatKhauNhapLai)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                <a href="~/Admin/User/EditUser?id=@item.IDUser">Edit</a> |
-                <a href="~/Admin/User/DeletePhanLoaiSP?id=@item.IDUser" onclick="showSuccessToast()">Delete</a> |
-            </td>
+            <th scope="col">First</th>
+            <th scope="col">Last</th>
+            <th scope="col">Handle</th>
+            <th scope="col">#</th>
         </tr>
-    }
-    <!-- Kết thúc -->
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>@item.TenUser</td>
+            <td>@item.MatKhauUser</td>
+            <td>@item.MatKhauNhapLai</td>
+            <td><a href="~/Admin/User/EditUser?id=@item.IDUser" class="btn btn-lg btn-success btn-block">Sửa</a></td>
+            <td><a href="~/Admin/User/DeleteUser?id=@item.IDUser" class="btn btn-lg btn-success btn-block">Xóa</a></td>
+        </tr>
+        }
+    </tbody>
 </table>
 
-<br />
-<div style="margin-right:50px">
+<br>
     @Html.PagedListPager(Model, page => Url.Action("Index",
     new { page }))
-</div>
-
+<a href="~/Admin/User/AddUser" class="btn btn-lg btn-success btn-block" style="height:40px;margin-left:150px">Thêm</a>
 

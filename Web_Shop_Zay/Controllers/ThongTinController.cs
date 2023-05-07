@@ -48,7 +48,7 @@ namespace Web_Shop_Zay.Controllers
             var ds = db.Khach_Hang.Where(m => m.Email == email && m.MatKhau == matkhau).ToList();
             if(ds.Count > 0)
             {
-                Session["idkhachhang"] = ds1.IDKhachHang;
+                Session["idkhachhang"] = (int)ds1.IDKhachHang;
                 Session["Ten"] = ds1.HoTenKH;
                 Session["DangNhap"] = ds;
                 return RedirectToAction("Index");
