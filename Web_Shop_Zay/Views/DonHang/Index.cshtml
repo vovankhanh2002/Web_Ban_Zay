@@ -5,9 +5,14 @@
     var ds = new Web_Shop_Zay.Models.mapKhachHang();
     var idkhachhang = Session["idkhachhang"];
     var dskhachhang = ds.khach_Hang().SingleOrDefault(k => k.IDKhachHang == (int)idkhachhang);
+    ///
+    var sanpham = new Web_Shop_Zay.Models.mapSanPham();
+    var idsanpham = Session["idsanpham"];
+    var dssanpham = sanpham.SanPham().SingleOrDefault(m => m.MaSP == (int)idsanpham);
+}
 }
 
-<div class="container" style="margin-top:20px">
+<div class="container" style="margin-top: 20px; width: 600px; margin: auto;">
     <div class="biglogin">
 
         <div class="bodysignup">
@@ -32,7 +37,7 @@
                     <!-- tao cac thanh phan dang ky -->
                     <div class="form-group">
                         <label class="form-label fw-bold" for="text">Tên của bạn</label>
-                        <input class="form-control" type="text" id="username" placeholder="Ghi chú" name="GhiChuNN" required>
+                        <input class="form-control" type="text" id="username" placeholder="Ghi chú" name="GhiChuNN">
                         <!-- <div class="invalid-feedback fs-6">
                 Vui lòng nhập tên của bạn
             </div> -->
@@ -40,6 +45,37 @@
                     <input type="hidden" name="NgayMua" value="@DateTime.Now.ToShortDateString()">
                     <button class="btn btn-lg btn-success w-100 fs-6">Tiếp theo</button>
                 </form>
+
+
+
+                <div>
+                    Tên sản phẩm: @dssanpham.TenSP
+                </div>
+                <div>
+                    Hình: @dssanpham.Hinh
+                </div>
+                <div>
+                    Giá: @dssanpham.Gia
+                </div>
+                <div>
+                    Số lượng: @Session["slo"]
+                </div>
+                <div>
+                    Size: @Session["size"]
+                </div>
+                <div>
+                    Họ tên: @dskhachhang.HoTenKH
+                </div>
+                <div>
+                    Địa chỉ: @dskhachhang.DiaChi
+                </div>
+                <div>
+                    Số điện thoại: @dskhachhang.DienThoai
+                </div>
+                <div>
+                    Tổng tiền: @Session["sum"]
+                </div>
+
             </div>
         </div>
     </div>

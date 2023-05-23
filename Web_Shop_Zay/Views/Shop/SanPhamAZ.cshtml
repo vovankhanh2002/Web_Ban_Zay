@@ -1,0 +1,152 @@
+﻿@using PagedList;
+@using PagedList.Mvc
+@model IPagedList<Web_Shop_Zay.Models.San_Pham>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+    var loai = new Web_Shop_Zay.Models.mapLoaiSP().LoaiSP();
+}
+
+<!-- Start Content -->
+@*<div class="container py-5">
+    <div class="row">
+        <div class="col-lg-3">
+            <h1 class="h2 pb-4">Menu</h1>
+            <ul class="list-unstyled templatemo-accordion">
+                @foreach (var item in loai)
+                {
+                    var ds = new Web_Shop_Zay.Models.mapPhanLoaiSP().phanLoaiSpID(item.MaLoai);
+                    <li class="pb-3">
+                        <a class="collapsed d-flex justify-content-between h3 text-decoration-none">
+                            @item.TenLoai
+                            <i class="fa fa-fw fa-chevron-circle-down mt-1"></i>
+                        </a>
+                        <ul class="collapse show list-unstyled pl-3">
+                            @foreach (var i in ds)
+                            {
+                                <li><a class="text-decoration-none" style="color:black" href="~/Shop/SanPhamID?id=@i.MaPL"> @i.TenPL</a></li>
+
+                            }
+
+                        </ul>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>*@
+<div class="container py-5">
+    <div class="dropdown show" style=" display: flex; justify-content: center;">
+        @foreach (var item in loai)
+        {
+            var ds = new Web_Shop_Zay.Models.mapPhanLoaiSP().phanLoaiSpID(item.MaLoai);
+
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style="margin-left: 10px; background: white; border: none; color: black;">
+                @item.TenLoai
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                @foreach (var i in ds)
+                {
+                    <a class="dropdown-item" href="~/Shop/SanPhamID?id=@i.MaPL">@i.TenPL</a>
+
+                }
+            </ul>
+        }
+    </div>
+
+    <div class="dropdown">
+        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false" style=" background: white; border: none; color: black;">
+            @Session["SpAZ"]
+        </a>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <li><a class="dropdown-item" href="~/Shop/SanPhamGiam">Giá giam dần</a></li>
+            <li><a class="dropdown-item" href="~/Shop/SanPhamTang">Giá tăng dần</a></li>
+            <li><a class="dropdown-item" href="~/Shop/SanPhamRan">Sản phẩm nổi bật</a></li>
+            <li><a class="dropdown-item" href="~/Shop/SanPhamAZ">Tên: A-Z</a></li>
+            <li><a class="dropdown-item" href="~/Shop/SanPhamZA">Tên: Z-A</a></li>
+        </ul>
+    </div>
+    <div class="row" style="margin-top:40px">
+        @foreach (var item in Model)
+        {
+            <div class="col-md-4" style=" width: 300px;">
+                <div class="card mb-4 product-wap rounded-0">
+                    <div class="card rounded-0">
+                        <img style=" max-height: 200px;" class="card-img rounded-0 img-fluid" src="~/Asset/img/SanPham/@item.Hinh">
+                        <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
+                            <ul class="list-unstyled">
+
+                                <li><a class="btn btn-success text-white mt-2" href="~/ChiTiet/Index?id=@item.MaSP"><i class="far fa-eye"></i></a></li>
+                                <li><a class="btn btn-success text-white mt-2" href="~/Cart/AddSp?id=@item.MaSP"><i class="fas fa-cart-plus"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <a href="#" class="h3 text-decoration-none">@item.TenSP</a>
+                        <ul class="w-100 list-unstyled d-flex justify-content-between mb-0">
+                            <li class="pt-2">
+                                <span class="product-color-dot color-dot-red float-left rounded-circle ml-1"></span>
+                                <span class="product-color-dot color-dot-blue float-left rounded-circle ml-1"></span>
+                                <span class="product-color-dot color-dot-black float-left rounded-circle ml-1"></span>
+                                <span class="product-color-dot color-dot-light float-left rounded-circle ml-1"></span>
+                                <span class="product-color-dot color-dot-green float-left rounded-circle ml-1"></span>
+                            </li>
+                        </ul>
+                        <ul class="list-unstyled d-flex justify-content-center mb-1">
+                            <li>
+                                @item.TrangThai
+                            </li>
+                        </ul>
+                        <p class="text-center mb-0">@String.Format("{0:c}", item.Gia) </p>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+    <br />
+
+
+    @Html.PagedListPager(Model, page => Url.Action("Index",
+        new { page }))
+</div>
+<div class="benefit">
+    <div class="container">
+        <div class="row benefit_row">
+            <div class="col-lg-3 benefit_col">
+                <div class="benefit_item d-flex flex-row align-items-center">
+                    <div class="benefit_icon"><i class="fa fa-truck" aria-hidden="true"></i></div>
+                    <div class="benefit_content">
+                        <h6>free shipping</h6>
+                        <p>Suffered Alteration in Some Form</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 benefit_col">
+                <div class="benefit_item d-flex flex-row align-items-center">
+                    <div class="benefit_icon"><i class="fa fa-money" aria-hidden="true"></i></div>
+                    <div class="benefit_content">
+                        <h6>cach on delivery</h6>
+                        <p>The Internet Tend To Repeat</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 benefit_col">
+                <div class="benefit_item d-flex flex-row align-items-center">
+                    <div class="benefit_icon"><i class="fa fa-undo" aria-hidden="true"></i></div>
+                    <div class="benefit_content">
+                        <h6>45 days return</h6>
+                        <p>Making it Look Like Readable</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 benefit_col">
+                <div class="benefit_item d-flex flex-row align-items-center">
+                    <div class="benefit_icon"><i class="fa fa-clock-o" aria-hidden="true"></i></div>
+                    <div class="benefit_content">
+                        <h6>opening all week</h6>
+                        <p>8AM - 09PM</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

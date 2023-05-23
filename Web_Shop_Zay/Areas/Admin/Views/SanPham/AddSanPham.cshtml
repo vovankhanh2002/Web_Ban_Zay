@@ -1,10 +1,66 @@
 ﻿@model Web_Shop_Zay.Models.San_Pham
 @{
     ViewBag.Title = "AddSanPham";
-
+    Layout = "~/Areas/Admin/Views/Shared/LayoutAmin.cshtml";
 }
 
-<!DOCTYPE html>
+
+<div class="container py-5">
+    <div class="row py-5">
+        <form class="col-md-9 m-auto" method="post" role="form">
+            <h1>Thêm sản phẩm</h1>
+            <div class="row">
+                <div class="form-group col-md-9 mb-3">
+                    <label for=""><strong>Tên sản phẩm</strong></label>
+                    <input type="text" class="form-control mt-1" id="name" name="TenSP" placeholder="Tên sản phẩm">
+                </div>
+                <div class="form-group col-md-9 mb-3">
+                    <label for=""><strong>Upload ảnh</strong></label>
+                    <input type="file" class="form-control mt-1" id="pic" name="Hinh" placeholder="ảnh" onchange="xemtruoc(this);">
+                    <img src="#" alt="ảnh xem trước" id="preview" style="width: 220px; height:auto;">
+                </div>
+                <div class="form-group col-md-9 mb-3">
+                    <label for=""><strong>Phân loại</strong></label>
+                    <input type="text" class="form-control mt-1" id="name" name="MaPL" placeholder="Phân loại sản phẩm">
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="inputsubject"><strong>Giá sản phẩm</strong></label>
+                <input type="text" class="form-control mt1" id="" name="Gia" placeholder="Giá">
+            </div>
+            <div class="mb-3">
+                <label for=""><strong>Số lượng</strong></label>
+                <input type="text" class="form-control mt1" id="" name="SoLuong" placeholder="Số lượng">
+            </div>
+
+            <div class="mb-3">
+                <label for=""><strong>Tình trạng sản phẩm</strong></label>
+                <input type="text" class="form-control mt1" id="" name="TrangThai" placeholder="Tình trạng">
+            </div>
+
+            <div class="mb-3">
+                <label for="inputsubject"><strong>Size giày</strong></label>
+                <input type="text" value="" name="Size">
+            </div>
+
+            <div class="mb-3">
+                <label for="inputmessage"><strong>Mô tả</strong></label>
+                <textarea type="text" class="form-control mt1" id="info" placeholder="Thông tin" name="MoTa" cols="30" rows="8"></textarea>
+            </div>
+
+            <div class="row">
+                <div class="col text-end mt-2">
+                    <button type="submit" class="btn btn-success btn-lg px-3">Thêm sản phẩm</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+
+@*<!DOCTYPE html>
 <html lang="en">
 <head>
     <!-- Required meta tags -->
@@ -41,10 +97,10 @@
                             <form class="pt-3" action="AddSanPham" method="post">
                                 <div class="form-group">
                                     <h5 style="color:red">@Session["Null"]</h5>
-                                    <h5>Mời bạn nhập mã sảm phẩm.</h5>
+                                    <h5>Mời bạn nhập mã phân loại.</h5>
                                     <div class="col-md-10">
-                                        @Html.EditorFor(model => model.MaSP, new { htmlAttributes = new { @class = "form-control" } })
-                                        @Html.ValidationMessageFor(model => model.MaSP, "", new { @class = "text-danger" })
+                                        @Html.EditorFor(model => model.MaPL, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.MaPL, "", new { @class = "text-danger" })
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -137,3 +193,4 @@
     @Html.ActionLink("Back to List", "Index")
 </div>
 
+*@

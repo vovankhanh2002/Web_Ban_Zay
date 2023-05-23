@@ -27,7 +27,7 @@ namespace Web_Shop_Zay.Areas.Admin.Controllers
                                 select l).OrderBy(x => x.MaPL);
 
                 // 4. Tạo kích thước trang (pageSize) hay là số Link hiển thị trên 1 trang
-                int pageSize = 3;
+                int pageSize = 20;
 
                 // 4.1 Toán tử ?? trong C# mô tả nếu page khác null thì lấy giá trị page, còn
                 // nếu page = null thì lấy giá trị 1 cho biến pageNumber.

@@ -29,6 +29,7 @@ namespace Web_Shop_Zay.Models
         public Nullable<int> Gia { get; set; }
         public string Hinh { get; set; }
         public string TrangThai { get; set; }
+        public string Size { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Chi_Tiet_HD> Chi_Tiet_HD { get; set; }

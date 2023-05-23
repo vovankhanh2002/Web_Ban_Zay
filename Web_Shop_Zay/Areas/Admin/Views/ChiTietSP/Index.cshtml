@@ -6,63 +6,65 @@
     ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/Shared/LayoutAmin.cshtml";
 }
-<p>
-    @Html.ActionLink("Add chi tiết sản phẩm", "AddChiTietSP")
-</p>
-<table class="table" style="width:700px;hight:32px">
-    <tr>
-        <th style="width:100px;hight:100px">
-            Mã chi tiết sản phẩm
-        </th>
-        <th style="width:100px;hight:100px">
-            Mã sản phẩm
-        </th>
-        <th style="width:100px;hight:100px">
-            Hình 1
-        </th>
-        <th style="width:100px;hight:100px">
-            Hình 2
-        </th>
-        <th style="width:100px;hight:100px">
-            Hình 3
-        </th>
-        <th style="width:100px;hight:100px">
-            Hình 4
-        </th>
-    </tr>
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.MaChiTietSP)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MaSP)
-            </td>
-            <td>
-                <img src="~/Asset/img/ChiTietSP/@item.Hinh1">
-            </td>
-            <td>
-                <img src="~/Asset/img/ChiTietSP/@item.Hinh2">
-            </td>
-            <td>
-                <img src="~/Asset/img/ChiTietSP/@item.Hinh3">
-            </td>
-            <td>
-                <img src="~/Asset/img/ChiTietSP/@item.Hinh4">
-            </td>
-            <td>
-                <a href="~/Admin/ChiTietSP/EditChiTietSP?id=@item.MaChiTietSP">Edit</a> |
-                <a href="~/Admin/ChiTietSP/DeleteChiTietsp?id=@item.MaChiTietSP" onclick="showSuccessToast()">Delete</a> |
-            </td>
-        </tr>
-    }
+<div class="main-content">
+    <div class="row ">
+        <div class="col-lg-7 col-md-12">
+            <div class="card" style="min-height: 485px">
+                <div class="card-header card-header-text">
+                    <h4 class="card-title">Thông tin chi tiết sản phẩm</h4>
+                    <a href="~/Admin/ChiTietSP/AddChiTietSP" class="btn btn-primary mt-3">Thêm</a>
+                    <!-- <p class="category">New employees on 15th December, 2016</p> -->
+                </div>
 
-</table>
+                <div class="card-content table-responsive">
+                    <table class="table table-hover">
+                        <thead class="text-primary">
+                            <tr>
+                                <th>Mã chi tiết sản phẩm</th>
+                                <th>Mã sản phẩm</th>
+                                <th>Hình 1</th>
+                                <th>Hình 2</th>
+                                <th>Hình 3</th>
+                                <th>Hình 4</th>
 
-<br />
-<div style="margin-right:50px">
-    @Html.PagedListPager(Model, page => Url.Action("Index",
-    new { page }))
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@item.MaChiTietSP</td>
+                                    <td>@item.MaSP</td>
+                                    <td>
+                                        <img src="~/Asset/img/ChiTietSP/@item.Hinh1" style="width: 70px; height: 65px;">
+                                    </td>
+                                    <td>
+                                        <img src="~/Asset/img/ChiTietSP/@item.Hinh2" style="width: 70px; height: 65px;">
+                                    </td>
+                                    <td>
+                                        <img src="~/Asset/img/ChiTietSP/@item.Hinh3" style="width: 70px; height: 65px;">
+                                    </td>
+                                    <td>
+                                        <img src="~/Asset/img/ChiTietSP/@item.Hinh4" style="width: 70px; height: 65px;">
+                                    </td>
+
+                                    <td>
+                                        <a href="~/Admin/ChiTietSP/EditChiTietSP?id=@item.MaChiTietSP" class="btn btn-primary mt-3"><i class="material-icons">edit</i> Sửa</a>
+                                        <a href="~/Admin/ChiTietSP/DeleteChiTietsp?id=@item.MaChiTietSP" class="btn btn-danger mt-3"><i class="material-icons ">delete_outline</i> Xóa</a>
+
+                                    </td>
+                                </tr>
+                            }
+                            <!-- Kết thúc -->
+                            @Html.PagedListPager(Model, page => Url.Action("Index",
+                            new { page }))
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
+

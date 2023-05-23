@@ -18,6 +18,30 @@ namespace Web_Shop_Zay.Models
             var ds = db.San_Pham.Where(m => m.MaPL == id).ToList();
             return ds;
         }
-        
+        public List<San_Pham> SanPhamGiamDan()
+        {
+            var ds = db.San_Pham.ToList().OrderByDescending(m => m.Gia).ToList();
+            return ds;
+        }
+        public List<San_Pham> SanPhamTangDan()
+        {
+            var ds = db.San_Pham.ToList().OrderBy(m => m.Gia).ToList();
+            return ds;
+        }
+        public List<San_Pham> SanPhamAZ()
+        {
+            var ds = db.San_Pham.ToList().OrderBy(m => m.TenSP).ToList();
+            return ds;
+        }
+        public List<San_Pham> SanPhamZA()
+        {
+            var ds = db.San_Pham.ToList().OrderByDescending(m => m.TenSP).ToList();
+            return ds;
+        }
+        public List<San_Pham> TimKiem(string search)
+        {
+            var ds = db.San_Pham.Where(m => m.TenSP.Contains(search)).ToList();
+            return ds;
+        }
     }
 }

@@ -30,6 +30,9 @@
                     Số lượng: @Session["slo"]
                 </div>
                 <div>
+                    Size: @Session["size"]
+                </div>
+                <div>
                     Họ tên: @dskhachhang.HoTenKH
                 </div>
                 <div>
@@ -47,6 +50,7 @@
                     <input type="hidden" name="MaSP" value="@idsanpham">
                     <input type="hidden" name="SoLuong" value="@Session["slo"]">
                     <input type="hidden" name="TongTien" value="@Session["sum"]">
+                    <input type="hidden" name="Size" value="@Session["size"]">
                     <button class="btn btn-lg btn-success w-100 fs-6">Hoàn tất</button>
                 </form>
             </div>

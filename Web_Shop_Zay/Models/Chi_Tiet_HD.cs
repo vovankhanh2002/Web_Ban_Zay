@@ -19,6 +19,7 @@ namespace Web_Shop_Zay.Models
         public Nullable<int> SoLuong { get; set; }
         public int TongTien { get; set; }
         public int MaCT { get; set; }
+        public Nullable<int> Size { get; set; }
     
         public virtual Hoa_Don Hoa_Don { get; set; }
         public virtual San_Pham San_Pham { get; set; }

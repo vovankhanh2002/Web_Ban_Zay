@@ -4,69 +4,74 @@
     ViewBag.Title = "Show";
     Layout = "~/Views/Shared/_LayoutPage1.cshtml";
 }
-    @if (Model != null)
-    {
-        <table class="table">
-            <thead>
+@if (Model != null)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Tên sản phẩm</th>
+                <th>Hình</th>
+                <th>Giá</th>
+                <th>Số lượng</th>
+                <th>Tổng tiền</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Items)
+            {
+                var sum = item.So_Luong * item.san_pham.Gia.Value;
+    
                 <tr>
-                    <th>Ten san pham</th>
-                    <th>Hinh</th>
-                    <th>Gia</th>
-                    <th>So luong</th>
-                    <th>Tien</th>
+
+                    <td>
+                        <a href="~/ChiTiet/Index?id=@item.san_pham.MaSP" style="text-decoration:none; color:black">
+                            @Html.DisplayFor(Model => item.san_pham.TenSP)
+                        </a>
+                    </td>
+                    <td>
+                        <img src="~/Asset/img/SanPham/@item.san_pham.Hinh" style="width:100px;hight:100px">
+                    </td>
+
+                    <td>
+                        $@Html.DisplayFor(Model => item.san_pham.Gia)
+                    </td>
+                    <td>
+                        @using (Html.BeginForm("Update", "Cart"))
+                        {
+                            <input type="hidden" value="@item.san_pham.MaSP" name="id">
+                            <input type="number" value="@item.So_Luong" name="slo" min="1">
+                            <input type="number" value="@item.Size" name="size" min="35" max="42">
+                            <button type="submit" class="btn btn-lg btn-success btn-block" value="Update">Cập nhật</button>
+                        }
+                    </td>
+                    <td>
+                        $@sum
+                    </td>
+                    <td>
+                        @using (Html.BeginForm("Delete", "Cart"))
+                        {
+                            <input type="hidden" value="@item.san_pham.MaSP" name="id">
+                            <button type="submit" class="btn btn-lg btn-success btn-block" value="Delete">Xóa</button>
+                        }
+
+                    </td>
+                    <td>
+                        @using (Html.BeginForm("Post", "Cart"))
+                        {
+                        
+                            <input type="hidden" value="@item.So_Luong" name="slo">
+                            <input type="hidden" value="@item.san_pham.MaSP" name="id">
+                            <input type="hidden" value="@sum" name="sum">
+                            <input type="hidden" value="@item.Size" name="size">
+                            <button type="submit" class="btn btn-lg btn-success btn-block" value="Post">Đặt hàng</button>
+                        }
+
+                    </td>
                 </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model.Items)
-                {
-                    var sum = item.So_Luong * item.san_pham.Gia.Value;
+     
 
-                    <tr>
+            }
 
-                        <td>
-                            <a href="~/ChiTiet/Index?id=@item.san_pham.MaSP">
-                                @Html.DisplayFor(Model => item.san_pham.TenSP)
-                            </a>
-                        </td>
-                        <td>
-                            <img src="~/Asset/img/SanPham/@item.san_pham.Hinh" style="width:100px;hight:100px">
-                        </td>
-
-                        <td>
-                            $@Html.DisplayFor(Model => item.san_pham.Gia)
-                        </td>
-                        <td>
-                            @using (Html.BeginForm("Update", "Cart"))
-                            {
-                                <input type="hidden" value="@item.san_pham.MaSP" name="id">
-                                <input type="number" value="@item.So_Luong" name="slo" min="1">
-                                <button type="submit" class="btn btn-lg btn-success btn-block" value="Update">Cap nhat</button>
-                            }
-                        </td>
-                        <td>
-                            $@sum
-                        </td>
-                        <td>
-                            @using (Html.BeginForm("Delete", "Cart"))
-                            {
-                                <input type="hidden" value="@item.san_pham.MaSP" name="id">
-                                <button type="submit" class="btn btn-lg btn-success btn-block" value="Delete">Xoa</button>
-                            }
-
-                        </td>
-                        <td>
-                            @using (Html.BeginForm("Post", "Cart"))
-                            {
-                                <input type="hidden" value="@item.So_Luong" name="slo" >
-                                <input type="hidden" value="@item.san_pham.MaSP" name="id">
-                                <input type="hidden" value="@sum" name="sum">
-                                <button type="submit" class="btn btn-lg btn-success btn-block" value="Post">Đặt hàng</button>
-                            }
-
-                        </td>
-                    </tr>
-                    
-                }
-            </tbody>
-        </table>
-    }
+        </tbody>
+    </table>
+}

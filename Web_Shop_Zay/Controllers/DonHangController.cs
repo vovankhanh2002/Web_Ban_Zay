@@ -35,6 +35,8 @@ namespace Web_Shop_Zay.Controllers
         [HttpPost]
         public ActionResult ChiTietHD(Chi_Tiet_HD chi_Tiet_HD)
         {
+            Carts carts = (Carts)Session["Carts"];
+            Session["tt"] = "tt";
             db.Chi_Tiet_HD.Add(chi_Tiet_HD);
             db.SaveChanges();
             return View();

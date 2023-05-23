@@ -45,6 +45,7 @@
     <Property Name="MaCT" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <NavigationProperty Name="Hoa_Don" Relationship="Web_Ban_ZayModel.FK_Chi_Tiet_HD_Hoa_Don" FromRole="Chi_Tiet_HD" ToRole="Hoa_Don" />
     <NavigationProperty Name="San_Pham" Relationship="Web_Ban_ZayModel.FK_Chi_Tiet_HD_San_Pham" FromRole="Chi_Tiet_HD" ToRole="San_Pham" />
+    <Property Name="Size" Type="Int32" />
   </EntityType>
   <EntityType Name="ChiTietSp">
     <Key>
@@ -116,6 +117,7 @@
     <NavigationProperty Name="Chi_Tiet_HD" Relationship="Web_Ban_ZayModel.FK_Chi_Tiet_HD_San_Pham" FromRole="San_Pham" ToRole="Chi_Tiet_HD" />
     <NavigationProperty Name="ChiTietSps" Relationship="Web_Ban_ZayModel.FK_ChiTietSp_San_Pham" FromRole="San_Pham" ToRole="ChiTietSp" />
     <NavigationProperty Name="Phan_Loai_SP" Relationship="Web_Ban_ZayModel.FK_San_Pham_Phan_Loai_SP" FromRole="San_Pham" ToRole="Phan_Loai_SP" />
+    <Property Name="Size" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="User">
     <Key>

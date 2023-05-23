@@ -7,48 +7,51 @@
     Layout = "~/Areas/Admin/Views/Shared/LayoutAmin.cshtml";
 }
 
-<p>
-    @Html.ActionLink("Add phân loại sản phẩm", "AddPhanLoaiSP")
-</p>
-<table class="table" style="width:700px;hight:300px">
-    <tr >
-        <th style="width:100px">
-            Mã phân loại
-        </th>
-        <th style="width:100px">
-            Mã loại
-        </th>
-        <th style="width:100px">
-            Tên phân loại
-        </th>
-        <th></th>
-    </tr>
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.MaPL)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MaLoai)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TenPL)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                <a href="~/Admin/PhanLoaiSP/EditPhanLoai?id=@item.MaPL">Edit</a>
-                <a href="~/Admin/PhanLoaiSP/DeletePhanLoaiSP?id=@item.MaPL" onclick="showSuccessToast()">Delete</a>
-            </td>
-        </tr>
-    }
-    <!-- Kết thúc -->
-</table>
+<div class="main-content">
+    <div class="row ">
+        <div class="col-lg-7 col-md-12">
+            <div class="card" style="min-height: 485px">
+                <div class="card-header card-header-text">
+                    <h4 class="card-title">Thông tin phân loại sản phẩm</h4>
 
-<br/>
-<div style="margin-right:50px">
-    @Html.PagedListPager(Model, page => Url.Action("Index",
-    new { page }))
+                    
+                    <a href="~/Admin/PhanLoaiSP/AddPhanLoaiSP" class="btn btn-primary mt-3">Thêm</a>
+                    <!-- <p class="category">New employees on 15th December, 2016</p> -->
+                </div>
+
+                <div class="card-content table-responsive">
+                    <table class="table table-hover">
+                        <thead class="text-primary">
+                            <tr>
+                                <th>Mã phân loại</th>
+                                <th>Mã loại</th>
+                                <th>Tên phân loại</th>
+                       
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@item.MaPL</td>
+                                    <td>@item.MaLoai</td>
+                                    <td>@item.TenPL</td>
+                                    <td>
+                                        <a href="~/Admin/PhanLoaiSP/EditPhanLoai?id=@item.MaPL" class="btn btn-primary mt-3"><i class="material-icons">edit</i> Sửa</a>
+                                        <a href="~/Admin/PhanLoaiSP/DeletePhanLoaiSP?id=@item.MaPL" class="btn btn-danger mt-3 me-4"><i class="material-icons ">delete_outline</i> Xóa</a>
+                                    </td>
+                                   
+                                </tr>
+                            }
+                            <!-- Kết thúc -->
+                            @Html.PagedListPager(Model, page => Url.Action("Index",
+                            new { page }))
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
     </div>
+</div>
 

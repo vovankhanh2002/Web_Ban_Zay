@@ -17,7 +17,7 @@ namespace Web_Shop_Zay.Areas.Admin.Controllers
             {
                 if (page == null) page = 1;
                 var SanPham = (from u in db.San_Pham select u).OrderBy(u => u.MaSP);
-                int pageSize = 10;
+                int pageSize = 20;
                 int pageNumber = page ?? 1;
                 return View(SanPham.ToPagedList(pageNumber, pageSize));
             }
@@ -74,7 +74,7 @@ namespace Web_Shop_Zay.Areas.Admin.Controllers
             }
 
         }
-        public ActionResult DeleteUser(int id)
+        public ActionResult DeleteSanPham(int id)
         {
             var ds = db.San_Pham.SingleOrDefault(m => m.MaSP == id);
             db.San_Pham.Remove(ds);

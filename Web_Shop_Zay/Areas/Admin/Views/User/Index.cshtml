@@ -5,32 +5,53 @@
 @{
     ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/Shared/LayoutAmin.cshtml";
-}  <!-- Kết thúc -->
-<table class="table table-striped" style="width:700px">
-    <thead>
-        <tr>
-            <th scope="col">First</th>
-            <th scope="col">Last</th>
-            <th scope="col">Handle</th>
-            <th scope="col">#</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-        <tr>
-            <td>@item.TenUser</td>
-            <td>@item.MatKhauUser</td>
-            <td>@item.MatKhauNhapLai</td>
-            <td><a href="~/Admin/User/EditUser?id=@item.IDUser" class="btn btn-lg btn-success btn-block">Sửa</a></td>
-            <td><a href="~/Admin/User/DeleteUser?id=@item.IDUser" class="btn btn-lg btn-success btn-block">Xóa</a></td>
-        </tr>
-        }
-    </tbody>
-</table>
+} 
 
-<br>
-    @Html.PagedListPager(Model, page => Url.Action("Index",
-    new { page }))
-<a href="~/Admin/User/AddUser" class="btn btn-lg btn-success btn-block" style="height:40px;margin-left:150px">Thêm</a>
+
+<div class="main-content">
+    <div class="row ">
+        <div class="col-lg-7 col-md-12">
+            <div class="card" style="min-height: 485px">
+                <div class="card-header card-header-text">
+                    <h4 class="card-title">Thông tin quản trị</h4>
+                    <a href="~/Admin/User/AddUser" class="btn btn-primary mt-3">Thêm</a>
+                    <!-- <p class="category">New employees on 15th December, 2016</p> -->
+                </div>
+
+                <div class="card-content table-responsive">
+                    <table class="table table-hover">
+                        <thead class="text-primary">
+                            <tr>
+                                <th>Mã</th>
+                                <th>Họ tên</th>
+                                <th>Mật khẩu</th>
+                                <th>Mật khẩu nhập lại</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@item.IDUser</td>
+                                    <td>@item.TenUser</td>
+                                    <td>@item.MatKhauUser</td>
+                                    <td>@item.MatKhauNhapLai</td>
+                                  
+                                    <td>
+                                        <a href="~/Admin/User/EditUser?id=@item.IDUser" class="btn btn-primary mt-3"><i class="material-icons">edit</i> Sửa</a>
+                                        <a href="~/Admin/User/DeleteUser?id=@item.IDUser" class="btn btn-danger mt-3"><i class="material-icons ">delete_outline</i> Xóa</a>
+
+                                    </td>
+                                </tr>
+                            }
+                            <!-- Kết thúc -->
+                            @Html.PagedListPager(Model, page => Url.Action("Index",
+                            new { page }))
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 

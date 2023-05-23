@@ -6,23 +6,9 @@
     Layout = "~/Views/Shared/_LayoutPage1.cshtml";
     var loai = new Web_Shop_Zay.Models.mapLoaiSP().LoaiSP();
 }
-<div class="modal fade bg-white" id="templatemo_search" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="w-100 pt-1 mb-5 text-right">
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <form action="" method="get" class="modal-content modal-body border-0 p-0">
-            <div class="input-group mb-2">
-                <input type="text" class="form-control" id="inputModalSearch" name="q" placeholder="Search ...">
-                <button type="submit" class="input-group-text bg-success text-light">
-                    <i class="fa fa-fw fa-search text-white"></i>
-                </button>
-            </div>
-        </form>
-    </div>
-</div>
+
 <!-- Start Content -->
-<div class="container py-5">
+@*<div class="container py-5">
     <div class="row">
         <div class="col-lg-3">
             <h1 class="h2 pb-4">Menu</h1>
@@ -47,68 +33,132 @@
                 }
             </ul>
         </div>
+    </div>*@
+<div class="container py-5">
+    <div class="dropdown show" style=" display: flex; justify-content: center;">
+        @foreach (var item in loai)
+        {
+            var ds = new Web_Shop_Zay.Models.mapPhanLoaiSP().phanLoaiSpID(item.MaLoai);
+
+            <button class="btn btn-secondary dropdown-toggle"  type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style="margin-left: 10px; background: white; border: none; color: black;">
+                @item.TenLoai
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                @foreach (var i in ds)
+                {
+                    <a class="dropdown-item" href="~/Shop/SanPhamID?id=@i.MaPL">@i.TenPL</a>
+                }
+ 
+            </ul>
+        }
     </div>
-    <div class="col-lg-9">
-        <div class="row">
-            <div class="col-md-2">
-                <ul class="list-inline shop-top-menu pb-3 pt-1">
-                    <li class="list-inline-item">
-                        <a class="h3 text-dark text-decoration-none mr-3" href="~/Shop/Index">All</a>
-                    </li>
-                </ul>
+        <div class="dropdown" >
+            <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false" style=" background: white; border: none; color: black;">
+                Lọc theo 
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                <li><a class="dropdown-item" href="~/Shop/SanPhamGiam">Giá giam dần</a></li>
+                <li><a class="dropdown-item" href="~/Shop/SanPhamTang">Giá tăng dần</a></li>
+                <li><a class="dropdown-item" href="~/Shop/SanPhamRan">Sản phẩm nổi bật</a></li>
+                <li><a class="dropdown-item" href="~/Shop/SanPhamAZ">Tên: A-Z</a></li>
+                <li><a class="dropdown-item" href="~/Shop/SanPhamZA">Tên: Z-A</a></li>
+            </ul>
+        </div>
+
+
+        @*   <div class="dropdown">
+        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+            Bán chạy nhất
+        </a>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                <li><a class="dropdown-item" href="~/Shop/SanPhamGiam">Giá giam dần</a></li>
+                <li><a class="dropdown-item" href="~/Shop/SanPhamTang">Giá tăng dần</a></li>
+                <li><a class="dropdown-item" href="~/Shop/SanPhamRan">Sản phẩm nổi bật</a></li>
+                <li><a class="dropdown-item" href="~/Shop/SanPhamAZ">Tên: A-Z</a></li>
+                <li><a class="dropdown-item" href="~/Shop/SanPhamZA">Tên: Z-A</a></li>
+            </ul>
+        </div>*@
+        <div class="row" style="margin-top:40px">
+            @foreach (var item in Model)
+            {
+                <div class="col-md-4" style=" width: 300px;">
+                    <div class="card mb-4 product-wap rounded-0">
+                        <div class="card rounded-0">
+                            <img style=" max-height: 200px;" class="card-img rounded-0 img-fluid" src="~/Asset/img/SanPham/@item.Hinh">
+                            <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
+                                <ul class="list-unstyled">
+
+                                    <li><a class="btn btn-success text-white mt-2" href="~/ChiTiet/Index?id=@item.MaSP"><i class="far fa-eye"></i></a></li>
+                                    <li><a class="btn btn-success text-white mt-2" href="~/Cart/AddSp?id=@item.MaSP"><i class="fas fa-cart-plus"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <a href="#" class="h3 text-decoration-none">@item.TenSP</a>
+                            <ul class="w-100 list-unstyled d-flex justify-content-between mb-0">
+                                <li class="pt-2">
+                                    <span class="product-color-dot color-dot-red float-left rounded-circle ml-1"></span>
+                                    <span class="product-color-dot color-dot-blue float-left rounded-circle ml-1"></span>
+                                    <span class="product-color-dot color-dot-black float-left rounded-circle ml-1"></span>
+                                    <span class="product-color-dot color-dot-light float-left rounded-circle ml-1"></span>
+                                    <span class="product-color-dot color-dot-green float-left rounded-circle ml-1"></span>
+                                </li>
+                            </ul>
+                            <ul class="list-unstyled d-flex justify-content-center mb-1">
+                                <li>
+                                    @item.TrangThai
+                                </li>
+                            </ul>
+                            <p class="text-center mb-0">@String.Format("{0:c}", item.Gia) </p>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+        <br />
+        @Html.PagedListPager(Model, page => Url.Action("Index",
+            new { page }))
+    </div>
+
+<div class="benefit">
+    <div class="container">
+        <div class="row benefit_row">
+            <div class="col-lg-3 benefit_col">
+                <div class="benefit_item d-flex flex-row align-items-center">
+                    <div class="benefit_icon"><i class="fa fa-truck" aria-hidden="true"></i></div>
+                    <div class="benefit_content">
+                        <h6>free shipping</h6>
+                        <p>Suffered Alteration in Some Form</p>
+                    </div>
+                </div>
             </div>
-            <div class="col-md-2 pb-4">
-                <div class="d-flex">
-                    <select class="form-control">
-                        <option>Featured</option>
-                        <option>A to Z</option>
-                        <option>Item</option>
-                    </select>
+            <div class="col-lg-3 benefit_col">
+                <div class="benefit_item d-flex flex-row align-items-center">
+                    <div class="benefit_icon"><i class="fa fa-money" aria-hidden="true"></i></div>
+                    <div class="benefit_content">
+                        <h6>cach on delivery</h6>
+                        <p>The Internet Tend To Repeat</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 benefit_col">
+                <div class="benefit_item d-flex flex-row align-items-center">
+                    <div class="benefit_icon"><i class="fa fa-undo" aria-hidden="true"></i></div>
+                    <div class="benefit_content">
+                        <h6>45 days return</h6>
+                        <p>Making it Look Like Readable</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 benefit_col">
+                <div class="benefit_item d-flex flex-row align-items-center">
+                    <div class="benefit_icon"><i class="fa fa-clock-o" aria-hidden="true"></i></div>
+                    <div class="benefit_content">
+                        <h6>opening all week</h6>
+                        <p>8AM - 09PM</p>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="row">
-            @foreach (var item in Model)
-            {
-               <div class="cardhover shoes col-sm-6 col-md-6 col-lg-4 mb-4  me-4 ms-4  shadow p-3 mb-5 bg-body-tertiary rounded-4" style="width: 300px;">
-                   <div class="card" id="card_black" style="width: auto;">
-                       <img src="~/Asset/img/SanPham/@item.Hinh" alt="" style="width: 100%;">
-                       <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
-                           <ul class="list-unstyled">
-                               <li><a class="btn btn-success text-white" href="~/ChiTiet/Index?id=@item.MaSP"><i class="far fa-eye"></i></a></li>
-                               <li><a class="btn btn-success text-white mt-2" href="~/Cart/AddSp?id=@item.MaSP"><i class="fas fa-cart-plus"></i></a></li>
-                           </ul>
-                       </div>
-                   </div>
-                   <div class="card-body">
-                       <ul class="list-unstyled d-flex justify-content-between">
-                           <li>
-                               <i class="text-warning fa fa-star"></i>
-                               <i class="text-warning fa fa-star"></i>
-                               <i class="text-warning fa fa-star"></i>
-                               <i class="text-warning fa fa-star"></i>
-                               <i class="text-muted fa fa-star"></i>
-                           </li>
-                           <li class="text-black-100 text-right">@String.Format("{0:c}", item.Gia)</li>
-                       </ul>
-                       <h3>@item.TenSP</h3>
-                       <p class="card-text">
-                           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum, porro!
-                       </p>
-                       <p class="text-muted">Đánh Giá (16)</p>
-
-                       <div class="buy">
-                           <a href="shop-single.html" class="btn btn-success w-100 text-white">Mua ngay</a>
-                       </div>
-                   </div>
-               </div>
-            }
-            <br />
-            <div style="margin-right:50px">
-                @Html.PagedListPager(Model, page => Url.Action("Index",
-                new { page }))
-            </div>
-        </div>
     </div>
- </div>
-<!-- End Content -->
+</div>

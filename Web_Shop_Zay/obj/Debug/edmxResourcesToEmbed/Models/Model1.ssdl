@@ -9,6 +9,7 @@
     <Property Name="SoLuong" Type="int" />
     <Property Name="TongTien" Type="int" Nullable="false" />
     <Property Name="MaCT" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Size" Type="int" />
   </EntityType>
   <EntityType Name="ChiTietSp">
     <Key>
@@ -70,6 +71,7 @@
     <Property Name="Gia" Type="int" />
     <Property Name="Hinh" Type="nvarchar" MaxLength="500" />
     <Property Name="TrangThai" Type="nvarchar" MaxLength="50" />
+    <Property Name="Size" Type="nvarchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="User">
     <Key>

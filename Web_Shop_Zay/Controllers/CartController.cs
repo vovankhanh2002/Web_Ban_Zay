@@ -44,9 +44,18 @@ namespace Web_Shop_Zay.Controllers
         public ActionResult Update(FormCollection form)
         {
             Carts carts = Session["Carts"] as Carts;
+
             int id = int.Parse(form["id"]);
-            int sl = int.Parse(form["slo"]);
-            carts.Update(id, sl);
+            if (int.Parse(form["slo"]) > 0)
+            {
+                int sl = int.Parse(form["slo"]);
+                carts.Update(id, sl, int.Parse(form["size"]));
+                //int sl = int.Parse(form["slo"]);
+            }
+            else
+            {
+                Session["alert"] = "min";
+            }
             return RedirectToAction("Show");
         }
 
@@ -55,16 +64,19 @@ namespace Web_Shop_Zay.Controllers
             Carts carts = (Carts)Session["Carts"];
             int id = int.Parse(form["id"]);
             carts.Delete(id);
+            Session["soluong"] = carts.Items.Count();
             return RedirectToAction("Show");
         }
         public ActionResult Post(FormCollection form)
         {
+
             int id = int.Parse(form["id"]);
             int sum = int.Parse(form["sum"]);
             int sl = int.Parse(form["slo"]);
             Session["idsanpham"] = id;
             Session["sum"] = sum;
             Session["slo"] = sl;
+            Session["size"] = int.Parse(form["size"]);
             return Redirect("~/DonHang/Index");
         }
     }

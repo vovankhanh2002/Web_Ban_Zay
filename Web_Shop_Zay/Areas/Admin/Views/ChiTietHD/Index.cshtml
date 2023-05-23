@@ -6,55 +6,57 @@
     ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/Shared/LayoutAmin.cshtml";
 }
-<table class="table" style="width:700px;hight:32px">
-    <tr>
-        <th style="width:100px;hight:100px">
-            Mã chi tiết hóa đơn
-        </th>
-        <th style="width:100px;hight:100px">
-            Mã hóa đơn
-        </th>
-        <th style="width:100px;hight:100px">
-            Mã sản phẩm
-        </th>
-        <th style="width:100px;hight:100px">
-            Số lượng
-        </th>
-        <th style="width:100px;hight:100px">
-            Tổng tiền
-        </th>
-    </tr>
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.MaCT)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MaHD)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MaSP)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SoLuong)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TongTien)
-            </td>
 
-            <td>
-                <a href="~/Admin/ChiTietHD/EditChiTietHD?id=@item.MaCT">Edit</a> |
-                <a href="~/Admin/ChiTietHD/DeleteChiTietHD?id=@item.MaCT" onclick="showSuccessToast()">Delete</a> |
-            </td>
-        </tr>
-    }
+<div class="main-content">
+    <div class="row ">
+        <div class="col-lg-7 col-md-12">
+            <div class="card" style="min-height: 485px">
+                <div class="card-header card-header-text">
+                    <h4 class="card-title">Thông tin chi tiết hóa đơn</h4>
+                    <a href="~/Admin/KhachHang/AddKhachhang" class="btn btn-primary mt-3">Thêm</a>
+                    <!-- <p class="category">New employees on 15th December, 2016</p> -->
+                </div>
 
-</table>
+                <div class="card-content table-responsive">
+                    <table class="table table-hover">
+                        <thead class="text-primary">
+                            <tr>
+                                <th>Mã chi tiết hóa đơn</th>
+                                <th>Mã hóa đơn</th>
+                                <th>Mã sản phẩm</th>
+                                <th>Số lượng</th>
+                                <th>Size</th>
+                                <th>Tổng tiền</th>
 
-<br />
-<div style="margin-right:50px">
-    @Html.PagedListPager(Model, page => Url.Action("Index",
-    new { page }))
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@item.MaCT</td>
+                                    <td>@item.MaHD</td>
+                                    <td>@item.MaSP</td>
+                                    <td>@item.SoLuong</td>
+                                    <td>@item.Size</td>
+                                    <td>@item.TongTien</td>
+
+                                    <td>
+                                        <a href="~/Admin/ChiTietHD/DeleteChiTietHD?id=@item.MaCT" class="btn btn-danger mt-3"><i class="material-icons ">delete_outline</i> Xóa</a>
+
+                                    </td>
+                                </tr>
+                            }
+                            <!-- Kết thúc -->
+                            @Html.PagedListPager(Model, page => Url.Action("Index",
+                            new { page }))
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
+

@@ -7,52 +7,54 @@
     Layout = "~/Areas/Admin/Views/Shared/LayoutAmin.cshtml";
 }
 
-<table class="table" style="width:700px">
-    <tr>
-        <th style="width:100px;hight:100px">
-            Mã hóa đơn
-        </th>
-        <th style="width: 100px; hight: 100px">
-            Mã khách hàng
-        </th>
-        <th style="width: 100px; hight: 100px">
-            Ngày mua
-        </th>
-        <th style="width: 100px; hight: 100px">
-            Ghi chú
-        </th>
-      
-    </tr>
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.MaHD)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IDKhachHang)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NgayMua)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.GhiChuNN)
-            </td>
-         
-            <td>
-                <a href="~/Admin/HoaDon/DeleteHoaDon?id=@item.MaHD" onclick="showSuccessToast()">Delete</a> |
-            </td>
-        </tr>
-    }
-    <!-- Kết thúc -->
-</table>
+<div class="main-content">
+    <div class="row ">
+        <div class="col-lg-7 col-md-12">
+            <div class="card" style="min-height: 485px">
+                <div class="card-header card-header-text">
+                    <h4 class="card-title">Thông tin hóa đơn</h4>
+                    <a href="~/Admin/KhachHang/AddKhachhang" class="btn btn-primary mt-3">Thêm</a>
+                    <!-- <p class="category">New employees on 15th December, 2016</p> -->
+                </div>
 
-<br />
-<div style="margin-right:50px">
-    @Html.PagedListPager(Model, page => Url.Action("Index",
-    new { page }))
+                <div class="card-content table-responsive">
+                    <table class="table table-hover">
+                        <thead class="text-primary">
+                            <tr>
+                                <th>Mã hóa đơn</th>
+                                <th>Mã khách hàng</th>
+                                <th>Ngày mua</th>
+                                <th>Ghi chú</th>
+                             
+                               
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@item.MaHD</td>
+                                    <td>@item.IDKhachHang</td>
+                                    <td>@item.NgayMua</td>
+                                    <td>@item.GhiChuNN</td>
+                                    <td>
+                                        <a href="~/Admin/HoaDon/DeleteHoaDon?id=@item.MaHD" onclick="edit_confirm()" class="btn btn-danger mt-3"><i class="material-icons ">delete_outline</i> Xóa</a>
+
+                                    </td>
+                                </tr>
+                            }
+                            <!-- Kết thúc -->
+                            @Html.PagedListPager(Model, page => Url.Action("Index",
+                            new { page }))
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
 
 
 

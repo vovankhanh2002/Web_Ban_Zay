@@ -3,55 +3,55 @@
     ViewBag.Title = "EditThongTin";
     Layout = "~/Views/Shared/_LayoutPage1.cshtml";
 }
- <div class="container" style="width:600px;margin-top:20px">
-    @if (Session["idkhachhang"] != null)
-{
-<div class="container">
-    <h1 class="text-center">Xin chào</h1>
-    <p class="text-center">Cập nhật thông tin của bạn</p>
-    <form class="pt-3" action="EditThongTin" method="post">
-        @Html.HiddenFor(Model => Model.IDKhachHang)
-        <div class="form-group">
-            <h5>Mời bạn nhập họ tên.</h5>
-            <div class="col-md-10">
+<div class="container" style="width:600px;margin-top:20px">
+        @if (Session["idkhachhang"] != null)
+    {
+    <div class="container">
+        <h1 class="text-center">Xin chào</h1>
+        <p class="text-center">Cập nhật thông tin của bạn</p>
+        <form class="pt-3" action="EditThongTin" method="post">
+            @Html.HiddenFor(Model => Model.IDKhachHang)
+            <div class="form-group">
+                <h5>Mời bạn nhập họ tên.</h5>
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.HoTenKH, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.HoTenKH, "", new { @class = "text-danger" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.HoTenKH, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.HoTenKH, "", new { @class = "text-danger" })
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="form-group">
-            <h5>Mời bạn nhập địa chỉ.</h5>
-            <div class="col-md-10">
+            <div class="form-group">
+                <h5>Mời bạn nhập địa chỉ.</h5>
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.DiaChi, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.DiaChi, "", new { @class = "text-danger" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.DiaChi, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.DiaChi, "", new { @class = "text-danger" })
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="form-group">
-            <h5>Mời bạn nhập số điện thoại.</h5>
-            <div class="col-md-10">
+            <div class="form-group">
+                <h5>Mời bạn nhập số điện thoại.</h5>
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.DienThoai, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.DienThoai, "", new { @class = "text-danger" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.DienThoai, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.DienThoai, "", new { @class = "text-danger" })
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="form-group">
-            <h5>Mời bạn nhập giới tính.</h5>
-            <div class="col-md-10">
+            <div class="form-group">
+                <h5>Mời bạn nhập giới tính.</h5>
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.GioiTinh, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.GioiTinh, "", new { @class = "text-danger" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.GioiTinh, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.GioiTinh, "", new { @class = "text-danger" })
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="mt-3">
-            <button type="submit" class="btn btn-lg btn-success btn-block">Cập nhật thông tin</button>
-        </div>
-
-    </form>
-</div>
-}
+            <div class="mt-3">
+                <button type="submit" class="btn btn-lg btn-success btn-block">Cập nhật thông tin</button>
+                <a href="" class="btn btn-lg btn-success btn-block">Chi tiết đơn hàng</a>
+            </div>
+        </form>
     </div>
+    }
+        </div>

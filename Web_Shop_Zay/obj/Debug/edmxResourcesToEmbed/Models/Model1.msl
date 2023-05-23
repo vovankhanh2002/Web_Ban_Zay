@@ -4,6 +4,7 @@
     <EntitySetMapping Name="Chi_Tiet_HD">
       <EntityTypeMapping TypeName="Web_Ban_ZayModel.Chi_Tiet_HD">
         <MappingFragment StoreEntitySet="Chi_Tiet_HD">
+          <ScalarProperty Name="Size" ColumnName="Size" />
           <ScalarProperty Name="MaCT" ColumnName="MaCT" />
           <ScalarProperty Name="TongTien" ColumnName="TongTien" />
           <ScalarProperty Name="SoLuong" ColumnName="SoLuong" />
@@ -68,6 +69,7 @@
     <EntitySetMapping Name="San_Pham">
       <EntityTypeMapping TypeName="Web_Ban_ZayModel.San_Pham">
         <MappingFragment StoreEntitySet="San_Pham">
+          <ScalarProperty Name="Size" ColumnName="Size" />
           <ScalarProperty Name="TrangThai" ColumnName="TrangThai" />
           <ScalarProperty Name="Hinh" ColumnName="Hinh" />
           <ScalarProperty Name="Gia" ColumnName="Gia" />

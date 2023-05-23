@@ -82,8 +82,11 @@ namespace Web_Shop_Zay.Controllers
         }
         public ActionResult DangXuat()
         {
-            Session.RemoveAll();
+            Session.Remove("idkhachhang");
+            Session.Remove("Ten");
+            Session.Remove("DangNhap");
             return Redirect("~/Home/Index");
         }
+
     }
 }

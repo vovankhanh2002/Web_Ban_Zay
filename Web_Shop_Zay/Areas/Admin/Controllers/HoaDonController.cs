@@ -25,11 +25,12 @@ namespace Web_Shop_Zay.Areas.Admin.Controllers
         }
        
         public ActionResult DeleteHoaDon(int id)
-        {
+        { 
+            
             var ds = db.Hoa_Don.SingleOrDefault(m => m.MaHD == id);
             db.Hoa_Don.Remove(ds);
             db.SaveChanges();
-            TempData["ThongBao"] = "Đã xoá thành công!";
+            
             return RedirectToAction("Index");
         }
     }
