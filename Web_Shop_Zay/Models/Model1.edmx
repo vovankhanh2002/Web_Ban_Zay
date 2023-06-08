@@ -33,8 +33,20 @@
           </Key>
           <Property Name="MaHD" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IDKhachHang" Type="int" />
-          <Property Name="NgayMua" Type="date" />
+          <Property Name="NgayMua" Type="datetime" />
           <Property Name="GhiChuNN" Type="nvarchar" MaxLength="500" />
+          <Property Name="PTThanhToan" Type="nvarchar" MaxLength="150" />
+          <Property Name="PTVanChuyen" Type="nvarchar" MaxLength="150" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="10" />
+          <Property Name="Address" Type="nvarchar" MaxLength="50" />
+          <Property Name="Total" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Quantity" Type="int" />
+          <Property Name="Payment" Type="int" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="TypePayMentVN" Type="int" />
+          <Property Name="Buy" Type="int" />
+          <Property Name="Duyet" Type="int" />
         </EntityType>
         <EntityType Name="Khach_Hang">
           <Key>
@@ -48,6 +60,16 @@
           <Property Name="MatKhau" Type="nvarchar" MaxLength="50" />
           <Property Name="ReMatKhau" Type="nvarchar" MaxLength="50" />
           <Property Name="GioiTinh" Type="nvarchar" MaxLength="50" />
+          <Property Name="Anh" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Lien_He">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Website" Type="nvarchar" MaxLength="150" />
+          <Property Name="Message" Type="nvarchar" MaxLength="250" />
         </EntityType>
         <EntityType Name="Loai_San_Pham">
           <Key>
@@ -76,6 +98,8 @@
           <Property Name="Gia" Type="int" />
           <Property Name="Hinh" Type="nvarchar" MaxLength="500" />
           <Property Name="TrangThai" Type="nvarchar" MaxLength="50" />
+          <Property Name="GiamGia" Type="nvarchar" MaxLength="50" />
+          <Property Name="LuotXem" Type="int" />
           <Property Name="Size" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="User">
@@ -164,6 +188,7 @@
           <EntitySet Name="ChiTietSp" EntityType="Self.ChiTietSp" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Hoa_Don" EntityType="Self.Hoa_Don" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Khach_Hang" EntityType="Self.Khach_Hang" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Lien_He" EntityType="Self.Lien_He" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Loai_San_Pham" EntityType="Self.Loai_San_Pham" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Phan_Loai_SP" EntityType="Self.Phan_Loai_SP" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="San_Pham" EntityType="Self.San_Pham" Schema="dbo" store:Type="Tables" />
@@ -230,6 +255,7 @@
             <End Role="Phan_Loai_SP" EntitySet="Phan_Loai_SP" />
             <End Role="San_Pham" EntitySet="San_Pham" />
           </AssociationSet>
+          <EntitySet Name="Lien_He" EntityType="Web_Ban_ZayModel.Lien_He" />
         </EntityContainer>
         <EntityType Name="Chi_Tiet_HD">
           <Key>
@@ -262,10 +288,22 @@
           </Key>
           <Property Name="MaHD" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="IDKhachHang" Type="Int32" />
-          <Property Name="NgayMua" Type="DateTime" Precision="0" />
+          <Property Name="NgayMua" Type="DateTime" Precision="3" />
           <Property Name="GhiChuNN" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Chi_Tiet_HD" Relationship="Web_Ban_ZayModel.FK_Chi_Tiet_HD_Hoa_Don" FromRole="Hoa_Don" ToRole="Chi_Tiet_HD" />
           <NavigationProperty Name="Khach_Hang" Relationship="Web_Ban_ZayModel.FK_Hoa_Don_Khach_Hang1" FromRole="Hoa_Don" ToRole="Khach_Hang" />
+          <Property Name="PTThanhToan" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="PTVanChuyen" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Total" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Quantity" Type="Int32" />
+          <Property Name="Payment" Type="Int32" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TypePayMentVN" Type="Int32" />
+          <Property Name="Buy" Type="Int32" />
+          <Property Name="Duyet" Type="Int32" />
         </EntityType>
         <EntityType Name="Khach_Hang">
           <Key>
@@ -280,6 +318,7 @@
           <Property Name="ReMatKhau" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="GioiTinh" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Hoa_Don" Relationship="Web_Ban_ZayModel.FK_Hoa_Don_Khach_Hang1" FromRole="Khach_Hang" ToRole="Hoa_Don" />
+          <Property Name="Anh" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Loai_San_Pham">
           <Key>
@@ -315,6 +354,8 @@
           <NavigationProperty Name="ChiTietSps" Relationship="Web_Ban_ZayModel.FK_ChiTietSp_San_Pham" FromRole="San_Pham" ToRole="ChiTietSp" />
           <NavigationProperty Name="Phan_Loai_SP" Relationship="Web_Ban_ZayModel.FK_San_Pham_Phan_Loai_SP" FromRole="San_Pham" ToRole="Phan_Loai_SP" />
           <Property Name="Size" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="GiamGia" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LuotXem" Type="Int32" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -397,6 +438,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Lien_He">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Website" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Message" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -430,6 +480,18 @@
           <EntitySetMapping Name="Hoa_Don">
             <EntityTypeMapping TypeName="Web_Ban_ZayModel.Hoa_Don">
               <MappingFragment StoreEntitySet="Hoa_Don">
+                <ScalarProperty Name="Duyet" ColumnName="Duyet" />
+                <ScalarProperty Name="Buy" ColumnName="Buy" />
+                <ScalarProperty Name="TypePayMentVN" ColumnName="TypePayMentVN" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Payment" ColumnName="Payment" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="PTVanChuyen" ColumnName="PTVanChuyen" />
+                <ScalarProperty Name="PTThanhToan" ColumnName="PTThanhToan" />
                 <ScalarProperty Name="GhiChuNN" ColumnName="GhiChuNN" />
                 <ScalarProperty Name="NgayMua" ColumnName="NgayMua" />
                 <ScalarProperty Name="IDKhachHang" ColumnName="IDKhachHang" />
@@ -440,6 +502,7 @@
           <EntitySetMapping Name="Khach_Hang">
             <EntityTypeMapping TypeName="Web_Ban_ZayModel.Khach_Hang">
               <MappingFragment StoreEntitySet="Khach_Hang">
+                <ScalarProperty Name="Anh" ColumnName="Anh" />
                 <ScalarProperty Name="GioiTinh" ColumnName="GioiTinh" />
                 <ScalarProperty Name="ReMatKhau" ColumnName="ReMatKhau" />
                 <ScalarProperty Name="MatKhau" ColumnName="MatKhau" />
@@ -471,6 +534,8 @@
           <EntitySetMapping Name="San_Pham">
             <EntityTypeMapping TypeName="Web_Ban_ZayModel.San_Pham">
               <MappingFragment StoreEntitySet="San_Pham">
+                <ScalarProperty Name="LuotXem" ColumnName="LuotXem" />
+                <ScalarProperty Name="GiamGia" ColumnName="GiamGia" />
                 <ScalarProperty Name="Size" ColumnName="Size" />
                 <ScalarProperty Name="TrangThai" ColumnName="TrangThai" />
                 <ScalarProperty Name="Hinh" ColumnName="Hinh" />
@@ -490,6 +555,16 @@
                 <ScalarProperty Name="MatKhauUser" ColumnName="MatKhauUser" />
                 <ScalarProperty Name="TenUser" ColumnName="TenUser" />
                 <ScalarProperty Name="IDUser" ColumnName="IDUser" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Lien_He">
+            <EntityTypeMapping TypeName="Web_Ban_ZayModel.Lien_He">
+              <MappingFragment StoreEntitySet="Lien_He">
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="Website" ColumnName="Website" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

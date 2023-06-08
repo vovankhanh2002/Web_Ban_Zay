@@ -1,0 +1,74 @@
+﻿@model Web_Shop_Zay.Models.Hoa_Don
+@{
+    ViewBag.Title = "Sua";
+    Layout = "~/Areas/Admin/Views/Shared/LayoutAmin.cshtml";
+}
+
+<div class="container py-5">
+    <div class="row py-5">
+        <form class="col-md-9 m-auto" action="Them" method="post" role="form">
+            @Html.HiddenFor(model => model.MaHD)
+            <h1>@ViewBag.Title</h1>
+            <div class="mb-3">
+                <label for="inputsubject"><strong>ID khách hàng</strong></label>
+                <input type="text" class="form-control mt1" id="" value="@Model.IDKhachHang" name="IDKhachHang" placeholder="ID khách hàng">
+            </div>
+            <div class="mb-3">
+                <label for=""><strong>Ngày mua</strong></label>
+                <input type="datetime" class="form-control mt1" id="" value="@Model.NgayMua" name="NgayMua" placeholder="Ngày mua">
+            </div>
+
+            <div class="mb-3">
+                <label for=""><strong>Ghi chú</strong></label>
+                <input type="text" class="form-control mt1" id="" value="@Model.GhiChuNN" name="GhiChuNN" placeholder="Ghi chú">
+            </div>
+
+            <div class="mb-3">
+                <label for="inputsubject"><strong>Tên khách hàng</strong></label>
+                <input type="text" class="form-control mt1" id="" name="Name" value="@Model.Name" placeholder="Tên khách hàng">
+            </div>
+            <div class="mb-3">
+                <label for="inputsubject"><strong>Số điện thoại</strong></label>
+                <input type="text" class="form-control mt1" id="" name="Phone" value="@Model.Phone" placeholder="Số điện thoại">
+            </div>
+            <div class="mb-3">
+                <label for="inputsubject"><strong>Địa chỉ</strong></label>
+                <input type="text" class="form-control mt1" id="" name="Address" value="@Model.Address" placeholder="Địa chỉ">
+            </div>
+            <div class="mb-3">
+                <label for="inputsubject"><strong>Thành tiền</strong></label>
+                <input type="text" class="form-control mt1" id="" name="Total" value="@Model.Total" placeholder="Thành tiền">
+            </div>
+            <div class="mb-3">
+                <label for="inputsubject"><strong>Số lượng</strong></label>
+                <input type="text" class="form-control mt1" id="" name="Quantity" value="@Model.Quantity" placeholder="Số lượng">
+            </div>
+            <div class="mb-3">
+                <label for="inputsubject"><strong>Phương thức thanh toán</strong></label>
+                <input type="text" class="form-control mt1" id="" name="Payment" value="@Model.Payment" placeholder="Phương thức thanh toán">
+            </div>
+            <div class="mb-3">
+                <label for="inputsubject"><strong>Email</strong></label>
+                <input type="email" class="form-control mt1" id="" name="Email" value="@Model.Email" placeholder="Email">
+            </div>
+            <div class="mb-3">
+                <label for="inputsubject"><strong>Kiểu thanh toán</strong></label>
+                <input type="text" class="form-control mt1" id="" name="TypePayMentVN" value="@Model.TypePayMentVN" placeholder="Kiểu thanh toán">
+            </div>
+            <div class="mb-3">
+                <label for="inputsubject"><strong>Thanh toán</strong></label>
+                <input type="text" class="form-control mt1" id="" name="Buy" value="@Model.Buy" placeholder="Thanh toán">
+            </div>
+            <div class="mb-3">
+                <label for="inputsubject"><strong>Duyệt</strong></label>
+                <input type="text" class="form-control mt1" id="" name="Duyet" value="@Model.Duyet" placeholder="Duyệt">
+            </div>
+            <div class="row">
+                <div class="col text-end mt-2">
+                    <button type="submit" class="btn btn-success btn-lg px-3">Thêm</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+

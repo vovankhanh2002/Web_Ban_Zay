@@ -5,6 +5,7 @@
 @{
     ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/Shared/LayoutAmin.cshtml";
+    var ds = new Web_Shop_Zay.Models.mapKhachHang().khach_Hang();
 }
 
 
@@ -14,8 +15,17 @@
             <div class="card" style="min-height: 485px">
                 <div class="card-header card-header-text">
                     <h4 class="card-title">Thông tin hóa đơn</h4>
-                    <a href="~/Admin/KhachHang/AddKhachhang" class="btn btn-primary mt-3">Thêm</a>
                     <!-- <p class="category">New employees on 15th December, 2016</p> -->
+                    <form action="Index" method="post" style="margin-top:20px">
+                        <label for="lang-select">Bạn muốn tìm theo mã khách hàng:</label>
+                        <select name="select" required id="lang-select" style="height: 45px; border-radius: 5px;">
+                            <option value="HoTenKH" @Session["seleted"]>Tên khách hàng</option>
+                            <option value="NgayMua" @Session["seleted1"]>Ngày mua hàng</option>
+                            
+                        </select>
+                        <input required type="text" name="searchString" value="" style="height: 45px; border-radius: 5px;" placeholder="Tìm kiếm">
+                        <button type="submit" class="btn btn-success btn-lg px-3">Tìm kiếm</button>
+                    </form>
                 </div>
 
                 <div class="card-content table-responsive">
@@ -23,24 +33,54 @@
                         <thead class="text-primary">
                             <tr>
                                 <th>Mã hóa đơn</th>
+                                <th>Tên khách hàng</th>
                                 <th>Mã khách hàng</th>
                                 <th>Ngày mua</th>
                                 <th>Ghi chú</th>
-                             
-                               
+                                <th>Tên</th>
+                                <th>Số điện thoại</th>
+                                <th>Địa chỉ</th>
+                                <th>Email</th>
+                                <th>Tiền</th>
+                                <th>Phương thức thanh toán</th>
+                                <th>Thanh toán</th>
+                                <th></th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach (var item in Model)
                             {
+                                var dt = ds.Where(m => m.IDKhachHang == item.IDKhachHang).ToList();
                                 <tr>
                                     <td>@item.MaHD</td>
+                                    @foreach (var i in dt)
+                                    {
+                                        if (i.IDKhachHang == item.IDKhachHang)
+                                        {
+                                            <td>@i.HoTenKH</td>
+
+                                        }
+                                    }
                                     <td>@item.IDKhachHang</td>
                                     <td>@item.NgayMua</td>
                                     <td>@item.GhiChuNN</td>
-                                    <td>
-                                        <a href="~/Admin/HoaDon/DeleteHoaDon?id=@item.MaHD" onclick="edit_confirm()" class="btn btn-danger mt-3"><i class="material-icons ">delete_outline</i> Xóa</a>
+                                    <td>@item.Name</td>
+                                    <td>@item.Phone</td>
+                                    <td>@item.Address</td>
+                                    <td>@item.Email</td>
+                                    <td>@item.Total</td>
+                                    <td>@item.Payment</td>
+                                    <td>@(item.Buy == 1 ? "Đã thanh toán" : "Chưa thanh toán")</td>
+                                    <td><button class="btn btn-outline-success mt-3" type="button" href="#" id="btn_active" data-id="@item.MaHD">@{ if (item.Duyet == 1) {
+                                        <i class="material-icons ">check</i>@(item.Duyet==1 ? "Đã duyệt":"Chưa duyệt")
+                                        }else{
+                                        <i class="material-icons ">clear</i>@(item.Duyet==1 ? "Đã duyệt":"Chưa duyệt")
+                                        }
+                                    } </button></td>
 
+                                    <td>
+                                        <a href="~/Admin/HoaDon/DeleteHoaDon?id=@item.MaHD" onclick="edit_confirm()" class="btn btn-outline-danger mt-3"><i class="material-icons ">delete_outline</i> Xóa</a>
                                     </td>
                                 </tr>
                             }

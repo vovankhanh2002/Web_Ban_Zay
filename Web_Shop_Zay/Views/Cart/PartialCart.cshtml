@@ -1,0 +1,75 @@
+﻿@model IEnumerable<Web_Shop_Zay.Models.Carts>
+ <table class="table" >
+    <thead>
+        <tr>
+            <th scope="col">STT</th>
+            <th scope="col">Ảnh sản phẩm</th>
+            <th scope="col">Tên sản phẩm</th>
+            <th scope="col">Phân loại</th>
+            <th scope="col">Giá</th>
+            <th scope="col">Số lượng</th>
+            <th scope="col">Size</th>
+            <th scope="col">Thành tiền</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            if (Model != null && Model.Any())
+            {
+                var i = 1;
+                var sum = decimal.Zero;
+
+                foreach (var item in Model)
+                {
+                    sum += item.TotalPrice;
+                    <tr id="trow_@item.Id" class="text-center">
+                        <th>@i</th>
+                        <td><img src="~/Asset/img/SanPham/@item.Img" alt="#" style="width: 70px; height: 65px;"></td>
+                        <td>
+                            <a href="~/ChiTiet/Index/@item.Id">@item.Name<</a>>
+                        </td>
+                        <td>@item.Category</td>
+                        <td>@item.Price</td>
+                        <td>
+                            <input type="number" value="@item.Quantity" id="Quantity_@item.Id" min="1" style="width: 50px;">
+                            
+                        </td>
+                        <td>
+                            <input type="number" value="@item.Size" id="Size_@item.Id" min="36" max="42" style="width: 50px;">
+                        </td>
+                        <td>@item.TotalPrice</td>
+
+                        <td><a href="" data-id="@item.Id" class="btn btn-danger btnDelete">Xóa</td>
+                        <td><a href="" data-id="@item.Id" class="btn btn-success btnUpdate">Cập nhật</td>
+                    </tr>
+                    i++;
+                }
+                <tr>
+                    <td colspan="7" class="text-right">Tổng tiền:</td>
+                    <td class="text-center">@sum</td>
+                    <th></th>
+                </tr>
+                <tr>
+                    <th colspan="6" class="text-right"></th>
+                    <th></th>
+                    <th class="text-center">
+                        <a href="#" class="btn btn-sm btn-danger btnDeleteAll">Xóa tất</a>
+                        <a href="~/Cart/Checkout" class="btn btn-sm btn-success">Đặt hàng</a>
+                    </th>
+                </tr>
+               
+            }
+            else
+            {
+                <tr>
+                    <th colspan="7">Không có sản phẩm nào trong giỏ hàng</th>
+                </tr>
+            }
+
+        }
+
+
+    </tbody>
+</table>

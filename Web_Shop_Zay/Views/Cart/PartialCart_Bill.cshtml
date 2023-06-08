@@ -1,0 +1,37 @@
+﻿@model IEnumerable<Web_Shop_Zay.Models.Carts>
+@{
+    ViewBag.Title = "PartialCart_Bill";
+}
+@{
+    if (Model != null && Model.Any())
+    {
+        <h3>Giỏ hàng <span style="float:right">@Model.Count()</span></h3>
+        var i = 1;
+        var sum = decimal.Zero;
+        <div class="" style="border:1px solid #808080">
+        <table class="table">
+            @{foreach (var item in Model)
+                {
+                    sum += item.TotalPrice;
+                    <tr>
+                        <td>@item.Name</td>
+                        <td>@item.Price</td>
+                    </tr>
+                }
+            }
+            <tr>
+                <td>Tổng tiền</td>
+                <td>@sum</td>
+            </tr>
+        </table>
+            </div>
+    }
+
+    else
+    {
+
+    }
+
+}
+
+

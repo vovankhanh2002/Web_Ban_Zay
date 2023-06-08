@@ -1,0 +1,42 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+<div class="content1">
+    <div class="container-fluid py-5">
+        <div class="col-md-6 m-auto text-center">
+            <h1 class="h1">Bạn Cần Giúp gì ?</h1>
+            <p>
+                Nếu bạn cần giúp đỡ về việc mua hàng hay có bất cứ thắc mắc gì vui lòng điền thông tin phía bên dưới để được khắc phục sớm nhất.
+            </p>
+        </div>
+    </div>
+</div>
+<div class="container py-5">
+    <div class="row py-5">
+        <form class="col-md-9 m-auto" method="post" role="form">
+            <div class="row">
+                <div class="form-group col-md-6 mb-3">
+                    <label for="inputname"><strong>Họ &amp; Tên</strong></label>
+                    <input type="text" class="form-control mt-1" id="name" name="name" placeholder="Tên" required>
+                </div>
+                <div class="form-group col-md-6 mb-3">
+                    <label for="inputemail"><strong>Email</strong></label>
+                    <input type="email" class="form-control mt-1" id="email" name="website" placeholder="Email" required>
+                </div>
+            </div>
+           
+            <div class="mb-3">
+                <label for="inputmessage"><strong>Nội Dung</strong></label>
+                <textarea class="form-control mt-1" id="message" name="message" placeholder="Nội Dung" rows="8"></textarea>
+            </div>
+            <div class="row">
+                <div class="col text-end mt-2">
+                    <button type="submit" class="btn btn-success btn-lg px-3">Liên hệ</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

@@ -9,10 +9,39 @@
               select result).Take(8);
 }
 
+<style>
+    li.nav-item.dropdown.col-lg-1 {
+        width: 116px;
+    }
+
+    a.nav-link.dropdown-toggle {
+        color: #333;
+    }
+
+    a.h3.text-decoration-none {
+        height: 60px;
+        display: block;
+        overflow: hidden;
+        color: blue;
+    }
+
+    img.card-img.rounded-0.img-fluid {
+        max-height: 400px;
+        object-fit: cover;
+    }
+
+    .nav-tabs {
+        border-bottom: 0;
+    }
+
+    .product-wap .h3, .product-wap li, .product-wap i, .product-wap p {
+        font-size: 25px !important;
+    }
+</style>
 <div class="container" style="padding-top: 30px ;padding-bottom: 30px">
     <div class="card" style="padding-top: 30px; padding-bottom: 30px;border: none;">
         <div class="container">
-            <div class="wrapper row">
+            <div class="wrapper row" style="flex-wrap:nowrap">
                 <div class="preview col-md-6">
                     <div class="preview-pic tab-content">
                         @**@<div class="slideshow-container">
@@ -48,20 +77,108 @@
                         </div>
                     </div>
                 </div>
-                <div class="details col-md-6">
-                    <h3 class="product-title">@Model.TenSP</h3>
-                    <p class="product-description">
-                        @Model.MoTa
-                    </p>
-                    <h4 class="price">Giá bán: @String.Format("{0:c}", Model.Gia)</h4>
-                    <p class="vote">
-                        <strong>91%</strong> of người mua hài lòng với sản phẩm này <strong>(87 bình chọn)</strong>
-                    </p>
-                    <h5 class="sizes">Size: <span class="size">@Model.Size</span></h5>
-                    <div class="action">
-                        <a href="~/Cart/AddSp?id=@Model.MaSP">Cho vao gio</a>
+
+                @*<div class="details col-md-6">
+        <h3 class="product-title">@Model.TenSP</h3>
+        <p class="product-description">
+            @Model.MoTa
+        </p>
+        <h4 class="price">Giá bán: @String.Format("{0:c}", Model.Gia)</h4>
+        <p class="vote">
+            <strong>91%</strong> of người mua hài lòng với sản phẩm này <strong>(87 bình chọn)</strong>
+        </p>
+        <h5 class="sizes">Size: <span class="size">@Model.Size</span></h5>
+        <div class="action">
+            <a class="btn btn-success btn-lg px-3" href="~/Cart/AddSp?id=@Model.MaSP">Cho vào giỏ hàng</a>
+        </div>*@
+            <div class="card-body">
+                <h1 class="h2">@Model.TenSP</h1>
+
+                <p class="h3 py-2">@Model.Gia đ</p>
+                <p class="py-2">
+                    <i class="fa fa-star text-warning"></i>
+                    <i class="fa fa-star text-warning"></i>
+                    <i class="fa fa-star text-warning"></i>
+                    <i class="fa fa-star text-warning"></i>
+                    <i class="fa fa-star text-secondary"></i>
+                    <span class="list-inline-item text-dark">Xếp hạng 4.8</span>
+                </p>
+                <ul class="list-inline">
+                    <li class="list-inline-item">
+                        <h6>Thương Hiệu:</h6>
+                    </li>
+                    <li class="list-inline-item">
+                        <p class="text-muted">
+                            <strong>
+                                @{
+                                    var dspl = new Web_Shop_Zay.Models.mapPhanLoaiSP().phanLoaiSpID((int)Model.MaPL);
+                                    foreach (var i in dspl)
+                                    {
+                                        if (i.MaPL == Model.MaPL)
+                                        {@i.TenPL;
+                                    }
+
+                                }
+                                }
+                            </strong>
+                        </p>
+                    </li>
+                </ul>
+
+                <h6>Mô Tả Sản Phẩm:</h6>
+                <p>Lượt xem: <b>@Model.LuotXem</b></p>
+                <ul class="list-inline">
+                    <li class="list-inline-item">
+                        <h6>Màu Sắc :</h6>
+                    </li>
+                    <li class="list-inline-item">
+                        <p class="text-muted"><strong>Trắng / Đen</strong></p>
+                    </li>
+                </ul>
+
+                <h6>Đặc điểm chi tiết:</h6>
+                <ul class="list-unstyled pb-3" style="list-style: disc;">
+                    <li>Đế cao su</li>
+                    <li>Air Jordan 1 Mid SE “Bright Citrus” dành cho nữ là phiên bản trung cấp thay thế cho đôi giày đặc trưng đầu tiên của Michael Jordan được khoác lên mình khối màu hai tông màu rực rỡ</li>
+                    <li>Kết hợp các tấm da màu trắng và cam, “Bright Citrus” gây chú ý ở mọi nơi nó xuất hiện</li>
+                    <li>Da trắng mịn nổi bật trên bàn chân trước, khoen, cổ áo, gót chân và trên Swoosh</li>
+                    <li>Chi tiết da Citrus sáng đánh dấu ngón chân đục lỗ và bảng điều khiển giữa và cổ áo</li>
+                    <li>Màu cam ấm áp xuất hiện trên nhãn hiệu “Wings” trên cổ áo và phù hiệu Jumpman và “Air” trên lưỡi nylon trắng</li>
+                </ul>
+
+                <form action="" method="GET">
+                    <input type="hidden" name="product-title" value="Activewear">
+                    <div class="row">
+                        <div class="col-auto">
+                            <ul class="list-inline pb-3">
+                                <li class="list-inline-item">
+                                    Size :
+                                    <input type="number" name="product-size" id="product-size" min="36" max="42">
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-auto">
+                            <ul class="list-inline pb-3">
+                                <li class="list-inline-item text-right">
+                                    Số Lượng
+                                    <input type="number" name="product-quanity" id="product-quanity" min="1">
+                                </li>
+                            </ul>
+                        </div>
                     </div>
-                </div>
+                    <div class="row pb-3">
+                        <div class="col d-grid">
+                            <a class="btn btn-success btn-lg px-3 btnBuyCart" data-id="@Model.MaSP" href="~/Cart/Checkout">Mua ngay</a>
+                        </div>
+                        <div class="col d-grid">
+
+                            <a class="btn btn-success btn-lg px-3 btnAddToCart" data-id="@Model.MaSP" href="">Thêm vào giỏ hàng</a>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+            </div>
             </div>
         </div>
     </div>
@@ -70,7 +187,7 @@
         <h1>Sản phẩm nổi bật</h1>
         @foreach (var item in ds)
         {
-            <div class="col-md-4" style=" width: 300px;">
+            <div class="cardhover col-md-4" style=" width: 300px;">
                 <div class="card mb-4 product-wap rounded-0">
                     <div class="card rounded-0">
                         <img style=" max-height: 200px;" class="card-img rounded-0 img-fluid" src="~/Asset/img/SanPham/@item.Hinh">
@@ -78,7 +195,7 @@
                             <ul class="list-unstyled">
 
                                 <li><a class="btn btn-success text-white mt-2" href="~/ChiTiet/Index?id=@item.MaSP"><i class="far fa-eye"></i></a></li>
-                                <li><a class="btn btn-success text-white mt-2" href="~/Cart/AddSp?id=@item.MaSP"><i class="fas fa-cart-plus"></i></a></li>
+                                <li><a class="btn btn-success text-white mt-2 btnAddToCart" href="" data-id="@item.MaSP"><i class="fas fa-cart-plus"></i></a></li>
                             </ul>
                         </div>
                     </div>
@@ -98,11 +215,10 @@
                                 @item.TrangThai
                             </li>
                         </ul>
-                        <p class="text-center mb-0">@String.Format("{0:c}", item.Gia) </p>
+                        <p class="text-center mb-0" style="color:red">@item.Gia </p>
                     </div>
                 </div>
             </div>
         }
     </div>
-</div>
-
+    

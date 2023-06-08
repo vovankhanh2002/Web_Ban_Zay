@@ -23,6 +23,54 @@ namespace Web_Shop_Zay.Areas.Admin.Controllers
             }
             return Redirect("~/Admin/TaiKhoang/Login");
         }
+        [HttpPost]
+        public ActionResult Index(int? page, string select, string searchString)
+        {
+            Session["searchString"] = searchString;
+            if (page == null) page = 1;
+            var khachhang = from m in db.Khach_Hang
+                          select m;
+            int pageSize = 20;
+            int pageNumber = page ?? 1;
+            if (select == "IDKhachHang")
+            {
+                khachhang = khachhang.Where(m => m.IDKhachHang.ToString().Contains(searchString)).OrderBy(k => k.IDKhachHang);
+                Session["seleted"] = "seleted";
+                return View(khachhang.ToPagedList(pageNumber, pageSize));
+            }
+            else if (select == "HoTenKH")
+            {
+                khachhang = khachhang.Where(m => m.HoTenKH.ToString().Contains(searchString)).OrderBy(k => k.IDKhachHang);
+                Session["seleted1"] = "seleted";
+                return View(khachhang.ToPagedList(pageNumber, pageSize));
+            }
+            else if (select == "DiaChi")
+            {
+                khachhang = khachhang.Where(m => m.DiaChi.ToString().Contains(searchString)).OrderBy(k => k.IDKhachHang);
+                Session["seleted2"] = "seleted";
+                return View(khachhang.ToPagedList(pageNumber, pageSize));
+            }
+            else if (select == "Email")
+            {
+                khachhang = khachhang.Where(m => m.Email.ToString().Contains(searchString)).OrderBy(k => k.IDKhachHang);
+                Session["seleted3"] = "seleted";
+                return View(khachhang.ToPagedList(pageNumber, pageSize));
+            }
+            else if (select == "DienThoai")
+            {
+                khachhang = khachhang.Where(m => m.DienThoai.ToString().Contains(searchString)).OrderBy(k => k.IDKhachHang);
+                Session["seleted4"] = "seleted";
+                return View(khachhang.ToPagedList(pageNumber, pageSize));
+            }
+            else if (select == "GioiTinh")
+            {
+                khachhang = khachhang.Where(m => m.GioiTinh.ToString().Contains(searchString)).OrderBy(k => k.IDKhachHang);
+                return View(khachhang.ToPagedList(pageNumber, pageSize));
+            }
+            return View();
+        }
+
+
         public ActionResult AddKhachhang()
         {
             return View();
@@ -59,9 +107,9 @@ namespace Web_Shop_Zay.Areas.Admin.Controllers
                 ds.DiaChi = khach_Hang.DiaChi;
                 ds.Email = khach_Hang.Email;
                 ds.DienThoai = khach_Hang.DienThoai;
-                ds.GioiTinh = khach_Hang.GioiTinh;
                 ds.MatKhau = khach_Hang.MatKhau;
                 ds.ReMatKhau = khach_Hang.ReMatKhau;
+                ds.Anh = khach_Hang.Anh;
                 db.SaveChanges();
                 TempData["ThongBao"] = "Đã sửa thành công!";
                 return RedirectToAction("Index");

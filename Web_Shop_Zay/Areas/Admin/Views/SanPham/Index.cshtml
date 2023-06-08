@@ -5,6 +5,7 @@
 @{
     ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/Shared/LayoutAmin.cshtml";
+    var dt = new Web_Shop_Zay.Models.mapPhanLoaiSP().phanLoaiSp();
 }
 
 
@@ -17,48 +18,72 @@
                     <h4 class="card-title">Thông tin sản phẩm</h4>
                     <a href="~/Admin/SanPham/AddSanPham" class="btn btn-primary mt-3">Thêm</a>
                     <!-- <p class="category">New employees on 15th December, 2016</p> -->
+                    <form action="Index" method="post" style="margin-top:20px">
+                        <label for="lang-select">Bạn muốn tìm theo:</label>
+                        <select name="select" required id="lang-select" style="height: 45px; border-radius: 5px;">
+                            <option value="TenSP" @Session["seleted"]>Tên sản phẩm</option>
+                            <option value="MaPL" @Session["seleted1"]>Mã phân loại</option>
+                            <option value="MaSP" @Session["seleted2"]>Mã sản phẩm</option>
+                        </select>
+                        <input required type="text" name="searchString" value="@Session["searchString"]" style="height: 45px; border-radius: 5px;" placeholder="Tìm kiếm">
+                        <button type="submit" class="btn btn-success btn-lg px-3">Tìm kiếm</button>
+                    </form>
                 </div>
 
-                <div class="card-content table-responsive">
-                    <table class="table table-hover">
-                        <thead class="text-primary">
-                            <tr>
-                                <th>Mã sản phẩm</th>
-                                <th>Mã phân loại</th>
-                                <th>Tên sản phẩm</th>
-                                <th>Mô tả</th>
-                                <th>Số lượng</th>
-                                <th>Giá</th>
-                                <th>Hình</th>
-                                <th>Trạng thái</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach (var item in Model)
-                            {
-                                <tr>
-                                    <td>@item.MaSP</td>
-                                    <td>@item.MaPL</td>
-                                    <td>@item.TenSP</td>
-                                    <td>@item.MoTa</td>
-                                    <td>@item.SoLuong</td>
-                                    <td>@item.Gia</td>
-                                    <td><img src="~/Asset/img/SanPham/@item.Hinh" alt="#" style="width: 70px; height: 65px;"></td>
-                                    <td>@item.TrangThai</td>
-                                    <td>
-                                        <a href="~/Admin/SanPham/EditSanPham?id=@item.MaSP" class="btn btn-primary mt-3"><i class="material-icons">edit</i> Sửa</a>
-                                        <a href="~/Admin/SanPham/DeleteSanPham?id=@item.MaSP" class="btn btn-danger mt-3"><i class="material-icons ">delete_outline</i> Xóa</a>
-                                        <a href="~/Admin/ChiTietSP/AddChiTietSP?masp=@item.MaSP" class="btn btn-success mt-3"><i class="material-icons">edit</i> Thêm chi tiết sản phẩm</a>
-                                       
-                                    </td>
-                                </tr>
-                            }
-                            <!-- Kết thúc -->
-                            @Html.PagedListPager(Model, page => Url.Action("Index",
-                            new { page }))
-                        </tbody>
-                    </table>
-                </div>
+                    <div class="card-content table-responsive">
+                            <table class="table table-hover">
+                                <thead class="text-primary">
+                                    <tr>
+                                        <th>Mã sản phẩm</th>
+                                        <th>Mã phân loại</th>
+                                        <th>Tên sản phẩm</th>
+                                        <th>Mô tả</th>
+                                        <th>Số lượng</th>
+                                        <th>Size</th>
+                                        <th>Giá</th>
+                                        <th>Giảm giá</th>
+                                        <th>Hình</th>
+                                        <th>Trạng thái</th>
+                                        <th>Lượt xem</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        var ds = dt.Where(s => s.MaPL == item.MaPL).ToList();
+                                        <tr>
+                                            <td>@item.MaSP</td>
+                                            @foreach (var i in ds)
+                                            {
+                                                if (i.MaPL == item.MaPL)
+                                                {
+                                                    <td>@i.TenPL</td>
+                                                }
+                                            }
+                                            <td>@item.TenSP</td>
+                                            <td>@item.MoTa</td>
+                                            <td>@item.SoLuong</td>
+                                            <td>@item.Size</td>
+                                            <td>@item.Gia</td>
+                                            <td>@item.GiamGia</td>
+                                            <td><img src="~/Asset/img/SanPham/@item.Hinh" alt="#" style="width: 70px; height: 65px;"></td>
+                                            <td>@item.TrangThai</td>
+                                            <td>@item.LuotXem</td>
+                                            <td>
+                                                <a href="~/Admin/SanPham/EditSanPham?id=@item.MaSP" class="btn btn-primary mt-3"><i class="material-icons">edit</i> Sửa</a>
+                                                <a href="~/Admin/SanPham/DeleteSanPham?id=@item.MaSP" class="btn btn-danger mt-3"><i class="material-icons ">delete_outline</i> Xóa</a>
+                                                <a href="~/Admin/ChiTietSP/AddChiTietSP?masp=@item.MaSP" class="btn btn-success mt-3"><i class="material-icons">edit</i> Thêm chi tiết sản phẩm</a>
+
+                                            </td>
+                                        </tr>
+                                    }
+                                    <!-- Kết thúc -->
+                                    @Html.PagedListPager(Model, page => Url.Action("Index",
+                                    new { page }))
+                                </tbody>
+                            </table>
+                        </div>
             </div>
         </div>
     </div>

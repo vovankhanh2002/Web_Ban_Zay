@@ -5,6 +5,7 @@
 @{
     ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/Shared/LayoutAmin.cshtml";
+    var dt = new Web_Shop_Zay.Models.mapLoaiSP().LoaiSP();
 }
 
 
@@ -15,9 +16,18 @@
                 <div class="card-header card-header-text">
                     <h4 class="card-title">Thông tin phân loại sản phẩm</h4>
 
-                    
+
                     <a href="~/Admin/PhanLoaiSP/AddPhanLoaiSP" class="btn btn-primary mt-3">Thêm</a>
                     <!-- <p class="category">New employees on 15th December, 2016</p> -->
+                    <form action="Index" method="post" style="margin-top:20px">
+                        <label for="lang-select">Bạn muốn tìm theo:</label>
+                        <select name="select" required id="lang-select" style="height: 45px; border-radius: 5px;">
+                            <option value="MaLoai" @Session["seleted"]>Mã loại</option>
+                            <option value="TenPL" @Session["seleted1"]>Tên loại</option>
+                        </select>
+                        <input required type="text" name="searchString" value="@Session["searchString"]" style="height: 45px; border-radius: 5px;" placeholder="Tìm kiếm">
+                        <button type="submit" class="btn btn-success btn-lg px-3">Tìm kiếm</button>
+                    </form>
                 </div>
 
                 <div class="card-content table-responsive">
@@ -33,15 +43,22 @@
                         <tbody>
                             @foreach (var item in Model)
                             {
+                                var ds = dt.Where(s => s.MaLoai == item.MaLoai).ToList();
                                 <tr>
                                     <td>@item.MaPL</td>
-                                    <td>@item.MaLoai</td>
+                                    @foreach (var i in ds)
+                                    {
+                                        if (i.MaLoai == item.MaLoai)
+                                        {
+                                            <td>@i.TenLoai</td>
+}
+                                    }
                                     <td>@item.TenPL</td>
                                     <td>
                                         <a href="~/Admin/PhanLoaiSP/EditPhanLoai?id=@item.MaPL" class="btn btn-primary mt-3"><i class="material-icons">edit</i> Sửa</a>
                                         <a href="~/Admin/PhanLoaiSP/DeletePhanLoaiSP?id=@item.MaPL" class="btn btn-danger mt-3 me-4"><i class="material-icons ">delete_outline</i> Xóa</a>
                                     </td>
-                                   
+
                                 </tr>
                             }
                             <!-- Kết thúc -->

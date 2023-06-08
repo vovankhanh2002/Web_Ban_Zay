@@ -7,47 +7,66 @@ namespace Web_Shop_Zay.Models
 {
     public class Cart
     {
-        public San_Pham san_pham { get; set; }
-        public int So_Luong { get; set; }
-        public int Size { get; set; }
-    }
-    public class Carts
-    {
-        List<Cart> items = new List<Cart>();
-        public IEnumerable<Cart> Items
+        public List<Carts> items { get; set; }
+       public Cart()
         {
-            get { return items; }
+            this.items = new List<Carts>();
         }
-        public void AddItem(San_Pham sp , int soluong =1 ,int size=35 )
+        public void Addtocart(Carts carts , int Quantity,int Size)
         {
-            var ds = items.FirstOrDefault(m => m.san_pham.MaSP == sp.MaSP);
-            if(ds == null)
+            var check = items.SingleOrDefault(m =>m.Id == carts.Id);
+            if(check != null)
             {
-                items.Add(new Cart
-                {
-                    san_pham = sp,
-                    So_Luong = soluong,
-                    Size = size
-                }); 
+                check.Quantity += Quantity;
+                check.TotalPrice = check.Price * check.Quantity;
+                check.Size = Size;
             }
             else
             {
-                ds.So_Luong++;
+                items.Add(carts);
             }
         }
-        public void Update(int id, int slo, int size )
+        public void Deletecart(int id)
         {
-            var ds = items.SingleOrDefault(s => s.san_pham.MaSP == id);
-            if (ds != null)
+            var check = items.SingleOrDefault(m => m.Id == id);
+            if(check != null)
             {
-                ds.So_Luong = slo;
-                ds.Size = size;
+                items.Remove(check);
+            }
+     
+        }
+        public void Updatequantity(int id, int quantity, int size)
+        {
+            var check = items.SingleOrDefault(m => m.Id == id);
+            if (check != null)
+            {
+                check.Quantity = quantity;
+                check.TotalPrice = check.Price * check.Quantity;
+                check.Size = size;
             }
         }
-        public void Delete(int id)
+        public decimal GetPrice()
         {
-            var ds = items.SingleOrDefault(m => m.san_pham.MaSP == id);
-            items.Remove(ds);
+            return items.Sum(m => m.Price);
         }
+        public decimal GetQuantity()
+        {
+            return items.Sum(m => m.Quantity);
+        }
+        public void ClearCart()
+        {
+            items.Clear();
+        }
+    }
+    public class Carts
+    {
+        public int Id { get; set; }
+        public int Category { get; set; }
+        public string Name { get; set; }
+        public string Img { get; set; }
+        public int Quantity { get; set; }
+        public decimal Price { get; set; }
+        public decimal TotalPrice { get; set; }
+        public int Size { get; set; }
     }
 }

@@ -1,0 +1,58 @@
+﻿
+@{
+    ViewBag.Title = "Checkout";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <h1 class="">Thanh toán</h1>
+            <p>Bạn hãy kiểm tra lại thông tin đơn hàng!</p>
+        </div>
+    </div>
+    @if (ViewBag.checkcart != null)
+    {
+    <div class="row">
+        <div id="show_success"></div>
+        <div class="col-md-9">
+               @Html.Action("Partial_CheckOut","Cart")
+            </div>
+        <div class="col-md-3">
+                @Html.Action("PartialCart_Bill", "Cart")
+        </div>
+    </div>
+    }
+</div>
+@section scripts{
+    <script>
+        function OnFailure(rs) {
+            if (!rs.Success) {
+                $('show_success').html("Bạn mua thất bại! Xin vui lòng mua lại ");
+            }
+        }
+        $(document).ready(function () {
+            $(document).on('change', '#drTypePaymentVN', function () {
+                var type = $(this).val();
+                $('#load_form_payment').hide();
+                if (type == 2) {
+                    $('#load_form_payment').show();
+                }
+            })
+            $('myForm').valdate({
+                rules: {
+                    'Name': {
+                        required: true
+                    },
+                    'Phone': {
+                        required: true
+                    }
+                },
+                messages: {
+                    'Name': 'Bạn không được để trống',
+                    'Phone': 'Bạn không được để trống'
+                }
+            });
+        });
+    </script>
+    }

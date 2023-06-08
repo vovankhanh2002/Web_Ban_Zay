@@ -11,7 +11,7 @@
 
             <h1 class="text-center">Xin chào</h1>
             <p class="text-center">Đăng nhập vào tài khoản của bạn</p>
-
+            @TempData["mail"]
             <form class="need-validation" action="DangNhap" method="post">
                 <!-- can xac thuc -->
                 <!-- tao email & password -->
@@ -41,7 +41,7 @@
                         <label class="form-check-label" for="check">Ghi nhớ đăng nhập</label>
                     </div>
                     <div class="forgot">
-                        <small><a href="#" style="text-decoration: none;">Quên mật khẩu?</a></small>
+                        <small><a href="~/ThongTin/QuenPass" style="text-decoration: none;">Quên mật khẩu?</a></small>
                     </div>
                 </div>
 

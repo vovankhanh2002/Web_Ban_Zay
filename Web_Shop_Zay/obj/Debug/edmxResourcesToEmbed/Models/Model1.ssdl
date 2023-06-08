@@ -28,8 +28,20 @@
     </Key>
     <Property Name="MaHD" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="IDKhachHang" Type="int" />
-    <Property Name="NgayMua" Type="date" />
+    <Property Name="NgayMua" Type="datetime" />
     <Property Name="GhiChuNN" Type="nvarchar" MaxLength="500" />
+    <Property Name="PTThanhToan" Type="nvarchar" MaxLength="150" />
+    <Property Name="PTVanChuyen" Type="nvarchar" MaxLength="150" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Phone" Type="nvarchar" MaxLength="10" />
+    <Property Name="Address" Type="nvarchar" MaxLength="50" />
+    <Property Name="Total" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="Quantity" Type="int" />
+    <Property Name="Payment" Type="int" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" />
+    <Property Name="TypePayMentVN" Type="int" />
+    <Property Name="Buy" Type="int" />
+    <Property Name="Duyet" Type="int" />
   </EntityType>
   <EntityType Name="Khach_Hang">
     <Key>
@@ -43,6 +55,16 @@
     <Property Name="MatKhau" Type="nvarchar" MaxLength="50" />
     <Property Name="ReMatKhau" Type="nvarchar" MaxLength="50" />
     <Property Name="GioiTinh" Type="nvarchar" MaxLength="50" />
+    <Property Name="Anh" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Lien_He">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Website" Type="nvarchar" MaxLength="150" />
+    <Property Name="Message" Type="nvarchar" MaxLength="250" />
   </EntityType>
   <EntityType Name="Loai_San_Pham">
     <Key>
@@ -71,6 +93,8 @@
     <Property Name="Gia" Type="int" />
     <Property Name="Hinh" Type="nvarchar" MaxLength="500" />
     <Property Name="TrangThai" Type="nvarchar" MaxLength="50" />
+    <Property Name="GiamGia" Type="nvarchar" MaxLength="50" />
+    <Property Name="LuotXem" Type="int" />
     <Property Name="Size" Type="nvarchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="User">
@@ -159,6 +183,7 @@
     <EntitySet Name="ChiTietSp" EntityType="Self.ChiTietSp" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Hoa_Don" EntityType="Self.Hoa_Don" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Khach_Hang" EntityType="Self.Khach_Hang" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Lien_He" EntityType="Self.Lien_He" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Loai_San_Pham" EntityType="Self.Loai_San_Pham" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Phan_Loai_SP" EntityType="Self.Phan_Loai_SP" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="San_Pham" EntityType="Self.San_Pham" Schema="dbo" store:Type="Tables" />

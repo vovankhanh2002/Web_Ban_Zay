@@ -12,14 +12,16 @@ namespace Web_Shop_Zay.Controllers
         // GET: ChiTiet
         public ActionResult Index(int id)
         {
-            var ds = db.San_Pham.SingleOrDefault(e => e.MaSP == id);
+            var ds = db.San_Pham.Find(id);
+            if(ds != null)
+            {
+                db.San_Pham.Attach(ds);
+                ds.LuotXem = ds.LuotXem + 1;
+                db.Entry(ds).Property(x => x.LuotXem).IsModified = true;
+                db.SaveChanges();
+            }
             return View(ds);
         }
-        [HttpPost]
-        public ActionResult Index(San_Pham sp)
-        {
-            var ds = db.San_Pham.SingleOrDefault(e => e.MaSP == sp.MaSP);
-            return View(ds);
-        }
+        
     }
 }

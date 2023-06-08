@@ -4,11 +4,13 @@
     ViewBag.Title = "Show";
     Layout = "~/Views/Shared/_LayoutPage1.cshtml";
 }
+
 @if (Model != null)
 {
     <table class="table">
         <thead>
             <tr>
+                <th></th>
                 <th>Tên sản phẩm</th>
                 <th>Hình</th>
                 <th>Giá</th>
@@ -20,9 +22,9 @@
             @foreach (var item in Model.Items)
             {
                 var sum = item.So_Luong * item.san_pham.Gia.Value;
-    
-                <tr>
 
+                <tr>
+                    <td><input type="checkbox" name="check" value="@item.san_pham.MaSP">
                     <td>
                         <a href="~/ChiTiet/Index?id=@item.san_pham.MaSP" style="text-decoration:none; color:black">
                             @Html.DisplayFor(Model => item.san_pham.TenSP)
@@ -58,20 +60,22 @@
                     <td>
                         @using (Html.BeginForm("Post", "Cart"))
                         {
-                        
+
+
                             <input type="hidden" value="@item.So_Luong" name="slo">
                             <input type="hidden" value="@item.san_pham.MaSP" name="id">
                             <input type="hidden" value="@sum" name="sum">
                             <input type="hidden" value="@item.Size" name="size">
-                            <button type="submit" class="btn btn-lg btn-success btn-block" value="Post">Đặt hàng</button>
+                            <button type="submit" class="btn btn-lg btn-success btn-block" onclick="checked()" value="Post">Đặt hàng</button>
                         }
 
                     </td>
+
                 </tr>
-     
-
+              
             }
-
         </tbody>
     </table>
+
 }
+

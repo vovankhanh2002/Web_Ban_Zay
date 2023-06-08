@@ -13,9 +13,21 @@
         <div class="col-lg-7 col-md-12">
             <div class="card" style="min-height: 485px">
                 <div class="card-header card-header-text">
-                    <h4 class="card-title">Thông tin khách hàng<h4>
+                    <h4 class="card-title">Thông tin khách hàng</h4>
                     <a href="~/Admin/KhachHang/AddKhachhang" class="btn btn-primary mt-3">Thêm</a>
-                    <!-- <p class="category">New employees on 15th December, 2016</p> -->
+                     <form action="Index" method="post" style="margin-top:20px">
+                        <label for="lang-select">Bạn muốn tìm theo mã khách hàng:</label>
+                        <select name="select" required id="lang-select" style="height: 45px; border-radius: 5px;">
+                            <option value="IDKhachHang" @Session["seleted"]>Id khách hàng</option>
+                            <option value="HoTenKH" @Session["seleted1"]>Ho tên</option>
+                            <option value="DiaChi" @Session["seleted2"]>Địa chỉ</option>
+                            <option value="Email" @Session["seleted3"]>Email</option>
+                            <option value="DienThoai" @Session["seleted4"]>Số điện thoại</option>
+                            <option value="GioiTinh" @Session["seleted5"]>Giới tính</option>
+                        </select>
+                        <input required type="text" name="searchString" value="" style="height: 45px; border-radius: 5px;" placeholder="Tìm kiếm">
+                        <button type="submit" class="btn btn-success btn-lg px-3">Tìm kiếm</button>
+                    </form>
                 </div>
 
                 <div class="card-content table-responsive">
@@ -30,6 +42,7 @@
                                 <th>Giới tính</th>
                                 <th>Mật khẩu</th>
                                 <th>Mật khẩu nhập lại</th>
+                                <th>Ảnh</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -44,10 +57,11 @@
                                     <td>@item.GioiTinh</td>
                                     <td>@item.MatKhau</td>
                                     <td>@item.ReMatKhau</td>
+                                    <td><img src="~/Asset/img/KhachHang/@item.Anh" style="max-width:50px"></td>
                                     <td>
                                         <a href="~/Admin/KhachHang/EditKhachHang?id=@item.IDKhachHang" class="btn btn-primary mt-3"><i class="material-icons">edit</i> Sửa</a>
                                         <a href="~/Admin/KhachHang/DeleteKhachHang?id=@item.IDKhachHang" class="btn btn-danger mt-3"><i class="material-icons ">delete_outline</i> Xóa</a>
-                                   
+
                                     </td>
                                 </tr>
                             }

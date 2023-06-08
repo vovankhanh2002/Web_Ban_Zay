@@ -33,5 +33,6 @@ namespace Web_Shop_Zay.Models
         public virtual DbSet<Phan_Loai_SP> Phan_Loai_SP { get; set; }
         public virtual DbSet<San_Pham> San_Pham { get; set; }
         public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<Lien_He> Lien_He { get; set; }
     }
 }

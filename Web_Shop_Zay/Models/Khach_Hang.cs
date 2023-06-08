@@ -28,6 +28,7 @@ namespace Web_Shop_Zay.Models
         public string MatKhau { get; set; }
         public string ReMatKhau { get; set; }
         public string GioiTinh { get; set; }
+        public string Anh { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Hoa_Don> Hoa_Don { get; set; }

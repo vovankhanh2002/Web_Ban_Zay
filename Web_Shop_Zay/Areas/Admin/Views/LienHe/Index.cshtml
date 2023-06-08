@@ -1,0 +1,55 @@
+﻿
+@using PagedList.Mvc;
+@using PagedList;
+@model IPagedList<Web_Shop_Zay.Models.Lien_He>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/LayoutAmin.cshtml";
+}
+
+
+<div class="main-content">
+    <div class="row ">
+        <div class="col-lg-7 col-md-12">
+            <div class="card" style="min-height: 485px">
+                <div class="card-header card-header-text">
+                    <h4 class="card-title">Thông tin liên hệ</h4>
+                    <!-- <p class="category">New employees on 15th December, 2016</p> -->
+                </div>
+
+                <div class="card-content table-responsive">
+                    <table class="table table-hover">
+                        <thead class="text-primary">
+                            <tr>
+                                <th>Id</th>
+                                <th>Họ tên</th>
+                                <th>Email</th>
+                                <th>Nội dung</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@item.Id</td>
+                                    <td>@item.Name</td>
+                                    <td>@item.Website</td>
+                                    <td>@item.Message</td>
+                                    <td>
+                                        <a href="~/Admin/LienHe/DeleteLienHe?id=@item.Id" class="btn btn-danger mt-3"><i class="material-icons ">delete_outline</i> Xóa</a>
+
+                                    </td>
+
+                                </tr>
+                            }
+                            <!-- Kết thúc -->
+                            @Html.PagedListPager(Model, page => Url.Action("Index",
+                            new { page }))
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,114 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/LayoutAmin.cshtml";
+    var san_Phams = new Web_Shop_Zay.Models.mapSanPham().SanPham().Count;
+    var hoa_don = new Web_Shop_Zay.Models.mapHoaDon().HoaDon().Count;
+    var khach_hang = new Web_Shop_Zay.Models.mapKhachHang().khach_Hang().Count;
+    var doanh_thu = new Web_Shop_Zay.Models.mapChiTietHD().ChiTietHD().Sum(x => x.TongTien);
+}
+
+<div id="content" class="active">
+
+
+
+    <div class="container-fluid px-4">
+        <div class="row g-3 my-2">
+            <div class="col-md-3">
+                <div class="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded">
+                    <div>
+                        <h3 class="fs-2">@san_Phams</h3>
+                        <p class="fs-5">Sản phẩm</p>
+                    </div>
+                    <a class="fs-5" href="~/Admin/SanPham/Index"><i class="material-icons fs-1 text-success">inventory_2</i></a>
+                    
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded">
+                    <div>
+                        <h3 class="fs-2">@hoa_don</h3>
+                        <p class="fs-5">Bán được</p>
+                    </div>
+                    <a class="fs-5" href="~/Admin/HoaDon/Index"><i class="material-icons fs-1 text-success">real_estate_agent</i></a>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded">
+                    <div>
+                        <h3 class="fs-2">@khach_hang</h3>
+                        <p class="fs-5">Khách hàng mới</p>
+                    </div>
+                    <a class="fs-5" href="~/Admin/KhachHang/AddKhachhang"><i class="material-icons fs-1 text-success">person_add</i></a>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded">
+                    <div>
+                        <h3 class="fs-2">@doanh_thu VND</h3>
+                        <p class="fs-5">Doanh thu tháng</p>
+                    </div>
+                    <i class="material-icons fs-1 text-success">equalizer</i>
+                </div>
+            </div>
+        </div>
+
+        <div class="row my-5">
+            <h3 class="fs-4 mb-3">Những đơn hàng gần đây</h3>
+            <div class="col">
+                <table class="table bg-white rounded shadow-sm  table-hover">
+                    <thead class="text-success">
+
+                        <tr>
+                            <th scope="col" class="fw-bold">Id</th>
+                            <th scope="col" class="fw-bold">Hình ảnh</th>
+                            <th scope="col" class="fw-bold">Tên sản phẩm</th>
+                            <th scope="col" class="fw-bold">Loại sản phẩm</th>
+                            <th scope="col" class="fw-bold">Giá</th>
+                            <th scope="col" class="fw-bold">Size</th>
+                            <th scope="col" class="fw-bold">Số lượng</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td><img src="/img/g2.png" alt="#" style="width: 70px; height: 65px;"></td>
+                            <td>Nike Jordan 1</td>
+                            <td>Giày nam</td>
+                            <td>3.390.000đ</td>
+                            <td>
+                                <select name="" id="size">
+                                    <option>44</option>
+                                    <option>43</option>
+                                    <option>42</option>
+                                    <option>41</option>
+                                    <option>40</option>
+                                    <option>39</option>
+                                    <option>38</option>
+                                    <option>37</option>
+                                </select>
+                            </td>
+                            <td> 4</td>
+                            <!-- <td>Đang kinh doanh</td> -->
+
+                        </tr>
+                 
+
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+
+</div>
+

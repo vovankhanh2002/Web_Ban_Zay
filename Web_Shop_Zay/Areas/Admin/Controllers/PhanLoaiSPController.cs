@@ -38,7 +38,30 @@ namespace Web_Shop_Zay.Areas.Admin.Controllers
             }
             return Redirect("~/Admin/TaiKhoang/Login");
         }
-
+        [HttpPost]
+        public ActionResult Index(int? page, string select, string searchString)
+        {
+            Session["searchString"] = searchString;
+            if (page == null) page = 1;
+            var SanPham = from m in db.Phan_Loai_SP
+                          select m;
+            int pageSize = 20;
+            int pageNumber = page ?? 1;
+            if (!String.IsNullOrEmpty(searchString) && select == "MaLoai")
+            {
+                SanPham = SanPham.Where(s => s.MaLoai.ToString().Contains(searchString)).OrderBy(m => m.MaPL);
+                Session["seleted"] = "selected";
+                return View(SanPham.ToPagedList(pageNumber, pageSize));
+            }
+            else if (!String.IsNullOrEmpty(searchString) && select == "TenPL")
+            {
+                SanPham = SanPham.Where(s => s.TenPL.ToString().Contains(searchString)).OrderBy(m => m.TenPL);
+                Session["seleted1"] = "selected";
+                return View(SanPham.ToPagedList(pageNumber, pageSize));
+            }
+           
+            return View();
+        }
         public ActionResult AddPhanLoaiSP()
         {
             return View();

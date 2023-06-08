@@ -5,9 +5,10 @@
 }
 
 
-<div class="container py-5">
+<div class="container py-5" >
     <div class="row py-5">
         <form class="col-md-9 m-auto" action="EditSanPham" method="post" role="form">
+            @Html.HiddenFor(model => model.MaSP)
             <h1>Sửa sản phẩm</h1>
             <div class="row">
                 <div class="form-group col-md-9 mb-3">
@@ -29,6 +30,10 @@
                 <input type="text" class="form-control mt1" id="" name="Gia" value="@Model.Gia" placeholder="Giá">
             </div>
             <div class="mb-3">
+                <label for="inputsubject"><strong>Giá sản phẩm</strong></label>
+                <input type="text" class="form-control mt1" id="" name="GiamGia" value="@Model.GiamGia" placeholder="Giảm giá">
+            </div>
+            <div class="mb-3">
                 <label for=""><strong>Số lượng</strong></label>
                 <input type="text" class="form-control mt1" id="" name="SoLuong" value="@Model.SoLuong" placeholder="Số lượng">
             </div>
@@ -45,7 +50,7 @@
 
             <div class="mb-3">
                 <label for="inputmessage"><strong>Mô tả</strong></label>
-                <textarea type="text" class="form-control mt1" id="info" value="@Model.MoTa"  placeholder="thông tin" name="MoTa" cols="30" rows="8"></textarea>
+                <textarea type="text" class="form-control mt1" id="info" value="@Model.MoTa" placeholder="thông tin" name="MoTa" cols="30" rows="8"></textarea>
             </div>
 
             <div class="row">

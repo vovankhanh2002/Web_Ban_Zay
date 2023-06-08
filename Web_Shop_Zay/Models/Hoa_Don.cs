@@ -24,6 +24,18 @@ namespace Web_Shop_Zay.Models
         public Nullable<int> IDKhachHang { get; set; }
         public Nullable<System.DateTime> NgayMua { get; set; }
         public string GhiChuNN { get; set; }
+        public string PTThanhToan { get; set; }
+        public string PTVanChuyen { get; set; }
+        public string Name { get; set; }
+        public string Phone { get; set; }
+        public string Address { get; set; }
+        public Nullable<decimal> Total { get; set; }
+        public Nullable<int> Quantity { get; set; }
+        public Nullable<int> Payment { get; set; }
+        public string Email { get; set; }
+        public Nullable<int> TypePayMentVN { get; set; }
+        public Nullable<int> Buy { get; set; }
+        public Nullable<int> Duyet { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Chi_Tiet_HD> Chi_Tiet_HD { get; set; }

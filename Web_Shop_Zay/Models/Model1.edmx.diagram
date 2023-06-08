@@ -19,6 +19,7 @@
         <AssociationConnector Association="Web_Ban_ZayModel.FK_Hoa_Don_Khach_Hang1" />
         <AssociationConnector Association="Web_Ban_ZayModel.FK_Phan_Loai_SP_Loai_San_Pham" />
         <AssociationConnector Association="Web_Ban_ZayModel.FK_San_Pham_Phan_Loai_SP" />
+        <EntityTypeShape EntityType="Web_Ban_ZayModel.Lien_He" Width="1.5" PointX="7.375" PointY="9.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -34,44 +34,101 @@
             </ul>
         </div>
     </div>*@
+@*--------------------------------------------------------------------------------*@
 <div class="container py-5">
-    <div class="dropdown show" style=" display: flex; justify-content: center;">
-        @foreach (var item in loai)
-        {
-            var ds = new Web_Shop_Zay.Models.mapPhanLoaiSP().phanLoaiSpID(item.MaLoai);
+    @*<div class="dropdown show" style=" display: flex; justify-content: center;">
+            @foreach (var item in loai)
+            {
+                var ds = new Web_Shop_Zay.Models.mapPhanLoaiSP().phanLoaiSpID(item.MaLoai);
 
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style="margin-left: 10px; background: white; border: none; color: black;">
-                @item.TenLoai
-            </button>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                @foreach (var i in ds)
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style="margin-left: 10px; background: white; border: none; color: black;">
+                    @item.TenLoai
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                    @foreach (var i in ds)
+                    {
+                        <a class="dropdown-item" href="~/Shop/SanPhamID?id=@i.MaPL">@i.TenPL</a>
+                    }
+
+                </ul>
+            }
+        </div>*@
+    <style>
+        li.nav-item.dropdown.col-lg-1 {
+            width: 116px;
+        }
+
+        a.nav-link.dropdown-toggle {
+            color: #333;
+        }
+
+        a.h3.text-decoration-none {
+            height: 60px;
+            display: block;
+            overflow: hidden;
+            color: blue;
+        }
+
+        img.card-img.rounded-0.img-fluid {
+            max-height: 400px;
+            object-fit: cover;
+        }
+
+        .nav-tabs {
+            border-bottom: 0;
+        }
+
+        .product-wap .h3, .product-wap li, .product-wap i, .product-wap p {
+            font-size: 25px !important;
+        }
+    </style>
+    <div class="row">
+        <div class="col-lg-9">
+            @* -------------------- *@
+            <ul class="nav nav-tabs">
+                @foreach (var item in loai)
                 {
-                    <a class="dropdown-item" href="~/Shop/SanPhamID?id=@i.MaPL">@i.TenPL</a>
+                    var ds = new Web_Shop_Zay.Models.mapPhanLoaiSP().phanLoaiSpID(item.MaLoai);
+                    <li class="nav-item dropdown col-lg-1">
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">@item.TenLoai</a>
 
+                        <div class="dropdown-menu">
+                            @foreach (var i in ds)
+                            {
+                                <a class="dropdown-item" href="~/Shop/SanPhamID?id=@i.MaPL">@i.TenPL</a>
+                            }
+                        </div>
+
+                    </li>
                 }
             </ul>
-        }
+
+            @* -------------------- *@
+        </div>
+        <div class="col-lg-3">
+            <div class="dropdown">
+                <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false" style=" background: white; border: none; color: black;">
+                    Lọc theo
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                    <li><a class="dropdown-item" href="~/Shop/SanPhamGiam">Giá giam dần</a></li>
+                    <li><a class="dropdown-item" href="~/Shop/SanPhamTang">Giá tăng dần</a></li>
+                    <li><a class="dropdown-item" href="~/Shop/SanPhamRan">Sản phẩm nổi bật</a></li>
+                    <li><a class="dropdown-item" href="~/Shop/SanPhamAZ">Tên: A-Z</a></li>
+                    <li><a class="dropdown-item" href="~/Shop/SanPhamZA">Tên: Z-A</a></li>
+                </ul>
+            </div>
+        </div>
     </div>
 
-    <div class="dropdown">
-        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false" style=" background: white; border: none; color: black;">
-            @Session["SpTang"]
-        </a>
-        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-            <li><a class="dropdown-item" href="~/Shop/SanPhamGiam">Giá giam dần</a></li>
-            <li><a class="dropdown-item" href="~/Shop/SanPhamTang">Giá tăng dần</a></li>
-            <li><a class="dropdown-item" href="~/Shop/SanPhamRan">Sản phẩm nổi bật</a></li>
-            <li><a class="dropdown-item" href="~/Shop/SanPhamAZ">Tên: A-Z</a></li>
-            <li><a class="dropdown-item" href="~/Shop/SanPhamZA">Tên: Z-A</a></li>
-        </ul>
-    </div>
     <div class="row" style="margin-top:40px">
         @foreach (var item in Model)
         {
-            <div class="col-md-4" style=" width: 300px;">
+
+            <div class="cardhover col-md-3">
                 <div class="card mb-4 product-wap rounded-0">
-                    <div class="card rounded-0">
-                        <img style=" max-height: 200px;" class="card-img rounded-0 img-fluid" src="~/Asset/img/SanPham/@item.Hinh">
+                    <div class="card  rounded-0">
+                        <img class="card-img rounded-0 img-fluid" src="~/Asset/img/SanPham/@item.Hinh">
                         <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
                             <ul class="list-unstyled">
 
@@ -96,18 +153,37 @@
                                 @item.TrangThai
                             </li>
                         </ul>
-                        <p class="text-center mb-0">@String.Format("{0:c}", item.Gia) </p>
+                        @{
+
+                            if (item.GiamGia == "50")
+                            {
+                                var sum = item.Gia / 2;
+                                <p class="text-center mb-0" style="color: red;">Giảm giá @item.GiamGia%</p>
+                                <p class="text-center mb-0" style="color: red;">Còn @sum₫</p>
+
+                            }
+                            else
+                            {
+                                <p class="text-center mb-0" style="color: red;">@item.Gia₫</p>
+                            }
+                        }
+
                     </div>
                 </div>
+
             </div>
+
+
+
         }
     </div>
     <br />
-
-
     @Html.PagedListPager(Model, page => Url.Action("Index",
         new { page }))
 </div>
+
+@*--------------------------------------------------------------------------------*@
+
 <div class="benefit">
     <div class="container">
         <div class="row benefit_row">

@@ -1,9 +1,10 @@
-.box{
+/* .box{
     display: block;
-    background-color: blueviolet;
+    background-color: var(--bs-bg-light);
     padding: 20rem;
-}
+} */
 
+/* ------------CUSTOM CLOLOR---------------------*/
 :root {
     --bs-bg-dark: #303030;
     --bs-bg-light: #e9eef5;
@@ -12,7 +13,7 @@
 
     --bs-brands-dark: #373c41;
 }
-
+/* --------------------MAIN DARK MODE-------------------------- */
 .dark-mode {
     background-color: var(--bs-bg-dark);
     color: var(--bs-text-dark);
@@ -25,15 +26,15 @@
 } */
 
 
-
+/* ------------DARK MODE header---------------------*/
 /*nav header*/
 .dark-mode #main_nav{
     background-color: var(--bs-nav-dark);
     color: var(--bs-text-dark);
     transition: 1s;
 }
-
-.dark-mode #templatemo_main_nav a:hover { color: #ffffff;}
+#JEJ_main_nav a:hover { color: #69bb7e;}
+.dark-mode #JEJ_main_nav a:hover { color: #ffffff;}
 
 #logocolor { color: #68bb7d;}
 .dark-mode #logocolor { color: #ffffff;}
@@ -60,7 +61,7 @@
     color: var(--bs-bg-light);
 }
 
-/* gioi thieu*/
+/* ------------DARK MODE Gioi thieu---------------------*/
 #brand_bg{
     background-color: var(--bs-bg-light);
 
@@ -76,8 +77,8 @@
 }
 
 
-/* index*/
-.dark-mode #banner_hero{
+/* ------------DARK MODE index---------------------*/
+.dark-mode #banner{
     background-color: var(--bs-brands-dark);
     color: var(--bs-text-dark);
     transition: 1s;
@@ -99,7 +100,324 @@
     color: var(--bs-text-dark);
 }
 
-.search-box {
+/* -----------------------------------Start login -----------------------*/
+.dark-mode .bodylogin{
+    background-color: var(--bs-bg-dark);
+}
+.dark-mode .bodysignup{
+    background-color: var(--bs-bg-dark);
+}
+.dark-mode .login{
+    background-color: var(--bs-brands-dark);
+}
+.biglogin{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    
+}
+
+.bodylogin{
+    
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background:#e9eef5;
+}
+.bodysignup{
+    height: 140vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+     background: #e9eef5;
+}
+
+/* setting bootstrap */
+.rounded-4{
+    border-radius: 12px;
+}
+
+.login{
+    width: 400px;
+    height: min-content;
+    padding: 20px;
+     /* border-radius: 22px;  */
+    background-color: var(--bs-text-dark);
+}
+.login h1{
+    font-size: 36px;
+    margin-bottom: 25px;
+}
+.login form{
+    font-size: 20px;
+}
+.login form .form-grounp{
+    margin-bottom: 12px;
+}
+/* .login form input[type = "submit"]{
+    font-size: 20px;
+    margin-top: 20px;
+} */
+.login form .Google{
+    background: #e9eef5;
+    border-radius: 4px;
+}
+.login form .new{
+    margin-bottom: 12px;
+}
+/* -----------------------------------End login -----------------------*/
+
+
+/* -------------------------------------------start product--------------------------------- */
+
+/* .containerpro{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+     justify-content: space-around;
+}
+.row{
+    width: 100%;
+    align-self: center;
+   
+    display:flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    /* gap: 40px; 
+    
+}
+.dark-mode .product{
+    background-color: var(--bs-brands-dark);
+}
+.dark-mode .namePrice h3{
+    color: var(--bs-text-dark);
+}
+.product{
+    position: relative;
+    background-color: var(--bs-bg-light);
+    width: 350px;
+    height: 100%;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, .3);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: 12px;
+    padding: 20px 20px 40px;
+    transition: .3s;
+}
+
+.product:hover{
+    transform: translateY(-15px);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, .2);
+}
+.card{
+    width: 100%;
+    height: 60%;
+    display: grid;
+    place-content: center;
+}
+.card img{
+    width: 240px;
+}
+.namePrice{
+    width: 100%;
+    display:flex;
+    justify-content: space-between;
+}
+.namePrice h3{
+    font-size: 2em;
+    text-transform: capitalize;
+    color: var(--bs-brands-dark);
+}
+.namePrice span{
+    font-size: 1.5em;
+    color: var(--bs-nav-dark);
+}
+.product p{
+    font-size: 18px;
+    line-height: 25px;
+}
+.stars{
+    font-size: 1.3em;
+    color: orangered;
+    /* padding-bottom: 50px; 
+}
+.buy{
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+}
+.buy button{
+    padding:  10px 20px;
+    border-radius: 7px;
+    border: none;
+    background-color: var(--bs-nav-dark);
+    color: var(--bs-brands-dark);
+    font-size: 18px;
+    text-transform: capitalize;
+    cursor: pointer;
+    transition: .5s;
+}
+.buy button:hover{
+    transform: scale(1.1);
+} */
+
+.cardhover:hover{
+    transform: translateY(-15px);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, .2);
+    transition: .5s;
+}
+.buy a:hover{
+    transform: scale(1.1);
+    transition: .5s;
+}
+.btnlog:hover {
+    background-color: #68bb7d;
+    color:#303030;
+}
+.btnsig:hover{
+    color: #303030;
+}
+.btnsig{
+    /* border: 5px; */
+    /* border-color: #68bb7d; */
+    margin-left: 20px;
+    border-radius: 5px;
+    color: #f8f9fa;
+    background-color: #68bb7d;
+    padding: 10px 15px 15px 15px;
+    text-align: center;
+    text-decoration: none;
+}
+.btnlog{
+    
+    border: 2px solid;
+    border-color: #68bb7d;
+    border-radius: 5px;
+    background-color: #212934;
+    color: #f8f9fa;
+    padding: 10px 15px 15px 15px;
+    text-align: center;
+    text-decoration: none;
+    
+}
+
+/* .dark-mode .cardhover{
+    background-color: var(--bs-nav-dark);
+}
+.dark-mode .namePrice h3{
+    color: var(--bs-text-dark);
+} */
+
+/* ----------------------------------start filter-------------------------- */
+
+.underline{
+    height: 3px;
+    width: 100px;
+    background-color: #68bb7d;
+}/* 
+.btnfill:focus{
+    outline: none!important;
+    box-shadow: none!important;
+}
+
+.btnfill {
+    background-color: #f8f9fa!important;
+    border: none;
+     border-radius: 5px;  
+}
+.btnfill:hover{
+    background-color: #68bb7d!important;
+    color: #f8f9fa!important;
+    /* border-radius: 5px;
+    transition: .2s; 
+} */
+.profilter{
+    padding: 20px;
+    margin: 40px auto;
+   
+}
+.profilter ul{
+    display: flex;
+    margin-bottom: 10px;
+}
+.profilter ul li{
+    list-style: none;
+    background: #c0c0c0;
+    padding: 8px 20px;
+    margin: 5px;
+    letter-spacing: 1px;
+    border-radius: 5px;
+    cursor: pointer;
+    border-bottom: 5px solid #110f29;
+}
+
+.profilter ul li:hover , .profilter ul li.active{
+    background: #68bb7d;
+    color: #f8f9fa;
+}
+/* ----------------------------------start search filter-------------------------- */
+
+#search-container {
+    /* margin: 2em 0; */
+    margin-left: 100px;
+  }
+  #search-container input {
+    outline: none;
+    border: none;
+    background-color: transparent;
+    width: 40%;
+    /* border: none; */
+    border-bottom: 5px solid #110f29;
+    padding: 1em 0.3em;
+  }
+  #search-container input:focus {
+    /* border: none; */
+    border-bottom-color:  var(--bs-nav-dark);
+  }
+  #search-container button {
+    padding: 1em 2em;
+    margin-left: 1em;
+    background-color: var(--bs-nav-dark);
+    color: #ffffff;
+    border-radius: 5px;
+    border-bottom: 10px solid #110f29;
+    margin-top: 0.5em;
+  }
+
+
+/* ----------------------------------end  search filter-------------------------- */
+.filter-condition{
+    padding: 20px;
+    height: 100px;
+    font-size: 20px;
+    font-weight: bold;
+}
+.filter-condition select{
+    width: 145px;
+    padding: 0 0 0 10px;
+    border: none;
+    outline: none;
+    font-weight: bold;
+    color:#68bb7d;
+    background: transparent;
+    cursor: pointer;
+}
+
+/* ----------------------------------end filter-------------------------- */
+
+/* .pagination .page-item .page-link.active{
+    background-color: #68bb7d;
+    color: #f8f9fa;
+} */
+
+/* -------------------------------------------end product--------------------------------- */
+
+/* ----------------------------------Start search navbar-------------------------- */
+
+.search-box{
     /* position: absolute;
     top: 50%;
     right: 90%;
@@ -108,42 +426,159 @@
     height: 65px;
     border-radius: 65px;
     padding: 7px;
-    margin-right: 20px;
+    margin-right: 5px;
+}
+.search-box:hover > .search-txt{
+    width: 230px;
+    padding: 0 10px;
+}
+.search-box:hover > .search-btn{
+    background: #e9eef5;
 }
 
-    .search-box:hover > .search-txt {
-        width: 240px;
-        padding: 0 10px;
-    }
+.search-btn{
 
-    .search-box:hover > .search-btn {
-        background: #e9eef5;
-    }
-
-.search-btn {
-    display: flex;
+    display:flex;
     float: right;
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    background: #68bb7d;
+    background:#68bb7d;
+    
     justify-content: center;
     align-items: center;
     transition: 0.4s;
     border: none;
     text-decoration: none;
+   
 }
-
-.search-txt {
+.search-txt{
     border: none;
     background: none;
     outline: none;
     float: left;
     padding: 0px;
-    color: #f8f9fa;
+    color:#f8f9fa;
     font-size: 16px;
     transition: 0.4s;
     line-height: 50px;
     width: 0px;
 }
+
+
+/* ----------------------------------end search navbar-------------------------- */
+
+/* ----------------------------------start profile khach--------------------------- */
+
+.profile-links {
+    background-color:#68bb7d;
+    padding: 30px 20px;
+    text-align: center;
+    margin: 100px 70px 0 70px;
+    border-radius: 10px;
+  }
+  
+  .profile-links img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-bottom: 25px;
+  }
+  
+  .profile-links li {
+    display: block;
+    margin: 10px 0;
+  }
+  
+  .profile-links li a {
+    color: #fff;
+    text-decoration: none;
+    margin: 10px 0;
+    display: inline-block;
+  }
+  
+  .mt-custum {
+    margin-top: 100px;
+  }
+  
+  .mt-custum .details {
+    border-bottom: 1px #68bb7d;
+    padding: 20px;
+    font-weight: 500;
+  }
+  
+  .text-justify {
+    text-align: justify;
+  }
+  /* respon haha */
+  @media (max-width:1200px) {
+    .mt-custum {
+        margin-top: 50px;
+    }
+    .profile-links {
+        background-color:#68bb7d;
+        padding: 30px 20px;
+        text-align: center;
+        margin: 50px 50px 0 50px;
+        border-radius: 10px;
+    }
+  }
+  
+  @media (max-width:991px) {
+    .mt-custum {
+        margin-top: 20px;
+    }
+    .profile-links {
+        background-color:#68bb7d;
+        padding: 30px 20px;
+        text-align: center;
+        margin: 20px 0 0 0;
+        border-radius: 10px;
+    }
+  }
+  
+  @media (max-width:600px) {
+    .profile-links li {
+        margin: 0;
+    }
+    .profile-links img {
+        margin-bottom: 10px;
+    }
+    .mt-custum .details {
+        padding: 10px;
+    }
+  }
+
+
+
+/* profile darkmode */
+.dark-mode #pro_light{
+    
+    /* color: var(--bs-bg-dark) */
+    background: var(--bs-brands-dark);
+    transition: 0.4s;
+}
+
+
+/*------------------------------------ end profile khach -----------------------------*/
+
+/* thong bao */
+.toast{
+    position:fixed;
+    top: 150px;
+    right: 10px;
+}
+
+/* cart */
+
+.dark-mode .card{
+    background-color: var(--bs-brands-dark);
+    color: var(--bs-text-dark);
+}
+.dark-mode .table{
+    background-color: var(--bs-brands-dark);
+    color: var(--bs-text-dark);
+}
+
 

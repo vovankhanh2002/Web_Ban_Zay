@@ -33,6 +33,7 @@
       <End Role="Phan_Loai_SP" EntitySet="Phan_Loai_SP" />
       <End Role="San_Pham" EntitySet="San_Pham" />
     </AssociationSet>
+    <EntitySet Name="Lien_He" EntityType="Web_Ban_ZayModel.Lien_He" />
   </EntityContainer>
   <EntityType Name="Chi_Tiet_HD">
     <Key>
@@ -65,10 +66,22 @@
     </Key>
     <Property Name="MaHD" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="IDKhachHang" Type="Int32" />
-    <Property Name="NgayMua" Type="DateTime" Precision="0" />
+    <Property Name="NgayMua" Type="DateTime" Precision="3" />
     <Property Name="GhiChuNN" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Chi_Tiet_HD" Relationship="Web_Ban_ZayModel.FK_Chi_Tiet_HD_Hoa_Don" FromRole="Hoa_Don" ToRole="Chi_Tiet_HD" />
     <NavigationProperty Name="Khach_Hang" Relationship="Web_Ban_ZayModel.FK_Hoa_Don_Khach_Hang1" FromRole="Hoa_Don" ToRole="Khach_Hang" />
+    <Property Name="PTThanhToan" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="PTVanChuyen" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Phone" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Total" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="Quantity" Type="Int32" />
+    <Property Name="Payment" Type="Int32" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TypePayMentVN" Type="Int32" />
+    <Property Name="Buy" Type="Int32" />
+    <Property Name="Duyet" Type="Int32" />
   </EntityType>
   <EntityType Name="Khach_Hang">
     <Key>
@@ -83,6 +96,7 @@
     <Property Name="ReMatKhau" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="GioiTinh" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Hoa_Don" Relationship="Web_Ban_ZayModel.FK_Hoa_Don_Khach_Hang1" FromRole="Khach_Hang" ToRole="Hoa_Don" />
+    <Property Name="Anh" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="Loai_San_Pham">
     <Key>
@@ -118,6 +132,8 @@
     <NavigationProperty Name="ChiTietSps" Relationship="Web_Ban_ZayModel.FK_ChiTietSp_San_Pham" FromRole="San_Pham" ToRole="ChiTietSp" />
     <NavigationProperty Name="Phan_Loai_SP" Relationship="Web_Ban_ZayModel.FK_San_Pham_Phan_Loai_SP" FromRole="San_Pham" ToRole="Phan_Loai_SP" />
     <Property Name="Size" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="GiamGia" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="LuotXem" Type="Int32" />
   </EntityType>
   <EntityType Name="User">
     <Key>
@@ -200,4 +216,13 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <EntityType Name="Lien_He">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Website" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Message" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+  </EntityType>
 </Schema>

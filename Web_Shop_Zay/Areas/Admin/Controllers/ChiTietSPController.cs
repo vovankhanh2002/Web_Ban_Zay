@@ -24,8 +24,9 @@ namespace Web_Shop_Zay.Areas.Admin.Controllers
             }
             return Redirect("~/Admin/TaiKhoang/Login");
         }
-        public ActionResult AddChiTietSP()
+        public ActionResult AddChiTietSP(int masp)
         {
+            Session["mssp"] = masp;
             return View();
         }
         [HttpPost]

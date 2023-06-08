@@ -9,77 +9,248 @@
     var sanpham = new Web_Shop_Zay.Models.mapSanPham();
     var idsanpham = Session["idsanpham"];
     var dssanpham = sanpham.SanPham().SingleOrDefault(m => m.MaSP == (int)idsanpham);
+    //
+    var item = new Web_Shop_Zay.Models.mapPhanLoaiSP().phanLoaiSpID((int)dssanpham.MaPL);
 }
-}
+<div class="container">
+    <div class="main-content mb-5 mt-5">
+        <div class="row">
 
-<div class="container" style="margin-top: 20px; width: 600px; margin: auto;">
-    <div class="biglogin">
+            <div class="khungtk bg col- ms-12 col-md-6">
+                <div class="card rounded-4 shadow" sstyle="border: none;">
+                    <div class="card-content table-responsive">
+                        <table class="table table-hover">
+                            <thead class="text-primary ">
+                                <tr>
+                                    <th>Hình ảnh</th>
+                                    <th>Tên sản phẩm</th>
+                                    <th>Loại sản phẩm</th>
+                                    <th>Giá</th>
+                                    <th>Size</th>
+                                    <th>Số lượng</th>
+                                </tr>
+                            </thead>
 
-        <div class="bodysignup">
+                            <tbody>
+                                @{
 
-            <div class="login shadow-lg p-3 mb-5 rounded-4 ">
+                                }
+                                <tr>
+                                    <td><img src="~/Asset/img/SanPham/@dssanpham.Hinh" style=" max-width: 60px;"></td>
+                                    <td>@dssanpham.TenSP</td>
+                                    <td>
+                                        @foreach (var i in item)
+                                        {
+                                            if (i.MaPL == dssanpham.MaPL)
+                                            {@i.TenPL}
+                                    }
+                                    </td>
+                                    <td>@dssanpham.Gia</td>
+                                    <td>@Session["size"]</td>
+                                    <td>@Session["slo"]</td>
+                                    <!-- <td><a href="/chitietsanpham.html" class="btn btn-outline-success">Chi tiết</a></td> -->
+                                </tr>
+                            </tbody>
+                        </table>
 
-                <h1 class="text-center">Thông tin khách hàng</h1>
-                <div>
-                    Họ tên: @dskhachhang.HoTenKH
-                </div>
-                <div>
-                    Địa chỉ: @dskhachhang.DiaChi
-                </div>
-                <div>
-                    Số điện thoại: @dskhachhang.DienThoai
-                </div>
-                <div>
-                    <a style="margin-top:20px" class="btn btn-lg btn-success w-100 fs-6" href="~/ThongTin/EditThongTin?email=@dskhachhang.IDKhachHang">Cập nhật thông tin</a>
-                </div>
-                <form style="margin-top:20px" class="" action="HoaDon" method="post">
-                    <input type="hidden" name="IDKhachHang" value="@Session["idkhachhang"]">
-                    <!-- tao cac thanh phan dang ky -->
-                    <div class="form-group">
-                        <label class="form-label fw-bold" for="text">Tên của bạn</label>
-                        <input class="form-control" type="text" id="username" placeholder="Ghi chú" name="GhiChuNN">
-                        <!-- <div class="invalid-feedback fs-6">
-                Vui lòng nhập tên của bạn
-            </div> -->
                     </div>
+
+                </div>
+                <div class="col-md-6 m-auto rounded-4 p-2 shadow mb-3" id="">
+                    <img src="~/Asset/img/KhachHang/@dskhachhang.Anh" style="max-width:100px">
+                    <div class="form-check ms-5 mt-3">
+                        <div>
+                            Họ tên: @dskhachhang.HoTenKH
+                        </div>
+                        <div>
+                            Địa chỉ: @dskhachhang.DiaChi
+                        </div>
+                        <div>
+                            Số điện thoại: @dskhachhang.DienThoai
+                        </div>
+                       
+                    </div>
+                   
+                </div>
+            </div>
+            
+            <div class="khungtk col-ms-12 col-md-6">
+
+                <form class="col-md-9 m-auto" action="HoaDon" method="post" role="form">
+                    <input type="hidden" name="IDKhachHang" value="@Session["idkhachhang"]">
                     <input type="hidden" name="NgayMua" value="@DateTime.Now.ToShortDateString()">
-                    <button class="btn btn-lg btn-success w-100 fs-6">Tiếp theo</button>
+                    <div class="row">
+
+                        <div class="container-fluid">
+                            <div class=" col-md-6 m-auto text-center  rounded-4 p-3  shadow" id="pro_light">
+                                <h5 class=""><i class="fa fa-fw fa-info-circle mr-1" id=""></i> Tóm tắt giỏ hàng</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="details form-group col-md-6 mt-5 w-100">
+                        <div class="row">
+                            <div class="cart_tt row rounded-4 shadow pe-5" id="pro_light">
+                                <label for="" class="">
+                                    <strong class="me-5 col-12">Tiền hàng</strong><i href="" style="pointer-events: none; text-decoration: none; float: right;" class="col-4"> @Session["sum"] </i>
+                                </label>
+
+                                <label for="" class=" mt-5">
+                                    <strong class="me-5 col-12">Phí vận chuyển</strong><i href="" id="value1" style="pointer-events: none; text-decoration: none; float: right;" class="col-4">
+
+                                    </i>
+                                </label>
+
+                                <label for="" class=" mt-5">
+                                    <strong class="me-5 col-12">Tổng thanh toán:</strong><i href="" id="value" style="pointer-events: none; text-decoration: none; float: right; font-size:larger; font-weight: bold;" class="text-danger col-4">
+                                        @Session["sum"]
+                                        @section scripts {
+                                            <script type="text/javascript">
+
+
+                                        function Tong() {
+                                            let e = document.getElementById("lang-select1").value;
+
+                                            if (e == "Nhanh") {
+                                                var value = @Session["sum"] + 28000
+
+                                                document.getElementById("value").innerHTML = value;
+                                                document.getElementById("value1").innerHTML = 28000;
+                                                document.getElementById("tong").value = value
+
+                                            }
+                                            if (e == "Hỏa tốc") {
+                                                var value = @Session["sum"] + 38000
+
+                                                document.getElementById("value").innerHTML = value;
+                                                document.getElementById("value1").innerHTML = 380000;
+                                                document.getElementById("tong").value = value
+                                            }
+                                        }
+
+                                            </script>
+                                        }
+                                    </i>
+                                </label>
+                                <input type="hidden" name="TongTien" id="tong" value="">
+                                <input type="hidden" name="MaSP" id="tong" value="@dssanpham.MaSP">
+                                <input type="hidden" name="SoLuong" id="SoLuong" value="@Session["slo"]">
+                                <input type="hidden" name="Size" id="Size" value="@Session["size"]">
+                            </div>
+                            <div class="cart_tt row rounded-4 shadow pe-5" style="margin-top:25px">
+                                <label for="" class="">
+                                    <strong class="me-5 col-12">Ghi chú</strong><i href="" style="pointer-events: none; text-decoration: none; float: right;" class="col-4"></i>
+                                    <textarea type="text" class="form-control mt1" id="info" placeholder="Ghi chú" name="GhiChuNN" cols="30" rows="8"></textarea>
+                                </label>
+
+                            </div>
+                            <div class="cart_tt row rounded-4 shadow pe-5" style="display: flex; margin-top: 25px">
+                                <label for="" class=" mt-5">
+                                    <strong class="me-5 col-12">Phương thức thanh toán</strong><i href="" style="pointer-events: none; text-decoration: none; float: right;" class="col-4"></i>
+                                </label>
+                                <select name="PTThanhToan" required id="lang-select" style="height: 45px; border-radius: 5px; border: none;">
+                                    <option value="Thanh toán khi nhận hàng">Thanh toán khi nhận hàng</option>
+                                    <option value="Visa">Visa</option>
+                                </select>
+                            </div>
+                            <div class="cart_tt row rounded-4 shadow pe-5" style="display: flex; margin-top: 25px">
+                                <label for="" class=" mt-5">
+                                    <strong class="me-5 col-12">Đơn vị vận chuyển</strong><i href="" style="pointer-events: none; text-decoration: none; float: right;" class="col-4"></i>
+                                </label>
+                                <select name="PTVanChuyen" required onchange="Tong()" id="lang-select1" style="height: 45px; border-radius: 5px; border: none">
+                                    <option value="Nhanh" id="sl1">Nhanh(28000đ)</option>
+                                    <option value="Hỏa tốc" id="sl2">Hỏa tốc(38000đ)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row mt-5">
+                        <div class="col text-end mt-5 text-center">
+                            <button type="submit" class="btn btn-success btn-lg px-3 text-center">Thanh Toán</button>
+                        </div>
+                    </div>
+                    
                 </form>
-
-
-
-                <div>
-                    Tên sản phẩm: @dssanpham.TenSP
-                </div>
-                <div>
-                    Hình: @dssanpham.Hinh
-                </div>
-                <div>
-                    Giá: @dssanpham.Gia
-                </div>
-                <div>
-                    Số lượng: @Session["slo"]
-                </div>
-                <div>
-                    Size: @Session["size"]
-                </div>
-                <div>
-                    Họ tên: @dskhachhang.HoTenKH
-                </div>
-                <div>
-                    Địa chỉ: @dskhachhang.DiaChi
-                </div>
-                <div>
-                    Số điện thoại: @dskhachhang.DienThoai
-                </div>
-                <div>
-                    Tổng tiền: @Session["sum"]
-                </div>
-
+                
             </div>
         </div>
     </div>
 </div>
 
+
+
+
+
+
+
+
+
+
+
+@*<div class="container" style="margin-top: 20px; width: 600px; margin: auto;">
+        <div class="biglogin">
+
+            <div class="bodysignup">
+
+                <div class="login shadow-lg p-3 mb-5 rounded-4 ">
+
+                    <h1 class="text-center">Thông tin khách hàng</h1>
+                    <div>
+                        Họ tên: @dskhachhang.HoTenKH
+                    </div>
+                    <div>
+                        Địa chỉ: @dskhachhang.DiaChi
+                    </div>
+                    <div>
+                        Số điện thoại: @dskhachhang.DienThoai
+                    </div>
+                    <div>
+                        <a style="margin-top:20px" class="btn btn-lg btn-success w-100 fs-6" href="~/ThongTin/EditThongTin?email=@dskhachhang.IDKhachHang">Cập nhật thông tin</a>
+                    </div>
+                    <form style="margin-top:20px" class="" action="HoaDon" method="post">
+                        <input type="hidden" name="IDKhachHang" value="@Session["idkhachhang"]">
+                        <!-- tao cac thanh phan dang ky -->
+                        <div class="form-group">
+                            <label class="form-label fw-bold" for="text">Tên của bạn</label>
+                            <input class="form-control" type="text" id="username" placeholder="Ghi chú" name="GhiChuNN">
+                            <!-- <div class="invalid-feedback fs-6">
+                    Vui lòng nhập tên của bạn
+                </div> -->
+                        </div>
+                        <input type="hidden" name="NgayMua" value="@DateTime.Now.ToShortDateString()">
+                        <button class="btn btn-lg btn-success w-100 fs-6">Tiếp theo</button>
+                    </form>
+
+                    <h1 class="text-center" style="margin-top:15px">Thông tin đơn hàng</h1>
+
+
+                    <table class="table table-bordered border-primary">
+                        <thead>
+                            <tr>
+                                <th scope="col">Tên sản phẩm</th>
+                                <th scope="col">Hình</th>
+                                <th scope="col">Giá</th>
+                                <th scope="col">Số lượng</th>
+                                <th scope="col">Size</th>
+                                <th scope="col">Tổng tiền</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>@dssanpham.TenSP</td>
+                                <td><img src="~/Asset/img/SanPham/@dssanpham.Hinh" style=" max-width: 60px;"></td>
+                                <td>@dssanpham.Gia</td>
+                                <td>@Session["slo"]</td>
+                                <td>@Session["size"]</td>
+                                <td>@Session["sum"]</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+*@
 
 
